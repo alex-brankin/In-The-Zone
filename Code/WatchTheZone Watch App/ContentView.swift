@@ -7,17 +7,31 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ImageButton: View {
+    let action: () -> Void
+    let image: String
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        Button(action: action) {
+            Image(image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 150, height: 150)
         }
-        .padding()
+        .buttonStyle(PlainButtonStyle())
+        .contentShape(Rectangle())
     }
 }
+
+struct ContentView: View {
+    var body: some View {
+        ImageButton(action: {
+            // Action to perform when the button is tapped
+            print("Button tapped")
+        }, image: "start image")
+    }
+}
+
 
 #Preview {
     ContentView()
