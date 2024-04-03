@@ -14,7 +14,7 @@ struct InTheZone: App {
     var body: some Scene {
         WindowGroup {
             if isFirstLaunch {
-                EKGLoadingView()xw
+                EKGLoadingView()
                     .preferredColorScheme(.dark)
                     .onAppear {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {

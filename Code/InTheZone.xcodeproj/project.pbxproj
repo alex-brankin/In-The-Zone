@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9F79CBE02BBC5FA200E130F3 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F79CBDF2BBC5FA200E130F3 /* Connectivity.swift */; };
 		9F99CD0A2BBC58D20019BF15 /* InTheZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD092BBC58D20019BF15 /* InTheZoneApp.swift */; };
-		9F99CD0C2BBC58D20019BF15 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD0B2BBC58D20019BF15 /* ContentView.swift */; };
 		9F99CD0E2BBC58D30019BF15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F99CD0D2BBC58D30019BF15 /* Assets.xcassets */; };
 		9F99CD112BBC58D30019BF15 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F99CD102BBC58D30019BF15 /* Preview Assets.xcassets */; };
 		9F99CD132BBC58D30019BF15 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD122BBC58D30019BF15 /* Persistence.swift */; };
@@ -29,6 +28,13 @@
 		9FCBB71C2BBD70C50056A462 /* WatchTheZone Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9FCBB6F92BBD70C40056A462 /* WatchTheZone Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9FCBB7282BBD9BE70056A462 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB7272BBD9BE70056A462 /* LoadingView.swift */; };
 		9FCBB72D2BBDBC9E0056A462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FCBB72C2BBDBC9E0056A462 /* GoogleService-Info.plist */; };
+		9FCBB7302BBDD8C20056A462 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB72F2BBDD8C20056A462 /* LoginView.swift */; };
+		9FCBB7322BBDD8D00056A462 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB7312BBDD8D00056A462 /* RegisterView.swift */; };
+		9FCBB7342BBDD8E00056A462 /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB7332BBDD8E00056A462 /* WorkoutsView.swift */; };
+		9FCBB7362BBDD8F50056A462 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB7352BBDD8F50056A462 /* ProfileView.swift */; };
+		9FCBB7382BBDD8FD0056A462 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB7372BBDD8FD0056A462 /* SettingsView.swift */; };
+		9FCBB73A2BBDDD330056A462 /* YourHeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB7392BBDDD330056A462 /* YourHeartView.swift */; };
+		9FCBB73E2BBDE3E20056A462 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB73D2BBDE3E20056A462 /* ContentView.swift */; };
 		9FFC528D2BBCC08A0095DD95 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC528B2BBCC0860095DD95 /* HealthKit.framework */; };
 		9FFC52922BBCC0950095DD95 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */; };
 /* End PBXBuildFile section */
@@ -82,7 +88,6 @@
 		9F79CBDF2BBC5FA200E130F3 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		9F99CD062BBC58D20019BF15 /* InTheZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InTheZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F99CD092BBC58D20019BF15 /* InTheZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTheZoneApp.swift; sourceTree = "<group>"; };
-		9F99CD0B2BBC58D20019BF15 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9F99CD0D2BBC58D30019BF15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F99CD102BBC58D30019BF15 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9F99CD122BBC58D30019BF15 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -109,6 +114,13 @@
 		9FCBB7272BBD9BE70056A462 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		9FCBB72B2BBDABB60056A462 /* WatchTheZone Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WatchTheZone Watch App.entitlements"; sourceTree = "<group>"; };
 		9FCBB72C2BBDBC9E0056A462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9FCBB72F2BBDD8C20056A462 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		9FCBB7312BBDD8D00056A462 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		9FCBB7332BBDD8E00056A462 /* WorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsView.swift; sourceTree = "<group>"; };
+		9FCBB7352BBDD8F50056A462 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		9FCBB7372BBDD8FD0056A462 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9FCBB7392BBDDD330056A462 /* YourHeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourHeartView.swift; sourceTree = "<group>"; };
+		9FCBB73D2BBDE3E20056A462 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9FFC528B2BBCC0860095DD95 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -264,8 +276,14 @@
 		9FCBB7262BBD765F0056A462 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9F99CD0B2BBC58D20019BF15 /* ContentView.swift */,
 				9F99CD3F2BBC5B6A0019BF15 /* HRView.swift */,
+				9FCBB72F2BBDD8C20056A462 /* LoginView.swift */,
+				9FCBB7312BBDD8D00056A462 /* RegisterView.swift */,
+				9FCBB7332BBDD8E00056A462 /* WorkoutsView.swift */,
+				9FCBB73D2BBDE3E20056A462 /* ContentView.swift */,
+				9FCBB7392BBDDD330056A462 /* YourHeartView.swift */,
+				9FCBB7352BBDD8F50056A462 /* ProfileView.swift */,
+				9FCBB7372BBDD8FD0056A462 /* SettingsView.swift */,
 				9FCBB7272BBD9BE70056A462 /* LoadingView.swift */,
 			);
 			path = Views;
@@ -476,15 +494,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FCBB7382BBDD8FD0056A462 /* SettingsView.swift in Sources */,
 				9F99CD132BBC58D30019BF15 /* Persistence.swift in Sources */,
-				9F99CD0C2BBC58D20019BF15 /* ContentView.swift in Sources */,
 				9F79CBE02BBC5FA200E130F3 /* Connectivity.swift in Sources */,
 				9FCBB7282BBD9BE70056A462 /* LoadingView.swift in Sources */,
+				9FCBB73E2BBDE3E20056A462 /* ContentView.swift in Sources */,
 				9F99CD162BBC58D30019BF15 /* InTheZone.xcdatamodeld in Sources */,
 				9F99CD3E2BBC5B410019BF15 /* HRManager.swift in Sources */,
 				9F99CD402BBC5B6A0019BF15 /* HRView.swift in Sources */,
 				9F99CD3A2BBC5B0F0019BF15 /* AppDelegate.swift in Sources */,
+				9FCBB7302BBDD8C20056A462 /* LoginView.swift in Sources */,
+				9FCBB7342BBDD8E00056A462 /* WorkoutsView.swift in Sources */,
+				9FCBB7322BBDD8D00056A462 /* RegisterView.swift in Sources */,
+				9FCBB73A2BBDDD330056A462 /* YourHeartView.swift in Sources */,
 				9F99CD0A2BBC58D20019BF15 /* InTheZoneApp.swift in Sources */,
+				9FCBB7362BBDD8F50056A462 /* ProfileView.swift in Sources */,
 				9F99CD3C2BBC5B280019BF15 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
