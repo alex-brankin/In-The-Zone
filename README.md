@@ -2,7 +2,7 @@
 
 <br />
 
-<center><a href="https://ibb.co/jhxy0P3"><img src="https://i.ibb.co/jhxy0P3/512px.png" alt="512px" border="0"></a>    
+<center><a href="https://github.com/alex-brankin"><img src="https://i.ibb.co/6YpH97D/512px.png" alt="512px" border="0"></a>   
 
 <center><p>
 <b><h4>COMP3000 Final Year Project </h4></b>
