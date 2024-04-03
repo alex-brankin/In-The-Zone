@@ -19,18 +19,17 @@
 		9F99CD3C2BBC5B280019BF15 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD3B2BBC5B280019BF15 /* SceneDelegate.swift */; };
 		9F99CD3E2BBC5B410019BF15 /* HRManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD3D2BBC5B410019BF15 /* HRManager.swift */; };
 		9F99CD402BBC5B6A0019BF15 /* HRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD3F2BBC5B6A0019BF15 /* HRView.swift */; };
-		9FCF58B12BBCB8AC0029C70C /* WatchTheZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF58B02BBCB8AC0029C70C /* WatchTheZoneApp.swift */; };
-		9FCF58B32BBCB8AC0029C70C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF58B22BBCB8AC0029C70C /* ContentView.swift */; };
-		9FCF58B52BBCB8AD0029C70C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FCF58B42BBCB8AD0029C70C /* Assets.xcassets */; };
-		9FCF58B82BBCB8AD0029C70C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FCF58B72BBCB8AD0029C70C /* Preview Assets.xcassets */; };
-		9FCF58C22BBCB8AD0029C70C /* WatchTheZone_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF58C12BBCB8AD0029C70C /* WatchTheZone_Watch_AppTests.swift */; };
-		9FCF58CC2BBCB8AD0029C70C /* WatchTheZone_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF58CB2BBCB8AD0029C70C /* WatchTheZone_Watch_AppUITests.swift */; };
-		9FCF58CE2BBCB8AD0029C70C /* WatchTheZone_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF58CD2BBCB8AD0029C70C /* WatchTheZone_Watch_AppUITestsLaunchTests.swift */; };
-		9FCF58D12BBCB8AD0029C70C /* InTheZone.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9FCF58AE2BBCB8AC0029C70C /* InTheZone.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9FCBB6FC2BBD70C40056A462 /* WatchTheZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB6FB2BBD70C40056A462 /* WatchTheZoneApp.swift */; };
+		9FCBB6FE2BBD70C40056A462 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB6FD2BBD70C40056A462 /* ContentView.swift */; };
+		9FCBB7002BBD70C50056A462 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FCBB6FF2BBD70C50056A462 /* Assets.xcassets */; };
+		9FCBB7032BBD70C50056A462 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FCBB7022BBD70C50056A462 /* Preview Assets.xcassets */; };
+		9FCBB70D2BBD70C50056A462 /* WatchTheZone_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB70C2BBD70C50056A462 /* WatchTheZone_Watch_AppTests.swift */; };
+		9FCBB7172BBD70C50056A462 /* WatchTheZone_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB7162BBD70C50056A462 /* WatchTheZone_Watch_AppUITests.swift */; };
+		9FCBB7192BBD70C50056A462 /* WatchTheZone_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB7182BBD70C50056A462 /* WatchTheZone_Watch_AppUITestsLaunchTests.swift */; };
+		9FCBB71C2BBD70C50056A462 /* WatchTheZone Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9FCBB6F92BBD70C40056A462 /* WatchTheZone Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9FCBB7282BBD9BE70056A462 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB7272BBD9BE70056A462 /* LoadingView.swift */; };
 		9FFC528D2BBCC08A0095DD95 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC528B2BBCC0860095DD95 /* HealthKit.framework */; };
 		9FFC52922BBCC0950095DD95 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */; };
-		9FFC52952BBCCBBA0095DD95 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */; };
-		9FFC52962BBCCBC00095DD95 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC528B2BBCC0860095DD95 /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,25 +40,25 @@
 			remoteGlobalIDString = 9F99CD052BBC58D20019BF15;
 			remoteInfo = InTheZone;
 		};
-		9FCF58BE2BBCB8AD0029C70C /* PBXContainerItemProxy */ = {
+		9FCBB7092BBD70C50056A462 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F99CCFE2BBC58D20019BF15 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9FCF58AD2BBCB8AC0029C70C;
+			remoteGlobalIDString = 9FCBB6F82BBD70C40056A462;
 			remoteInfo = "WatchTheZone Watch App";
 		};
-		9FCF58C82BBCB8AD0029C70C /* PBXContainerItemProxy */ = {
+		9FCBB7132BBD70C50056A462 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F99CCFE2BBC58D20019BF15 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9FCF58AD2BBCB8AC0029C70C;
+			remoteGlobalIDString = 9FCBB6F82BBD70C40056A462;
 			remoteInfo = "WatchTheZone Watch App";
 		};
-		9FCF58CF2BBCB8AD0029C70C /* PBXContainerItemProxy */ = {
+		9FCBB71A2BBD70C50056A462 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F99CCFE2BBC58D20019BF15 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9FCF58AD2BBCB8AC0029C70C;
+			remoteGlobalIDString = 9FCBB6F82BBD70C40056A462;
 			remoteInfo = "WatchTheZone Watch App";
 		};
 /* End PBXContainerItemProxy section */
@@ -71,7 +70,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				9FCF58D12BBCB8AD0029C70C /* InTheZone.app in Embed Watch Content */,
+				9FCBB71C2BBD70C50056A462 /* WatchTheZone Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,19 +95,20 @@
 		9F99CD3B2BBC5B280019BF15 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9F99CD3D2BBC5B410019BF15 /* HRManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRManager.swift; sourceTree = "<group>"; };
 		9F99CD3F2BBC5B6A0019BF15 /* HRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRView.swift; sourceTree = "<group>"; };
-		9FCF58AE2BBCB8AC0029C70C /* InTheZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InTheZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9FCF58B02BBCB8AC0029C70C /* WatchTheZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTheZoneApp.swift; sourceTree = "<group>"; };
-		9FCF58B22BBCB8AC0029C70C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		9FCF58B42BBCB8AD0029C70C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9FCF58B72BBCB8AD0029C70C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		9FCF58BD2BBCB8AD0029C70C /* WatchTheZone Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WatchTheZone Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9FCF58C12BBCB8AD0029C70C /* WatchTheZone_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTheZone_Watch_AppTests.swift; sourceTree = "<group>"; };
-		9FCF58C72BBCB8AD0029C70C /* WatchTheZone Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WatchTheZone Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9FCF58CB2BBCB8AD0029C70C /* WatchTheZone_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTheZone_Watch_AppUITests.swift; sourceTree = "<group>"; };
-		9FCF58CD2BBCB8AD0029C70C /* WatchTheZone_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTheZone_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9FCBB6F92BBD70C40056A462 /* WatchTheZone Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchTheZone Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FCBB6FB2BBD70C40056A462 /* WatchTheZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTheZoneApp.swift; sourceTree = "<group>"; };
+		9FCBB6FD2BBD70C40056A462 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9FCBB6FF2BBD70C50056A462 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9FCBB7022BBD70C50056A462 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9FCBB7082BBD70C50056A462 /* WatchTheZone Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WatchTheZone Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FCBB70C2BBD70C50056A462 /* WatchTheZone_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTheZone_Watch_AppTests.swift; sourceTree = "<group>"; };
+		9FCBB7122BBD70C50056A462 /* WatchTheZone Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WatchTheZone Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FCBB7162BBD70C50056A462 /* WatchTheZone_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTheZone_Watch_AppUITests.swift; sourceTree = "<group>"; };
+		9FCBB7182BBD70C50056A462 /* WatchTheZone_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTheZone_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9FCBB7272BBD9BE70056A462 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		9FCBB72B2BBDABB60056A462 /* WatchTheZone Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WatchTheZone Watch App.entitlements"; sourceTree = "<group>"; };
 		9FFC528B2BBCC0860095DD95 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
-		9FFC52942BBCC6410095DD95 /* WatchTheZone Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WatchTheZone Watch App.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,23 +128,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FCF58AB2BBCB8AC0029C70C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9FFC52952BBCCBBA0095DD95 /* HealthKitUI.framework in Frameworks */,
-				9FFC52962BBCCBC00095DD95 /* HealthKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9FCF58BA2BBCB8AD0029C70C /* Frameworks */ = {
+		9FCBB6F62BBD70C40056A462 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FCF58C42BBCB8AD0029C70C /* Frameworks */ = {
+		9FCBB7052BBD70C50056A462 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FCBB70F2BBD70C50056A462 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -160,9 +158,9 @@
 				9F99CD082BBC58D20019BF15 /* InTheZone */,
 				9F99CD1E2BBC58D30019BF15 /* InTheZoneTests */,
 				9F99CD282BBC58D30019BF15 /* InTheZoneUITests */,
-				9FCF58AF2BBCB8AC0029C70C /* WatchTheZone Watch App */,
-				9FCF58C02BBCB8AD0029C70C /* WatchTheZone Watch AppTests */,
-				9FCF58CA2BBCB8AD0029C70C /* WatchTheZone Watch AppUITests */,
+				9FCBB6FA2BBD70C40056A462 /* WatchTheZone Watch App */,
+				9FCBB70B2BBD70C50056A462 /* WatchTheZone Watch AppTests */,
+				9FCBB7152BBD70C50056A462 /* WatchTheZone Watch AppUITests */,
 				9F99CD072BBC58D20019BF15 /* Products */,
 				9FFC528A2BBCC0860095DD95 /* Frameworks */,
 			);
@@ -173,9 +171,9 @@
 			children = (
 				9F99CD062BBC58D20019BF15 /* InTheZone.app */,
 				9F99CD1B2BBC58D30019BF15 /* InTheZoneTests.xctest */,
-				9FCF58AE2BBCB8AC0029C70C /* InTheZone.app */,
-				9FCF58BD2BBCB8AD0029C70C /* WatchTheZone Watch AppTests.xctest */,
-				9FCF58C72BBCB8AD0029C70C /* WatchTheZone Watch AppUITests.xctest */,
+				9FCBB6F92BBD70C40056A462 /* WatchTheZone Watch App.app */,
+				9FCBB7082BBD70C50056A462 /* WatchTheZone Watch AppTests.xctest */,
+				9FCBB7122BBD70C50056A462 /* WatchTheZone Watch AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,8 +187,7 @@
 				9F99CD3B2BBC5B280019BF15 /* SceneDelegate.swift */,
 				9F79CBDF2BBC5FA200E130F3 /* Connectivity.swift */,
 				9F99CD3D2BBC5B410019BF15 /* HRManager.swift */,
-				9F99CD0B2BBC58D20019BF15 /* ContentView.swift */,
-				9F99CD3F2BBC5B6A0019BF15 /* HRView.swift */,
+				9FCBB7262BBD765F0056A462 /* Views */,
 				9F99CD0D2BBC58D30019BF15 /* Assets.xcassets */,
 				9F99CD122BBC58D30019BF15 /* Persistence.swift */,
 				9F99CD142BBC58D30019BF15 /* InTheZone.xcdatamodeld */,
@@ -224,41 +221,51 @@
 			path = InTheZoneUITests;
 			sourceTree = "<group>";
 		};
-		9FCF58AF2BBCB8AC0029C70C /* WatchTheZone Watch App */ = {
+		9FCBB6FA2BBD70C40056A462 /* WatchTheZone Watch App */ = {
 			isa = PBXGroup;
 			children = (
-				9FFC52942BBCC6410095DD95 /* WatchTheZone Watch App.entitlements */,
-				9FCF58B02BBCB8AC0029C70C /* WatchTheZoneApp.swift */,
-				9FCF58B22BBCB8AC0029C70C /* ContentView.swift */,
-				9FCF58B42BBCB8AD0029C70C /* Assets.xcassets */,
-				9FCF58B62BBCB8AD0029C70C /* Preview Content */,
+				9FCBB72B2BBDABB60056A462 /* WatchTheZone Watch App.entitlements */,
+				9FCBB6FB2BBD70C40056A462 /* WatchTheZoneApp.swift */,
+				9FCBB6FD2BBD70C40056A462 /* ContentView.swift */,
+				9FCBB6FF2BBD70C50056A462 /* Assets.xcassets */,
+				9FCBB7012BBD70C50056A462 /* Preview Content */,
 			);
 			path = "WatchTheZone Watch App";
 			sourceTree = "<group>";
 		};
-		9FCF58B62BBCB8AD0029C70C /* Preview Content */ = {
+		9FCBB7012BBD70C50056A462 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				9FCF58B72BBCB8AD0029C70C /* Preview Assets.xcassets */,
+				9FCBB7022BBD70C50056A462 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		9FCF58C02BBCB8AD0029C70C /* WatchTheZone Watch AppTests */ = {
+		9FCBB70B2BBD70C50056A462 /* WatchTheZone Watch AppTests */ = {
 			isa = PBXGroup;
 			children = (
-				9FCF58C12BBCB8AD0029C70C /* WatchTheZone_Watch_AppTests.swift */,
+				9FCBB70C2BBD70C50056A462 /* WatchTheZone_Watch_AppTests.swift */,
 			);
 			path = "WatchTheZone Watch AppTests";
 			sourceTree = "<group>";
 		};
-		9FCF58CA2BBCB8AD0029C70C /* WatchTheZone Watch AppUITests */ = {
+		9FCBB7152BBD70C50056A462 /* WatchTheZone Watch AppUITests */ = {
 			isa = PBXGroup;
 			children = (
-				9FCF58CB2BBCB8AD0029C70C /* WatchTheZone_Watch_AppUITests.swift */,
-				9FCF58CD2BBCB8AD0029C70C /* WatchTheZone_Watch_AppUITestsLaunchTests.swift */,
+				9FCBB7162BBD70C50056A462 /* WatchTheZone_Watch_AppUITests.swift */,
+				9FCBB7182BBD70C50056A462 /* WatchTheZone_Watch_AppUITestsLaunchTests.swift */,
 			);
 			path = "WatchTheZone Watch AppUITests";
+			sourceTree = "<group>";
+		};
+		9FCBB7262BBD765F0056A462 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9F99CD0B2BBC58D20019BF15 /* ContentView.swift */,
+				9F99CD3F2BBC5B6A0019BF15 /* HRView.swift */,
+				9FCBB7272BBD9BE70056A462 /* LoadingView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		9FFC528A2BBCC0860095DD95 /* Frameworks */ = {
@@ -285,7 +292,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9FCF58D02BBCB8AD0029C70C /* PBXTargetDependency */,
+				9FCBB71B2BBD70C50056A462 /* PBXTargetDependency */,
 			);
 			name = InTheZone;
 			productName = InTheZone;
@@ -310,13 +317,13 @@
 			productReference = 9F99CD1B2BBC58D30019BF15 /* InTheZoneTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9FCF58AD2BBCB8AC0029C70C /* WatchTheZone Watch App */ = {
+		9FCBB6F82BBD70C40056A462 /* WatchTheZone Watch App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9FCF58D22BBCB8AD0029C70C /* Build configuration list for PBXNativeTarget "WatchTheZone Watch App" */;
+			buildConfigurationList = 9FCBB71D2BBD70C50056A462 /* Build configuration list for PBXNativeTarget "WatchTheZone Watch App" */;
 			buildPhases = (
-				9FCF58AA2BBCB8AC0029C70C /* Sources */,
-				9FCF58AB2BBCB8AC0029C70C /* Frameworks */,
-				9FCF58AC2BBCB8AC0029C70C /* Resources */,
+				9FCBB6F52BBD70C40056A462 /* Sources */,
+				9FCBB6F62BBD70C40056A462 /* Frameworks */,
+				9FCBB6F72BBD70C40056A462 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -324,43 +331,43 @@
 			);
 			name = "WatchTheZone Watch App";
 			productName = "WatchTheZone Watch App";
-			productReference = 9FCF58AE2BBCB8AC0029C70C /* InTheZone.app */;
+			productReference = 9FCBB6F92BBD70C40056A462 /* WatchTheZone Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9FCF58BC2BBCB8AD0029C70C /* WatchTheZone Watch AppTests */ = {
+		9FCBB7072BBD70C50056A462 /* WatchTheZone Watch AppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9FCF58D52BBCB8AD0029C70C /* Build configuration list for PBXNativeTarget "WatchTheZone Watch AppTests" */;
+			buildConfigurationList = 9FCBB7202BBD70C50056A462 /* Build configuration list for PBXNativeTarget "WatchTheZone Watch AppTests" */;
 			buildPhases = (
-				9FCF58B92BBCB8AD0029C70C /* Sources */,
-				9FCF58BA2BBCB8AD0029C70C /* Frameworks */,
-				9FCF58BB2BBCB8AD0029C70C /* Resources */,
+				9FCBB7042BBD70C50056A462 /* Sources */,
+				9FCBB7052BBD70C50056A462 /* Frameworks */,
+				9FCBB7062BBD70C50056A462 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9FCF58BF2BBCB8AD0029C70C /* PBXTargetDependency */,
+				9FCBB70A2BBD70C50056A462 /* PBXTargetDependency */,
 			);
 			name = "WatchTheZone Watch AppTests";
 			productName = "WatchTheZone Watch AppTests";
-			productReference = 9FCF58BD2BBCB8AD0029C70C /* WatchTheZone Watch AppTests.xctest */;
+			productReference = 9FCBB7082BBD70C50056A462 /* WatchTheZone Watch AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9FCF58C62BBCB8AD0029C70C /* WatchTheZone Watch AppUITests */ = {
+		9FCBB7112BBD70C50056A462 /* WatchTheZone Watch AppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9FCF58D82BBCB8AD0029C70C /* Build configuration list for PBXNativeTarget "WatchTheZone Watch AppUITests" */;
+			buildConfigurationList = 9FCBB7232BBD70C50056A462 /* Build configuration list for PBXNativeTarget "WatchTheZone Watch AppUITests" */;
 			buildPhases = (
-				9FCF58C32BBCB8AD0029C70C /* Sources */,
-				9FCF58C42BBCB8AD0029C70C /* Frameworks */,
-				9FCF58C52BBCB8AD0029C70C /* Resources */,
+				9FCBB70E2BBD70C50056A462 /* Sources */,
+				9FCBB70F2BBD70C50056A462 /* Frameworks */,
+				9FCBB7102BBD70C50056A462 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9FCF58C92BBCB8AD0029C70C /* PBXTargetDependency */,
+				9FCBB7142BBD70C50056A462 /* PBXTargetDependency */,
 			);
 			name = "WatchTheZone Watch AppUITests";
 			productName = "WatchTheZone Watch AppUITests";
-			productReference = 9FCF58C72BBCB8AD0029C70C /* WatchTheZone Watch AppUITests.xctest */;
+			productReference = 9FCBB7122BBD70C50056A462 /* WatchTheZone Watch AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -380,16 +387,16 @@
 						CreatedOnToolsVersion = 15.3;
 						TestTargetID = 9F99CD052BBC58D20019BF15;
 					};
-					9FCF58AD2BBCB8AC0029C70C = {
+					9FCBB6F82BBD70C40056A462 = {
 						CreatedOnToolsVersion = 15.3;
 					};
-					9FCF58BC2BBCB8AD0029C70C = {
+					9FCBB7072BBD70C50056A462 = {
 						CreatedOnToolsVersion = 15.3;
-						TestTargetID = 9FCF58AD2BBCB8AC0029C70C;
+						TestTargetID = 9FCBB6F82BBD70C40056A462;
 					};
-					9FCF58C62BBCB8AD0029C70C = {
+					9FCBB7112BBD70C50056A462 = {
 						CreatedOnToolsVersion = 15.3;
-						TestTargetID = 9FCF58AD2BBCB8AC0029C70C;
+						TestTargetID = 9FCBB6F82BBD70C40056A462;
 					};
 				};
 			};
@@ -408,9 +415,9 @@
 			targets = (
 				9F99CD052BBC58D20019BF15 /* InTheZone */,
 				9F99CD1A2BBC58D30019BF15 /* InTheZoneTests */,
-				9FCF58AD2BBCB8AC0029C70C /* WatchTheZone Watch App */,
-				9FCF58BC2BBCB8AD0029C70C /* WatchTheZone Watch AppTests */,
-				9FCF58C62BBCB8AD0029C70C /* WatchTheZone Watch AppUITests */,
+				9FCBB6F82BBD70C40056A462 /* WatchTheZone Watch App */,
+				9FCBB7072BBD70C50056A462 /* WatchTheZone Watch AppTests */,
+				9FCBB7112BBD70C50056A462 /* WatchTheZone Watch AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -432,23 +439,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FCF58AC2BBCB8AC0029C70C /* Resources */ = {
+		9FCBB6F72BBD70C40056A462 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FCF58B82BBCB8AD0029C70C /* Preview Assets.xcassets in Resources */,
-				9FCF58B52BBCB8AD0029C70C /* Assets.xcassets in Resources */,
+				9FCBB7032BBD70C50056A462 /* Preview Assets.xcassets in Resources */,
+				9FCBB7002BBD70C50056A462 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FCF58BB2BBCB8AD0029C70C /* Resources */ = {
+		9FCBB7062BBD70C50056A462 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FCF58C52BBCB8AD0029C70C /* Resources */ = {
+		9FCBB7102BBD70C50056A462 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -465,6 +472,7 @@
 				9F99CD132BBC58D30019BF15 /* Persistence.swift in Sources */,
 				9F99CD0C2BBC58D20019BF15 /* ContentView.swift in Sources */,
 				9F79CBE02BBC5FA200E130F3 /* Connectivity.swift in Sources */,
+				9FCBB7282BBD9BE70056A462 /* LoadingView.swift in Sources */,
 				9F99CD162BBC58D30019BF15 /* InTheZone.xcdatamodeld in Sources */,
 				9F99CD3E2BBC5B410019BF15 /* HRManager.swift in Sources */,
 				9F99CD402BBC5B6A0019BF15 /* HRView.swift in Sources */,
@@ -482,29 +490,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FCF58AA2BBCB8AC0029C70C /* Sources */ = {
+		9FCBB6F52BBD70C40056A462 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FCF58B32BBCB8AC0029C70C /* ContentView.swift in Sources */,
-				9FCF58B12BBCB8AC0029C70C /* WatchTheZoneApp.swift in Sources */,
+				9FCBB6FE2BBD70C40056A462 /* ContentView.swift in Sources */,
+				9FCBB6FC2BBD70C40056A462 /* WatchTheZoneApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FCF58B92BBCB8AD0029C70C /* Sources */ = {
+		9FCBB7042BBD70C50056A462 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FCF58C22BBCB8AD0029C70C /* WatchTheZone_Watch_AppTests.swift in Sources */,
+				9FCBB70D2BBD70C50056A462 /* WatchTheZone_Watch_AppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FCF58C32BBCB8AD0029C70C /* Sources */ = {
+		9FCBB70E2BBD70C50056A462 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FCF58CE2BBCB8AD0029C70C /* WatchTheZone_Watch_AppUITestsLaunchTests.swift in Sources */,
-				9FCF58CC2BBCB8AD0029C70C /* WatchTheZone_Watch_AppUITests.swift in Sources */,
+				9FCBB7192BBD70C50056A462 /* WatchTheZone_Watch_AppUITestsLaunchTests.swift in Sources */,
+				9FCBB7172BBD70C50056A462 /* WatchTheZone_Watch_AppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,20 +524,20 @@
 			target = 9F99CD052BBC58D20019BF15 /* InTheZone */;
 			targetProxy = 9F99CD1C2BBC58D30019BF15 /* PBXContainerItemProxy */;
 		};
-		9FCF58BF2BBCB8AD0029C70C /* PBXTargetDependency */ = {
+		9FCBB70A2BBD70C50056A462 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9FCF58AD2BBCB8AC0029C70C /* WatchTheZone Watch App */;
-			targetProxy = 9FCF58BE2BBCB8AD0029C70C /* PBXContainerItemProxy */;
+			target = 9FCBB6F82BBD70C40056A462 /* WatchTheZone Watch App */;
+			targetProxy = 9FCBB7092BBD70C50056A462 /* PBXContainerItemProxy */;
 		};
-		9FCF58C92BBCB8AD0029C70C /* PBXTargetDependency */ = {
+		9FCBB7142BBD70C50056A462 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9FCF58AD2BBCB8AC0029C70C /* WatchTheZone Watch App */;
-			targetProxy = 9FCF58C82BBCB8AD0029C70C /* PBXContainerItemProxy */;
+			target = 9FCBB6F82BBD70C40056A462 /* WatchTheZone Watch App */;
+			targetProxy = 9FCBB7132BBD70C50056A462 /* PBXContainerItemProxy */;
 		};
-		9FCF58D02BBCB8AD0029C70C /* PBXTargetDependency */ = {
+		9FCBB71B2BBD70C50056A462 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9FCF58AD2BBCB8AC0029C70C /* WatchTheZone Watch App */;
-			targetProxy = 9FCF58CF2BBCB8AD0029C70C /* PBXContainerItemProxy */;
+			target = 9FCBB6F82BBD70C40056A462 /* WatchTheZone Watch App */;
+			targetProxy = 9FCBB71A2BBD70C50056A462 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -668,6 +676,7 @@
 				DEVELOPMENT_TEAM = SL8V4SQ33S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow us to access your health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -699,6 +708,7 @@
 				DEVELOPMENT_TEAM = SL8V4SQ33S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow us to access your health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -757,7 +767,7 @@
 			};
 			name = Release;
 		};
-		9FCF58D32BBCB8AD0029C70C /* Debug */ = {
+		9FCBB71E2BBD70C50056A462 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -769,6 +779,8 @@
 				DEVELOPMENT_TEAM = SL8V4SQ33S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchTheZone;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow access to enjoy all the features of our application.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = comp3000.abrankin.InTheZone;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -777,17 +789,17 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.InTheZone.watchkitapp;
-				PRODUCT_NAME = InTheZone;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
-		9FCF58D42BBCB8AD0029C70C /* Release */ = {
+		9FCBB71F2BBD70C50056A462 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -799,6 +811,8 @@
 				DEVELOPMENT_TEAM = SL8V4SQ33S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchTheZone;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow access to enjoy all the features of our application.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = comp3000.abrankin.InTheZone;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -807,17 +821,17 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.InTheZone.watchkitapp;
-				PRODUCT_NAME = InTheZone;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
 		};
-		9FCF58D62BBCB8AD0029C70C /* Debug */ = {
+		9FCBB7212BBD70C50056A462 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -838,7 +852,7 @@
 			};
 			name = Debug;
 		};
-		9FCF58D72BBCB8AD0029C70C /* Release */ = {
+		9FCBB7222BBD70C50056A462 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -859,7 +873,7 @@
 			};
 			name = Release;
 		};
-		9FCF58D92BBCB8AD0029C70C /* Debug */ = {
+		9FCBB7242BBD70C50056A462 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -875,11 +889,10 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "WatchTheZone Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 10.4;
 			};
 			name = Debug;
 		};
-		9FCF58DA2BBCB8AD0029C70C /* Release */ = {
+		9FCBB7252BBD70C50056A462 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -895,7 +908,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "WatchTheZone Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 10.4;
 			};
 			name = Release;
 		};
@@ -929,29 +941,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9FCF58D22BBCB8AD0029C70C /* Build configuration list for PBXNativeTarget "WatchTheZone Watch App" */ = {
+		9FCBB71D2BBD70C50056A462 /* Build configuration list for PBXNativeTarget "WatchTheZone Watch App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9FCF58D32BBCB8AD0029C70C /* Debug */,
-				9FCF58D42BBCB8AD0029C70C /* Release */,
+				9FCBB71E2BBD70C50056A462 /* Debug */,
+				9FCBB71F2BBD70C50056A462 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9FCF58D52BBCB8AD0029C70C /* Build configuration list for PBXNativeTarget "WatchTheZone Watch AppTests" */ = {
+		9FCBB7202BBD70C50056A462 /* Build configuration list for PBXNativeTarget "WatchTheZone Watch AppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9FCF58D62BBCB8AD0029C70C /* Debug */,
-				9FCF58D72BBCB8AD0029C70C /* Release */,
+				9FCBB7212BBD70C50056A462 /* Debug */,
+				9FCBB7222BBD70C50056A462 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9FCF58D82BBCB8AD0029C70C /* Build configuration list for PBXNativeTarget "WatchTheZone Watch AppUITests" */ = {
+		9FCBB7232BBD70C50056A462 /* Build configuration list for PBXNativeTarget "WatchTheZone Watch AppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9FCF58D92BBCB8AD0029C70C /* Debug */,
-				9FCF58DA2BBCB8AD0029C70C /* Release */,
+				9FCBB7242BBD70C50056A462 /* Debug */,
+				9FCBB7252BBD70C50056A462 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

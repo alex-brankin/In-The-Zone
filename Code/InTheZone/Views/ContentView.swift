@@ -6,27 +6,76 @@
 //
 import SwiftUI
 
+class ViewController: UIViewController {
+    let healthKitManager = HealthKitManager()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        healthKitManager.requestAuthorization { success in
+            if success {
+                self.healthKitManager.fetchMostRecentHeartRate { heartRate, error in
+                    if let heartRate = heartRate {
+                        DispatchQueue.main.async {
+                            // Update your UI with the heart rate value
+                            print("Current Heart Rate: \(heartRate) bpm")
+                        }
+                    } else if let error = error {
+                        print("Error fetching heart rate: \(error.localizedDescription)")
+                    }
+                }
+            } else {
+                print("Authorization denied")
+            }
+        }
+    }
+}
+
+
 struct BottomNavigationBar: View {
     var body: some View {
         HStack {
             Spacer()
             NavigationLink(destination: Text("Home View")) {
-                Text("Home")
+                VStack {
+                    Image(systemName: "house.fill") // SF Symbol for home
+                        .foregroundColor(.blue) // Customize color if needed
+                    Text("Home")
+                        .font(.caption) // Customize font size if needed
+                }
             }
+            .padding() // Add padding to increase tappable area
+            
             Spacer()
             NavigationLink(destination: Text("Your Heart View")) {
-                Text("Your Heart")
+                VStack {
+                    Image(systemName: "heart.fill") // SF Symbol for heart
+                        .foregroundColor(.red) // Customize color if needed
+                    Text("Your Heart")
+                        .font(.caption) // Customize font size if needed
+                }
             }
+            .padding() // Add padding to increase tappable area
+            
             Spacer()
             NavigationLink(destination: Text("Settings View")) {
-                Text("Settings")
+                VStack {
+                    Image(systemName: "gearshape.fill") // SF Symbol for settings
+                        .foregroundColor(.green) // Customize color if needed
+                    Text("Settings")
+                        .font(.caption) // Customize font size if needed
+                }
             }
+            .padding() // Add padding to increase tappable area
+            
             Spacer()
         }
-        .frame(height: 50) // Set a specific height for the navigation bar
+        
+        .frame(height: 30) // Set a specific height for the navigation bar
         .background(Color.gray.opacity(0.2))
     }
 }
+
 
 
 
@@ -53,11 +102,10 @@ struct BoxView: View {
     }
 }
 
-
 struct ContentView: View {
     // Placeholder data
     let dataTitles = ["Current Heart Rate", "Max Heart Rate", "ZO2 Max", "HRV", "Your Heart Rate Zones", "Breathes Per Minute"]
-    let dataValues = ["75", "100", "98%", "70 ms", "<3", "12"]
+    let dataValues = ["75", "190", "98%", "70 ms", "<3", "12"]
     
     var body: some View {
         VStack {
@@ -88,6 +136,7 @@ struct ContentView: View {
         .background(Color.gray.opacity(0.1)) // Optional: Add a light background to the entire view
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
