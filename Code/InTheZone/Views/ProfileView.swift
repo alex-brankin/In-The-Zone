@@ -103,7 +103,7 @@ struct ProfileView: View {
                         }
                     }
                 }
-                .navigationBarTitle("Profile")
+                
                 .navigationBarItems(trailing:
                     NavigationLink(destination: SettingsView()) {
                         Image(systemName: "gear")

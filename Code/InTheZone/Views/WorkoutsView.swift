@@ -33,7 +33,7 @@ struct WorkoutsView: View {
                         .font(.subheadline)
                 }
             }
-            .navigationTitle("Workouts")
+            
         }
     }
 }

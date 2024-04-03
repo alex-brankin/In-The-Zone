@@ -7,8 +7,33 @@
 
 import SwiftUI
 
+struct AnimatedHeartView: View {
+    @State private var isHeartBeating = false
+    var currentBPM: Int // Property to receive the current BPM
+    
+    init(currentBPM: Int) {
+        self.currentBPM = currentBPM
+    }
+    
+    var body: some View {
+        Image(systemName: "heart.fill")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 200, height: 200)
+            .foregroundColor(.red)
+            .scaleEffect(isHeartBeating ? 1.2 : 1.0)
+            .onAppear() {
+                if currentBPM > 0 { // Check if currentBPM is greater than 0
+                    withAnimation(Animation.easeInOut(duration: 0.5).repeatForever()) {
+                        self.isHeartBeating.toggle()
+                    }
+                }
+            }
+    }
+}
+
 struct YourHeartView: View {
-    @State private var currentBPM: String = "N/A"
+    @State private var currentBPM: Int = 0
     
     let zoneData: [ZoneData] = [
         ZoneData(name: "Zone 1", startAngle: 0, endAngle: 60, color: .blue),
@@ -19,18 +44,28 @@ struct YourHeartView: View {
     
     var body: some View {
         VStack {
-            // Heart Placeholder
-            Image(systemName: "heart.fill")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 50, height: 50)
-                .foregroundColor(.red)
-                .padding()
-            
-            Text("Current BPM: \(currentBPM)")
-                .font(.headline)
-                .padding()
-            
+            ZStack {
+                
+                AnimatedHeartView(currentBPM: currentBPM) // Pass currentBPM here
+                    .padding()
+                  
+                Text("Current")
+                    .font(.headline)
+                    .padding()
+                    .offset(y: 10)
+                
+                Text("BPM")
+                    .font(.largeTitle)
+                    .padding()
+                    .offset(y: 35)
+                
+                // Display the BPM value
+                Text("\(currentBPM)")
+                    .font(.largeTitle)
+                    .padding()
+                    .offset(y: -20)
+            }
+
             // Boxes
             LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
                 BoxedView(title: "Max Heart Rate", value: "N/A")
@@ -134,7 +169,6 @@ struct BoxedView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity) // Set a fixed size for each box
         .background(Color.gray.opacity(0.2))
         .cornerRadius(10)
-        .shadow(color: .gray, radius: 5, x: 0, y: 5)
     }
 }
 

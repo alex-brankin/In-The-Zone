@@ -24,11 +24,14 @@ struct ContentView: View {
             
             NavigationView {
                 SecondView()
-                    .navigationBarTitle("Your Heart")
+                    .navigationBarTitle("Your Heart" )
+                        
+                    
             }
             .tabItem {
                 Image(systemName: "heart.fill")
                 Text("Your Heart")
+                    
             }
             .tag(1)
             
@@ -42,6 +45,7 @@ struct ContentView: View {
             }
             .tag(2)
         }
+        .accentColor(.red)
         .onAppear {
             UITabBar.appearance().barTintColor = .white
         }
@@ -59,13 +63,15 @@ struct SecondView: View {
     var body: some View {
         YourHeartView()
             .font(.largeTitle)
+            
+        
     }
 }
 
 struct ThirdView: View {
     var body: some View {
         ProfileView()
-            .font(.largeTitle)
+            
     }
 }
 
