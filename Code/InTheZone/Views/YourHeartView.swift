@@ -31,6 +31,7 @@ struct YourHeartView: View {
                 BoxedView(title: "Resting Heart Rate", value: "N/A")
             }
             .padding()
+            .padding(.top, -30)
             
             // Heart Rate Zones Graph
             HStack {

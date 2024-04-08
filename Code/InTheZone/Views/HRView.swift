@@ -8,42 +8,21 @@
 import SwiftUI
 import HealthKit
 
-struct AnimatedHeartView: View {
-    var currentBPM: Int // Property to receive the current BPM
-    
-    @State private var isHeartBeating = false // State variable to control the animation
-    
-    var body: some View {
-        Image(systemName: "heart.fill")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 200, height: 200)
-            .foregroundColor(.red)
-            .scaleEffect(isHeartBeating ? 1.2 : 1.0)
-            .animation(.easeInOut(duration: 60.0 / Double(currentBPM)), value: currentBPM) // Apply animation based on BPM
-            .onAppear {
-                // Start animation when heart rate data is fetched
-                if currentBPM > 0 {
-                    self.isHeartBeating = true
-                }
-            }
-    }
-}
-
 struct HRView: View {
     @State private var heartRateSamples: [Double] = []
     @State private var latestHeartRate: Double? = nil
-    @State private var lastCheckedTimestamp: Date? = nil // New state variable to hold the timestamp
-    @State private var currentBPM: Int = 60 // Define currentBPM as a state variable
+    @State private var lastCheckedTimestamp: Date? = nil
     
     let healthStore = HKHealthStore()
 
     var body: some View {
         VStack {
             ZStack {
-                AnimatedHeartView(currentBPM: currentBPM) // Pass currentBPM directly
-                    .padding()
-                  
+                if let latestHeartRate = latestHeartRate {
+                    AnimatedHeartView(currentBPM: latestHeartRate)
+                } else {
+                    AnimatedHeartView(currentBPM: 60)
+                }
                 VStack {
                     Text("Current")
                         .font(.headline)
@@ -56,12 +35,12 @@ struct HRView: View {
                         .offset(y: 60)
                     
                     if let latestHeartRate = latestHeartRate {
-                        Text("\(Int(latestHeartRate))") // Show latestHeartRate if available
+                        Text("\(Int(latestHeartRate))")
                             .font(.largeTitle)
                             .padding()
                             .offset(y: -80)
                     } else {
-                        Text("N/A") // Show "N/A" if latestHeartRate is nil
+                        Text("N/A")
                             .font(.largeTitle)
                             .padding()
                             .offset(y: -80)
@@ -73,18 +52,24 @@ struct HRView: View {
                 Text("Last checked by Apple Watch: \(formattedTimestamp(lastCheckedTimestamp))")
                     .font(.subheadline)
                     .foregroundColor(.gray)
-                    .padding(.bottom)
+                    .padding(.top)
+            }
+            else {
+                Text("Please allow us access to your health data")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                    .padding(.top)
             }
             
         }
         .onAppear {
-            fetchHeartRateData() // Fetch initially
+            fetchHeartRateData()
+            setupHeartRateObserver()
         }
     }
     
-
     func fetchHeartRateData() {
-        print("Fetching heart rate data...") // Print console message
+        print("Fetching heart rate data...")
         
         guard let sampleType = HKObjectType.quantityType(forIdentifier: .heartRate) else {
             print("Heart rate sample type is no longer available in HealthKit")
@@ -105,39 +90,106 @@ struct HRView: View {
 
             DispatchQueue.main.async {
                 self.latestHeartRate = sample.quantity.doubleValue(for: HKUnit(from: "count/min"))
-                self.lastCheckedTimestamp = sample.startDate // Set the last checked timestamp
-                // Update currentBPM when heart rate data is fetched
-                self.currentBPM = Int(sample.quantity.doubleValue(for: HKUnit(from: "count/min")))
+                self.lastCheckedTimestamp = sample.startDate
             }
         }
         healthStore.execute(query)
     }
 
-    // Function to format timestamp
     private func formattedTimestamp(_ timestamp: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM d, yyyy 'at' HH:mm:ss"
         return formatter.string(from: timestamp)
     }
+    
+    func heartRateQuery(_ startDate: Date) -> HKQuery? {
+        let quantityType = HKObjectType.quantityType(forIdentifier: .heartRate)
+        let datePredicate = HKQuery.predicateForSamples(withStart: startDate, end: nil, options: .strictEndDate)
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[datePredicate])
+        
+        let heartRateQuery = HKAnchoredObjectQuery(type: quantityType!, predicate: predicate, anchor: nil, limit: Int(HKObjectQueryNoLimit)) { (query, sampleObjects, deletedObjects, newAnchor, error) -> Void in
+            // Handle new samples here
+        }
+        
+        heartRateQuery.updateHandler = {(query, samples, deleteObjects, newAnchor, error) -> Void in
+            guard let samples = samples as? [HKQuantitySample] else {return}
+            DispatchQueue.main.async {
+                guard let sample = samples.first else { return }
+                let value = sample.quantity.doubleValue(for: HKUnit(from: "count/min"))
+                self.latestHeartRate = value
+            }
+        }
+        
+        return heartRateQuery
+    }
+
+    func setupHeartRateObserver() {
+        let sampleType = HKObjectType.quantityType(forIdentifier: .heartRate)!
+        let query = HKObserverQuery(sampleType: sampleType, predicate: nil) { (query: HKObserverQuery, completionHandler: @escaping () -> Void, error: Error?) in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            if let heartRateQuery = self.heartRateQuery(Date()) {
+                self.healthStore.execute(heartRateQuery)
+            }
+            completionHandler()
+        }
+        
+        healthStore.execute(query)
+    }
 }
 
-struct LineChart: View {
-    var dataPoints: [Double]
-
+struct AnimatedHeartView: View {
+    var currentBPM: Double
+    
+    @State private var isHeartBeating: Bool = false // Initialize with false
+    
+    // Define minimum and maximum animation durations
+    private let minDuration: Double = 0.5
+    private let maxDuration: Double = 2.0
+    
     var body: some View {
-        ScrollView(.horizontal) {
-            HStack {
-                ForEach(dataPoints.indices, id: \.self) { index in
-                    Text(String(format: "%.0f", dataPoints[index]))
-                        .padding(.horizontal, 4)
-                }
+        Image(systemName: "heart.fill")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 200, height: 200)
+            .foregroundColor(.red)
+            .scaleEffect(isHeartBeating ? 1.2 : 1.0)
+            .opacity(isHeartBeating ? 1.0 : 0.8) // Adjust opacity for pulsating effect
+            .onAppear {
+                startAnimationIfNeeded()
             }
+            .onChange(of: currentBPM) { newBPM, _ in
+                startAnimationIfNeeded()
+            }
+    }
+
+    private func startAnimationIfNeeded() {
+        // Clamp heart rate values to ensure they fall within a reasonable range
+        let clampedBPM = min(max(currentBPM, 30), 200)
+        
+        // Calculate animation duration with adjustments
+        let duration = max(minDuration, min(maxDuration, 60.0 / clampedBPM))
+        
+        if clampedBPM > 0 {
+            // Start the animation only if the heart rate is greater than zero
+            withAnimation(
+                Animation.easeInOut(duration: duration)
+                    .repeatForever(autoreverses: true) // Repeat the animation indefinitely
+            ) {
+                self.isHeartBeating = true
+            }
+        } else {
+            // Stop the animation if the heart rate is zero
+            self.isHeartBeating = false
         }
     }
 }
 
 
-struct HRView_Previews: PreviewProvider {
+
+struct previewHRView: PreviewProvider {
     static var previews: some View {
         HRView()
     }
