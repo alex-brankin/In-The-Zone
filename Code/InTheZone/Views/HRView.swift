@@ -19,7 +19,7 @@ struct HRView: View {
                 if let latestHeartRate = latestHeartRate {
                     AnimatedHeartView(currentBPM: latestHeartRate)
                 } else {
-                    AnimatedHeartView(currentBPM: 60)
+                    AnimatedHeartView(currentBPM: 0)
                 }
                 VStack {
                     Text("Current")
@@ -53,7 +53,8 @@ struct HRView: View {
                     .padding(.top)
             }
             else {
-                Text("Please allow us access to your health data")
+                Text("Please allow us access to your health data in order to fetch your heart rate data.")
+                    .multilineTextAlignment(.center)
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .padding(.top)
@@ -123,7 +124,7 @@ struct AnimatedHeartView: View {
             .frame(width: 200, height: 200)
             .foregroundColor(.red)
             .scaleEffect(isHeartBeating ? 1.2 : 1.0)
-            .opacity(isHeartBeating ? 1.0 : 0.8) // Adjust opacity for pulsating effect
+            .opacity(isHeartBeating ? 1.0 : 0.8)
             .onAppear {
                 startAnimationIfNeeded()
             }
@@ -131,20 +132,21 @@ struct AnimatedHeartView: View {
                 startAnimationIfNeeded()
             }
     }
-
+    
     private func startAnimationIfNeeded() {
         // Clamp heart rate values to ensure they fall within a reasonable range
-        let clampedBPM = min(max(currentBPM, 30), 200)
+        let clampedBPM = min(max(currentBPM, 20), 200)
         
-        // Calculate animation duration with adjustments
-        let duration = max(minDuration, min(maxDuration, 60.0 / clampedBPM))
+        // Print current BPM
+        print("Animation BPM: \(clampedBPM)")
         
-        if clampedBPM > 0 {
-            // Start the animation only if the heart rate is greater than zero
-            withAnimation(
-                Animation.easeInOut(duration: duration)
-                    .repeatForever(autoreverses: true) // Repeat the animation indefinitely
-            ) {
+        if clampedBPM > 20 {
+            // Calculate animation duration based on the heart rate
+            let duration = 60 / clampedBPM
+            print("Duration: \(duration)")
+            
+            // Scale animation speed based on heart rate
+            withAnimation(Animation.linear(duration: duration).repeatForever(autoreverses: true)) {
                 self.isHeartBeating = true
             }
         } else {
@@ -152,11 +154,13 @@ struct AnimatedHeartView: View {
             self.isHeartBeating = false
         }
     }
+
+
 }
+
 
 struct HRView_Previews: PreviewProvider {
     static var previews: some View {
         HRView()
     }
 }
-
