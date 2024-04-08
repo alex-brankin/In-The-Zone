@@ -24,14 +24,7 @@ struct YourHeartView: View {
             
 
             // Boxes
-            LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
-                BoxedView(title: "Max Heart Rate", value: "N/A")
-                BoxedView(title: "VO2 Max", value: "N/A")
-                BoxedView(title: "HRV", value: "N/A")
-                BoxedView(title: "Resting Heart Rate", value: "N/A")
-            }
-            .padding()
-            .padding(.top, -30)
+            HeartTabsView()
             
             // Heart Rate Zones Graph
             HStack {

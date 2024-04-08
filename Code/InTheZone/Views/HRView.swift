@@ -9,11 +9,9 @@ import SwiftUI
 import HealthKit
 
 struct HRView: View {
-    @State private var heartRateSamples: [Double] = []
-    @State private var latestHeartRate: Double? = nil
-    @State private var lastCheckedTimestamp: Date? = nil
-    
-    let healthStore = HKHealthStore()
+    @StateObject private var healthKitManager = HealthKitManager()
+    @State private var latestHeartRate: Double?
+    @State private var lastCheckedTimestamp: Date?
 
     var body: some View {
         VStack {
@@ -71,29 +69,20 @@ struct HRView: View {
     func fetchHeartRateData() {
         print("Fetching heart rate data...")
         
-        guard let sampleType = HKObjectType.quantityType(forIdentifier: .heartRate) else {
-            print("Heart rate sample type is no longer available in HealthKit")
-            return
-        }
-        let startDate = Calendar.current.date(byAdding: .month, value: -1, to: Date())
-        
-        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: Date(), options: .strictStartDate)
-        
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        
-        let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: Int(HKObjectQueryNoLimit), sortDescriptors: [sortDescriptor]) { (query, samples, error) in
-            guard let samples = samples as? [HKQuantitySample], let sample = samples.first else {
-                print("No samples available")
+        healthKitManager.fetchMostRecentHeartRate { heartRate, timestamp, error in
+            if let error = error {
+                print("Error fetching heart rate: \(error.localizedDescription)")
                 return
             }
-            print("Latest heart rate: \(sample.quantity.doubleValue(for: HKUnit(from: "count/min")))")
-
-            DispatchQueue.main.async {
-                self.latestHeartRate = sample.quantity.doubleValue(for: HKUnit(from: "count/min"))
-                self.lastCheckedTimestamp = sample.startDate
+            
+            if let heartRate = heartRate, let timestamp = timestamp {
+                print("Latest heart rate: \(heartRate) BPM (Timestamp: \(timestamp))")
+                DispatchQueue.main.async {
+                    self.latestHeartRate = heartRate
+                    self.lastCheckedTimestamp = timestamp
+                }
             }
         }
-        healthStore.execute(query)
     }
 
     private func formattedTimestamp(_ timestamp: Date) -> String {
@@ -102,41 +91,19 @@ struct HRView: View {
         return formatter.string(from: timestamp)
     }
     
-    func heartRateQuery(_ startDate: Date) -> HKQuery? {
-        let quantityType = HKObjectType.quantityType(forIdentifier: .heartRate)
-        let datePredicate = HKQuery.predicateForSamples(withStart: startDate, end: nil, options: .strictEndDate)
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[datePredicate])
-        
-        let heartRateQuery = HKAnchoredObjectQuery(type: quantityType!, predicate: predicate, anchor: nil, limit: Int(HKObjectQueryNoLimit)) { (query, sampleObjects, deletedObjects, newAnchor, error) -> Void in
-            // Handle new samples here
-        }
-        
-        heartRateQuery.updateHandler = {(query, samples, deleteObjects, newAnchor, error) -> Void in
-            guard let samples = samples as? [HKQuantitySample] else {return}
-            DispatchQueue.main.async {
-                guard let sample = samples.first else { return }
-                let value = sample.quantity.doubleValue(for: HKUnit(from: "count/min"))
-                self.latestHeartRate = value
-            }
-        }
-        
-        return heartRateQuery
-    }
-
     func setupHeartRateObserver() {
-        let sampleType = HKObjectType.quantityType(forIdentifier: .heartRate)!
-        let query = HKObserverQuery(sampleType: sampleType, predicate: nil) { (query: HKObserverQuery, completionHandler: @escaping () -> Void, error: Error?) in
+        healthKitManager.startHeartRateObserver { heartRate, error in
             if let error = error {
-                print("Error: \(error.localizedDescription)")
+                print("Error observing heart rate: \(error.localizedDescription)")
                 return
             }
-            if let heartRateQuery = self.heartRateQuery(Date()) {
-                self.healthStore.execute(heartRateQuery)
+            
+            if let heartRate = heartRate {
+                DispatchQueue.main.async {
+                    self.latestHeartRate = heartRate
+                }
             }
-            completionHandler()
         }
-        
-        healthStore.execute(query)
     }
 }
 
@@ -187,10 +154,9 @@ struct AnimatedHeartView: View {
     }
 }
 
-
-
-struct previewHRView: PreviewProvider {
+struct HRView_Previews: PreviewProvider {
     static var previews: some View {
         HRView()
     }
 }
+

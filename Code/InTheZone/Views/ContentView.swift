@@ -35,7 +35,7 @@ struct ContentView: View {
             
             NavigationView {
                 ThirdView()
-                    .navigationBarTitle("Settings")
+                    .navigationBarTitle("Profile")
             }
             .tabItem {
                 Image(systemName: "person.crop.circle")
@@ -45,7 +45,7 @@ struct ContentView: View {
         }
         .accentColor(.red)
         .onAppear {
-            UITabBar.appearance().barTintColor = .white
+           
         }
     }
 }
@@ -69,6 +69,7 @@ struct SecondView: View {
 struct ThirdView: View {
     var body: some View {
         ProfileView()
+            
     }
 }
 

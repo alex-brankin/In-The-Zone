@@ -6,17 +6,19 @@ let healthStore = HKHealthStore()
 
 @main
 struct InTheZone: App {
+    @StateObject private var healthKitManager = HealthKitManager()
     @State private var isFirstLaunch = true
 
     var body: some Scene {
         WindowGroup {
             if isFirstLaunch {
-                EKGLoadingView()
+                LaunchScreenView()
                     .preferredColorScheme(.dark)
                     .onAppear {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                             withAnimation {
                                 self.isFirstLaunch = false
+                                // Request authorization when the app launches
                                 requestHealthKitAuthorization()
                             }
                         }
@@ -28,30 +30,12 @@ struct InTheZone: App {
     }
 
     func requestHealthKitAuthorization() {
-        // Check if HealthKit is available on this device
-        if !HKHealthStore.isHealthDataAvailable() {
-            print("HealthKit is not available on this device.")
-            return
-        }
-
-        // Define the types of health data to be read from HealthKit
-        let healthKitTypesToRead: Set<HKObjectType> = [
-            HKObjectType.workoutType(),
-            HKObjectType.quantityType(forIdentifier: .heartRate)!,
-            HKObjectType.quantityType(forIdentifier: .stepCount)!,
-            // Add other types you need access to
-        ]
-
-        // Request authorization to access health data
-        healthStore.requestAuthorization(toShare: nil, read: healthKitTypesToRead) { (success, error) in
+        // Call the requestAuthorization method of the HealthKitManager
+        healthKitManager.requestAuthorization { success in
             if success {
                 print("HealthKit authorization granted.")
             } else {
-                if let error = error {
-                    print("HealthKit authorization failed with error: \(error.localizedDescription)")
-                } else {
-                    print("HealthKit authorization failed.")
-                }
+                print("HealthKit authorization failed.")
             }
         }
     }
@@ -67,8 +51,14 @@ struct LaunchScreenView: View {
 }
 
 struct MainView: View {
+    @StateObject private var healthKitManager = HealthKitManager()
+
     var body: some View {
         // Your main app content here
         ContentView()
+            .environmentObject(healthKitManager)
     }
 }
+
+
+
