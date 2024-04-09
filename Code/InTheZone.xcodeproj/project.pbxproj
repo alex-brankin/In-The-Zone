@@ -37,6 +37,11 @@
 		9FD6F81D2BC48B8800CC807A /* HeartBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6F81C2BC48B8800CC807A /* HeartBoxView.swift */; };
 		9FD6F81F2BC4B23700CC807A /* HRZoneChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6F81E2BC4B23700CC807A /* HRZoneChartView.swift */; };
 		9FD6F8212BC5509700CC807A /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6F8202BC5509700CC807A /* ExerciseView.swift */; };
+		9FE605B92BC58F5900095A2D /* PreviousWorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE605B82BC58F5900095A2D /* PreviousWorkoutsView.swift */; };
+		9FE605BB2BC58F7100095A2D /* StartExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE605BA2BC58F7100095A2D /* StartExerciseView.swift */; };
+		9FE605BD2BC58F8400095A2D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE605BC2BC58F8400095A2D /* SettingsView.swift */; };
+		9FE605BF2BC58F9600095A2D /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE605BE2BC58F9600095A2D /* Workout.swift */; };
+		9FE605C12BC593FB00095A2D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE605C02BC593FB00095A2D /* Settings.swift */; };
 		9FFC528D2BBCC08A0095DD95 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC528B2BBCC0860095DD95 /* HealthKit.framework */; };
 		9FFC52922BBCC0950095DD95 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */; };
 /* End PBXBuildFile section */
@@ -125,6 +130,11 @@
 		9FD6F81C2BC48B8800CC807A /* HeartBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBoxView.swift; sourceTree = "<group>"; };
 		9FD6F81E2BC4B23700CC807A /* HRZoneChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRZoneChartView.swift; sourceTree = "<group>"; };
 		9FD6F8202BC5509700CC807A /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
+		9FE605B82BC58F5900095A2D /* PreviousWorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousWorkoutsView.swift; sourceTree = "<group>"; };
+		9FE605BA2BC58F7100095A2D /* StartExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartExerciseView.swift; sourceTree = "<group>"; };
+		9FE605BC2BC58F8400095A2D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9FE605BE2BC58F9600095A2D /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		9FE605C02BC593FB00095A2D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		9FFC528B2BBCC0860095DD95 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -244,6 +254,11 @@
 				9FCBB72B2BBDABB60056A462 /* WatchTheZone Watch App.entitlements */,
 				9FCBB6FB2BBD70C40056A462 /* WatchTheZoneApp.swift */,
 				9FCBB6FD2BBD70C40056A462 /* ContentView.swift */,
+				9FE605B82BC58F5900095A2D /* PreviousWorkoutsView.swift */,
+				9FE605BA2BC58F7100095A2D /* StartExerciseView.swift */,
+				9FE605BC2BC58F8400095A2D /* SettingsView.swift */,
+				9FE605C02BC593FB00095A2D /* Settings.swift */,
+				9FE605BE2BC58F9600095A2D /* Workout.swift */,
 				9FD6F8202BC5509700CC807A /* ExerciseView.swift */,
 				9FCBB6FF2BBD70C50056A462 /* Assets.xcassets */,
 				9FCBB7012BBD70C50056A462 /* Preview Content */,
@@ -534,7 +549,12 @@
 			files = (
 				9FD6F8212BC5509700CC807A /* ExerciseView.swift in Sources */,
 				9FCBB6FE2BBD70C40056A462 /* ContentView.swift in Sources */,
+				9FE605C12BC593FB00095A2D /* Settings.swift in Sources */,
+				9FE605BF2BC58F9600095A2D /* Workout.swift in Sources */,
 				9FCBB6FC2BBD70C40056A462 /* WatchTheZoneApp.swift in Sources */,
+				9FE605BD2BC58F8400095A2D /* SettingsView.swift in Sources */,
+				9FE605BB2BC58F7100095A2D /* StartExerciseView.swift in Sources */,
+				9FE605B92BC58F5900095A2D /* PreviousWorkoutsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

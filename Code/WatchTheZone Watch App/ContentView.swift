@@ -7,43 +7,33 @@
 
 import SwiftUI
 
-struct ImageButton: View {
-    let action: () -> Void
-    let image: String
-
-    var body: some View {
-        Button(action: action) {
-            Image(image) // Use the provided image
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 150, height: 150)
-        }
-        .buttonStyle(PlainButtonStyle())
-        .contentShape(Rectangle())
-        .opacity(0) // Hide the button
-    }
-}
-
 struct ContentView: View {
     @State private var isRecording = false
-    
+    @State private var selectedTab = 1
+    @StateObject var settings = SettingsModel()
+
     var body: some View {
-        NavigationView {
-            VStack {
-                NavigationLink(destination: ExerciseView(isRecording: $isRecording)) {
-                    ZStack {
-                        ImageButton(action: {
-                            // Action to perform when the button is tapped
-                            print("Button tapped")
-                        }, image: "start image")
-                        Image("start image") // Image overlay
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 150, height: 150)
-                    }
+        TabView(selection: $selectedTab) {
+            PreviousWorkoutsView(previousWorkouts: previousWorkouts)
+                .tabItem {
+                    Image(systemName: "list.bullet")
+                    Text("Previous Workouts")
                 }
-            }
-            .navigationTitle("Main Screen")
+                .tag(0)
+            
+            StartExerciseView(isRecording: $isRecording)
+                .tabItem {
+                    Image(systemName: "play.circle")
+                    Text("Start Exercise")
+                }
+                .tag(1)
+            
+            SettingsView(settings: settings)
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
+                .tag(2)
         }
     }
 }
@@ -53,5 +43,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
-
