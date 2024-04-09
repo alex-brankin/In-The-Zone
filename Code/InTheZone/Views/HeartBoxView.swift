@@ -10,7 +10,7 @@ import HealthKit
 
 struct HeartTabsView: View {
     @StateObject private var healthKitManager = HealthKitManager()
-    @State private var maxHeartRate: Double?
+    @State private var maxHeartRate: Double? = 195
     @State private var vo2Max: Double?
     @State private var hrv: Double?
     @State private var restingHeartRate: Double?
@@ -25,22 +25,17 @@ struct HeartTabsView: View {
                 BoxedView(title: "Resting Heart Rate", value: formattedValue(restingHeartRate))
             }
             .padding()
-            .padding(.top, -30)
+            .padding(.top, -20)
+            .padding(.bottom, -20)
         }
         .onAppear {
             fetchHealthData()
         }
     }
     
+    
     private func fetchHealthData() {
         // Fetch max heart rate
-        healthKitManager.fetchMostRecentHeartRate { heartRate, _, error in
-            if let heartRate = heartRate {
-                maxHeartRate = heartRate
-            } else if let error = error {
-                print("Error fetching max heart rate: \(error.localizedDescription)")
-            }
-        }
         
         // Fetch VO2 max
         healthKitManager.fetchVO2Max { vo2Max, _, error in
@@ -81,9 +76,27 @@ struct HeartTabsView: View {
     }
 }
 
-
-struct previewHeartTabsView: PreviewProvider {
-    static var previews: some View {
-        HeartTabsView()
+struct BoxedView: View {
+    var title: String
+    var value: String
+    
+    var body: some View {
+        VStack {
+            Text(title)
+                .font(.headline)
+            Text(value)
+                .font(.subheadline)
+        }
+        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity) // Set a fixed size for each box
+        .background(Color.gray.opacity(0.2))
+        .cornerRadius(10)
     }
 }
+
+struct previewHeartTabsView: PreviewProvider {
+        static var previews: some View {
+            HeartTabsView()
+        }
+    }
+

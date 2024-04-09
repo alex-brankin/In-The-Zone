@@ -14,8 +14,6 @@
 		9F99CD132BBC58D30019BF15 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD122BBC58D30019BF15 /* Persistence.swift */; };
 		9F99CD162BBC58D30019BF15 /* InTheZone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD142BBC58D30019BF15 /* InTheZone.xcdatamodeld */; };
 		9F99CD202BBC58D30019BF15 /* InTheZoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD1F2BBC58D30019BF15 /* InTheZoneTests.swift */; };
-		9F99CD3A2BBC5B0F0019BF15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD392BBC5B0F0019BF15 /* AppDelegate.swift */; };
-		9F99CD3C2BBC5B280019BF15 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD3B2BBC5B280019BF15 /* SceneDelegate.swift */; };
 		9F99CD3E2BBC5B410019BF15 /* HRManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD3D2BBC5B410019BF15 /* HRManager.swift */; };
 		9FCBB6FC2BBD70C40056A462 /* WatchTheZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB6FB2BBD70C40056A462 /* WatchTheZoneApp.swift */; };
 		9FCBB6FE2BBD70C40056A462 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB6FD2BBD70C40056A462 /* ContentView.swift */; };
@@ -37,6 +35,7 @@
 		9FD6F8152BC421AF00CC807A /* StepCountTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6F8142BC421AF00CC807A /* StepCountTest.swift */; };
 		9FD6F8172BC439E800CC807A /* HRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6F8162BC439E800CC807A /* HRView.swift */; };
 		9FD6F81D2BC48B8800CC807A /* HeartBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6F81C2BC48B8800CC807A /* HeartBoxView.swift */; };
+		9FD6F81F2BC4B23700CC807A /* HRZoneChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6F81E2BC4B23700CC807A /* HRZoneChartView.swift */; };
 		9FFC528D2BBCC08A0095DD95 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC528B2BBCC0860095DD95 /* HealthKit.framework */; };
 		9FFC52922BBCC0950095DD95 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */; };
 /* End PBXBuildFile section */
@@ -99,8 +98,6 @@
 		9F99CD292BBC58D30019BF15 /* InTheZoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTheZoneUITests.swift; sourceTree = "<group>"; };
 		9F99CD2B2BBC58D30019BF15 /* InTheZoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTheZoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9F99CD382BBC59390019BF15 /* InTheZone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InTheZone.entitlements; sourceTree = "<group>"; };
-		9F99CD392BBC5B0F0019BF15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9F99CD3B2BBC5B280019BF15 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9F99CD3D2BBC5B410019BF15 /* HRManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRManager.swift; sourceTree = "<group>"; };
 		9FCBB6F92BBD70C40056A462 /* WatchTheZone Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchTheZone Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FCBB6FB2BBD70C40056A462 /* WatchTheZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTheZoneApp.swift; sourceTree = "<group>"; };
@@ -125,6 +122,7 @@
 		9FD6F8142BC421AF00CC807A /* StepCountTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountTest.swift; sourceTree = "<group>"; };
 		9FD6F8162BC439E800CC807A /* HRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRView.swift; sourceTree = "<group>"; };
 		9FD6F81C2BC48B8800CC807A /* HeartBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBoxView.swift; sourceTree = "<group>"; };
+		9FD6F81E2BC4B23700CC807A /* HRZoneChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRZoneChartView.swift; sourceTree = "<group>"; };
 		9FFC528B2BBCC0860095DD95 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -202,8 +200,6 @@
 				9FCBB72C2BBDBC9E0056A462 /* GoogleService-Info.plist */,
 				9F99CD382BBC59390019BF15 /* InTheZone.entitlements */,
 				9F99CD092BBC58D20019BF15 /* InTheZoneApp.swift */,
-				9F99CD392BBC5B0F0019BF15 /* AppDelegate.swift */,
-				9F99CD3B2BBC5B280019BF15 /* SceneDelegate.swift */,
 				9F79CBDF2BBC5FA200E130F3 /* Connectivity.swift */,
 				9F99CD3D2BBC5B410019BF15 /* HRManager.swift */,
 				9FCBB7262BBD765F0056A462 /* Views */,
@@ -287,6 +283,7 @@
 				9FCBB73D2BBDE3E20056A462 /* ContentView.swift */,
 				9FD6F81C2BC48B8800CC807A /* HeartBoxView.swift */,
 				9FCBB7392BBDDD330056A462 /* YourHeartView.swift */,
+				9FD6F81E2BC4B23700CC807A /* HRZoneChartView.swift */,
 				9FD6F8162BC439E800CC807A /* HRView.swift */,
 				9FCBB7352BBDD8F50056A462 /* ProfileView.swift */,
 				9FCBB7372BBDD8FD0056A462 /* SettingsView.swift */,
@@ -508,8 +505,8 @@
 				9FCBB7282BBD9BE70056A462 /* LoadingView.swift in Sources */,
 				9FCBB73E2BBDE3E20056A462 /* ContentView.swift in Sources */,
 				9F99CD162BBC58D30019BF15 /* InTheZone.xcdatamodeld in Sources */,
+				9FD6F81F2BC4B23700CC807A /* HRZoneChartView.swift in Sources */,
 				9F99CD3E2BBC5B410019BF15 /* HRManager.swift in Sources */,
-				9F99CD3A2BBC5B0F0019BF15 /* AppDelegate.swift in Sources */,
 				9FCBB7302BBDD8C20056A462 /* LoginView.swift in Sources */,
 				9FCBB7342BBDD8E00056A462 /* WorkoutsView.swift in Sources */,
 				9FCBB7322BBDD8D00056A462 /* RegisterView.swift in Sources */,
@@ -517,7 +514,6 @@
 				9F99CD0A2BBC58D20019BF15 /* InTheZoneApp.swift in Sources */,
 				9FD6F81D2BC48B8800CC807A /* HeartBoxView.swift in Sources */,
 				9FCBB7362BBDD8F50056A462 /* ProfileView.swift in Sources */,
-				9F99CD3C2BBC5B280019BF15 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
