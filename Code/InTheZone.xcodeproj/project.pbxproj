@@ -36,6 +36,7 @@
 		9FD6F8172BC439E800CC807A /* HRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6F8162BC439E800CC807A /* HRView.swift */; };
 		9FD6F81D2BC48B8800CC807A /* HeartBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6F81C2BC48B8800CC807A /* HeartBoxView.swift */; };
 		9FD6F81F2BC4B23700CC807A /* HRZoneChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6F81E2BC4B23700CC807A /* HRZoneChartView.swift */; };
+		9FD6F8212BC5509700CC807A /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6F8202BC5509700CC807A /* ExerciseView.swift */; };
 		9FFC528D2BBCC08A0095DD95 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC528B2BBCC0860095DD95 /* HealthKit.framework */; };
 		9FFC52922BBCC0950095DD95 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */; };
 /* End PBXBuildFile section */
@@ -123,6 +124,7 @@
 		9FD6F8162BC439E800CC807A /* HRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRView.swift; sourceTree = "<group>"; };
 		9FD6F81C2BC48B8800CC807A /* HeartBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBoxView.swift; sourceTree = "<group>"; };
 		9FD6F81E2BC4B23700CC807A /* HRZoneChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRZoneChartView.swift; sourceTree = "<group>"; };
+		9FD6F8202BC5509700CC807A /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		9FFC528B2BBCC0860095DD95 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -242,6 +244,7 @@
 				9FCBB72B2BBDABB60056A462 /* WatchTheZone Watch App.entitlements */,
 				9FCBB6FB2BBD70C40056A462 /* WatchTheZoneApp.swift */,
 				9FCBB6FD2BBD70C40056A462 /* ContentView.swift */,
+				9FD6F8202BC5509700CC807A /* ExerciseView.swift */,
 				9FCBB6FF2BBD70C50056A462 /* Assets.xcassets */,
 				9FCBB7012BBD70C50056A462 /* Preview Content */,
 			);
@@ -529,6 +532,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FD6F8212BC5509700CC807A /* ExerciseView.swift in Sources */,
 				9FCBB6FE2BBD70C40056A462 /* ContentView.swift in Sources */,
 				9FCBB6FC2BBD70C40056A462 /* WatchTheZoneApp.swift in Sources */,
 			);
