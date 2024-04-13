@@ -6,31 +6,27 @@ let healthStore = HKHealthStore()
 
 @main
 struct InTheZone: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var healthKitManager = HealthKitManager()
-    @State private var isFirstLaunch = true
 
     var body: some Scene {
         WindowGroup {
-            if isFirstLaunch {
-                LaunchScreenView()
-                    .preferredColorScheme(.dark)
+            // Check if it's the first launch
+            if UserDefaults.standard.bool(forKey: "isFirstLaunch") {
+                // If it's the first launch, show NewUserView
+                NewUserView()
+                    .environmentObject(healthKitManager)
                     .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                            withAnimation {
-                                self.isFirstLaunch = false
-                                // Request authorization when the app launches
-                                requestHealthKitAuthorization()
-                            }
-                        }
+                        // Set the first launch flag to false
+                        UserDefaults.standard.set(false, forKey: "isFirstLaunch")
                     }
             } else {
-                MainView()
-                    .onAppear {
-                        requestHealthKitAuthorization()
-                    }
+                // If it's not the first launch, show ContentView
+                ContentView()
             }
         }
     }
+
 
     func requestHealthKitAuthorization() {
         // Call the requestAuthorization method of the HealthKitManager
@@ -44,12 +40,17 @@ struct InTheZone: App {
     }
 }
 
+// Implement AppDelegate to handle orientation
+class AppDelegate: NSObject, UIApplicationDelegate {
+    internal func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return .portrait
+    }
+}
+
 struct LaunchScreenView: View {
     var body: some View {
         // Your SwiftUI launch screen content here
-        Text("Loading...")
-            .font(.largeTitle)
-            .foregroundColor(.white)
+        EKGLoadingView()
     }
 }
 
@@ -58,10 +59,7 @@ struct MainView: View {
 
     var body: some View {
         // Your main app content here
-        ContentView()
+        NewUserView()
             .environmentObject(healthKitManager)
     }
 }
-
-
-

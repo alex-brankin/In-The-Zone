@@ -8,25 +8,45 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var notificationsEnabled = false
-    @State private var notificationInterval = 15
+    @AppStorage("notificationsEnabled") private var notificationsEnabled = false
+    @State private var stepGoalText = "10000"
+    @State private var isStepGoalValid = true
+    @StateObject private var settingsManager = SettingsManager()
+    @State private var isErrorOccurred = false
+    @State private var errorMessage = ""
     
     var body: some View {
         VStack {
             Form {
                 Section(header: Text("Notifications")) {
                     Toggle("Enable Notifications", isOn: $notificationsEnabled)
-                    
-                    if notificationsEnabled {
-                        Stepper(value: $notificationInterval, in: 5...60, step: 5) {
-                            Text("Notification Interval: \(notificationInterval) minutes")
+                        .onChange(of: notificationsEnabled) { newValue in
+                            UserDefaults.standard.setValue(newValue, forKey: "notificationsEnabled")
+                            settingsManager.requestNotificationPermission()
                         }
-                    }
+                }
+                
+                Section(header: Text("Step Goal")) {
+                    TextField("Enter Step Goal", text: $stepGoalText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.numberPad)
+                        .foregroundColor(isStepGoalValid ? .primary : .red)
+                        .onChange(of: stepGoalText) { newValue in
+                            isStepGoalValid = settingsManager.isValidStepGoal(newValue)
+                        }
+                }
+                
+                if !isStepGoalValid {
+                    Text("Please enter a valid step goal").foregroundColor(.red)
+                }
+                
+                if isErrorOccurred {
+                    Text(errorMessage).foregroundColor(.red)
                 }
                 
                 Section(header: Text("Account")) {
                     Button(action: {
-                        // Add action for sign out
+                        // Implement sign out logic here
                     }) {
                         Text("Sign Out")
                             .foregroundColor(.red)
@@ -34,6 +54,22 @@ struct SettingsView: View {
                 }
             }
             .navigationBarTitle("Settings")
+        }
+        .onAppear {
+            settingsManager.fetchStepCount()
+        }
+        .onChange(of: settingsManager.stepCount) { newStepCount in
+            if let newStepCount = newStepCount, let stepGoal = Double(stepGoalText), isStepGoalValid {
+                settingsManager.compareStepCountWithGoal(newStepCount, goal: stepGoal)
+            }
+        }
+        .onChange(of: settingsManager.error) { newError in
+            if let error = newError {
+                errorMessage = error.error.localizedDescription
+                isErrorOccurred = true
+            } else {
+                isErrorOccurred = false
+            }
         }
     }
 }

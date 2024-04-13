@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ImagePicker: UIViewControllerRepresentable {
     @Binding var image: Image?
+
+    @Environment(\.presentationMode) var presentationMode
 
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
         let parent: ImagePicker
@@ -17,12 +20,12 @@ struct ImagePicker: UIViewControllerRepresentable {
             self.parent = parent
         }
 
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let uiImage = info[.originalImage] as? UIImage {
                 parent.image = Image(uiImage: uiImage)
             }
 
-            picker.dismiss(animated: true)
+            parent.presentationMode.wrappedValue.dismiss()
         }
     }
 
@@ -53,7 +56,7 @@ struct ProfileView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(alignment: .center) { // Align content in the center
                 if let image = profileImage {
                     image
                         .resizable()
@@ -94,6 +97,12 @@ struct ProfileView: View {
                         })
                     }
                     
+                    Section(header: Text("Settings")) {
+                        NavigationLink(destination: SettingsView()) {
+                            Text("Settings")
+                        }
+                    }
+                    
                     Section {
                         Button(action: {
                             // Save profile changes
@@ -103,12 +112,6 @@ struct ProfileView: View {
                         }
                     }
                 }
-                
-                .navigationBarItems(trailing:
-                    NavigationLink(destination: SettingsView()) {
-                        Image(systemName: "gear")
-                    }
-                )
             }
         }
     }
@@ -119,8 +122,10 @@ struct ProfileView: View {
     }
 }
 
+
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
     }
 }
+

@@ -12,7 +12,7 @@ struct PreviousWorkoutsView: View {
     @State private var selectedWorkout: Workout?
     
     var body: some View {
-        List(previousWorkouts, id: \.title) { workout in
+        List(previousWorkouts, id: \.id) { workout in
             Button(action: {
                 self.selectedWorkout = workout
             }) {
@@ -34,25 +34,50 @@ struct WorkoutRow: View {
             Text(workout.title)
                 .font(.headline)
                 .padding(.bottom, 5)
-            ForEach(workout.heartRateData, id: \.time) { data in
-                HeartRateDataRow(data: data)
+            HStack {
+                Text("Total Time: \(formattedTime(workout.totalTime))")
+                Spacer()
+                Text("Avg HR: \(workout.averageHeartRate) bpm")
+                Spacer()
+                Text("Max HR: \(workout.maxHeartRate) bpm")
             }
+            .foregroundColor(.blue)
+            .padding(.bottom, 5)
+            }
+            HStack {
+                Text("Distance: \(workout.distance) km")
+                Spacer()
+                Text("Calories: \(workout.caloriesBurned) kcal")
+            }
+            .foregroundColor(.green)
         }
-        .padding()
     }
-}
+    
+    private func formattedTime(_ time: TimeInterval) -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .abbreviated
+        return formatter.string(from: time) ?? ""
+    }
+
 
 struct HeartRateDataRow: View {
-    var data: HeartRateData
+    var zone: String
+    var time: TimeInterval
     
     var body: some View {
         HStack {
-            Text("\(data.time): ")
-            Text("\(data.heartRate) bpm")
-                .foregroundColor(.blue)
-            Text(" - \(data.zone)")
-                .foregroundColor(.green)
+            Text("Zone \(zone):")
+            Spacer()
+            Text("\(formattedTime(time))")
         }
+    }
+    
+    private func formattedTime(_ time: TimeInterval) -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .abbreviated
+        return formatter.string(from: time) ?? ""
     }
 }
 
@@ -64,18 +89,38 @@ struct WorkoutDetailView: View {
             Text("Details for \(workout.title)")
                 .font(.headline)
                 .padding()
-            ForEach(workout.heartRateData, id: \.time) { data in
-                HeartRateDataRow(data: data)
+            HStack {
+                Text("Total Time: \(formattedTime(workout.totalTime))")
+                Spacer()
+                Text("Avg HR: \(workout.averageHeartRate) bpm")
+                Spacer()
+                Text("Max HR: \(workout.maxHeartRate) bpm")
             }
-             
+            .foregroundColor(.blue)
+            .padding(.bottom, 5)
+            ForEach(workout.zoneTimes.keys.sorted(), id: \.self) { zone in
+                HeartRateDataRow(zone: zone, time: workout.zoneTimes[zone] ?? 0)
             }
+            HStack {
+                Text("Distance: \(workout.distance) km")
+                Spacer()
+                Text("Calories: \(workout.caloriesBurned) kcal")
+            }
+            .foregroundColor(.green)
         }
+        .padding()
     }
-
+    
+    private func formattedTime(_ time: TimeInterval) -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .abbreviated
+        return formatter.string(from: time) ?? ""
+    }
+}
 
 struct PreviousWorkoutsView_Previews: PreviewProvider {
     static var previews: some View {
         PreviousWorkoutsView(previousWorkouts: previousWorkouts)
     }
 }
-

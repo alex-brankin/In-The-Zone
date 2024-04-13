@@ -31,18 +31,6 @@ struct HRZoneChartView: View {
                 LegendView(zoneData: calculateZoneData())
             }
             .padding()
-            
-            // Table to display zone data and placeholder percentage of time spent in each zone
-            List(calculateZoneData(), id: \.name) { zone in
-                HStack {
-                    Text(zone.name)
-                        .font(.headline)
-                    Spacer()
-                    Text("\(Int(zone.percentageTime))%")
-                        .font(.subheadline)
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: 200) // Adjust height as needed
         }
     }
 
@@ -122,4 +110,3 @@ struct HRZoneChartView_Previews: PreviewProvider {
         HRZoneChartView()
     }
 }
-

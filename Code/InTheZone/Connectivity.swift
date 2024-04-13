@@ -25,6 +25,10 @@ final class Connectivity: NSObject {
 
 extension Connectivity: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if let error = error {
+            print("Error activating session: \(error.localizedDescription)")
+            return
+        }
         // Handle activation completion
     }
 
@@ -37,21 +41,22 @@ extension Connectivity: WCSessionDelegate {
         // Handle session deactivation
     }
     #endif
-}
 
-public func send(heartRate: Int) {
-    guard WCSession.default.activationState == .activated else {
-        return
-    }
-    let userInfo: [String: Any] = ["heartRate": heartRate]
-    WCSession.default.transferUserInfo(userInfo)
-}
-
-func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any] = [:]) {
-    if userInfo["heartRate"] is Int {
-        // Update your UI with the received heart rate
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any]) {
+        if let heartRate = userInfo["heartRate"] as? Int {
+            print("Received heart rate: \(heartRate)")
+            // Update your UI with the received heart rate
+        }
     }
 }
 
-
-
+extension Connectivity {
+    public func send(heartRate: Int) {
+        guard WCSession.default.activationState == .activated else {
+            print("Error: WCSession is not activated")
+            return
+        }
+        let userInfo: [String: Any] = ["heartRate": heartRate]
+        WCSession.default.transferUserInfo(userInfo)
+    }
+}

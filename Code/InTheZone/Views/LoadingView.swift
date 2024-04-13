@@ -48,7 +48,7 @@ struct EKGLoadingView: View {
         VStack {
             Text("In The Zone")
                 .font(.largeTitle)
-                .foregroundColor(.white)
+                
             
             ZStack {
                 // Calculate the strength based on the progress

@@ -11,27 +11,27 @@ import HealthKit
 struct YourHeartView: View {
     
     var body: some View {
-        VStack {
-            // Heart View (BPM in Heart)
-            HRView()
+        ScrollView {
+            VStack {
+                // Heart View (BPM in Heart)
+                HRView()
                 
-            
-
-            // Boxes
-            HeartTabsView()
-            
-            // Heart Rate Zones Graph
-            HRZoneChartView()
-            
-
-            Spacer()
+                // Boxes
+                HeartTabsView()
+                
+                // Heart Rate Zones Graph
+                HRZoneChartView()
+                
+                Spacer()
+            }
+            .padding() // Add some padding for better spacing
         }
     }
 }
-
 
 struct YourHeartView_Previews: PreviewProvider {
     static var previews: some View {
         YourHeartView()
     }
 }
+
