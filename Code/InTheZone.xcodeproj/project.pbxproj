@@ -253,13 +253,9 @@
 			children = (
 				9FCBB72B2BBDABB60056A462 /* WatchTheZone Watch App.entitlements */,
 				9FCBB6FB2BBD70C40056A462 /* WatchTheZoneApp.swift */,
-				9FCBB6FD2BBD70C40056A462 /* ContentView.swift */,
-				9FE605B82BC58F5900095A2D /* PreviousWorkoutsView.swift */,
-				9FE605BA2BC58F7100095A2D /* StartExerciseView.swift */,
-				9FE605BC2BC58F8400095A2D /* SettingsView.swift */,
+				9FE605C22BC5961B00095A2D /* Views */,
 				9FE605C02BC593FB00095A2D /* Settings.swift */,
 				9FE605BE2BC58F9600095A2D /* Workout.swift */,
-				9FD6F8202BC5509700CC807A /* ExerciseView.swift */,
 				9FCBB6FF2BBD70C50056A462 /* Assets.xcassets */,
 				9FCBB7012BBD70C50056A462 /* Preview Content */,
 			);
@@ -306,6 +302,18 @@
 				9FCBB7352BBDD8F50056A462 /* ProfileView.swift */,
 				9FCBB7372BBDD8FD0056A462 /* SettingsView.swift */,
 				9FCBB7272BBD9BE70056A462 /* LoadingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9FE605C22BC5961B00095A2D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9FCBB6FD2BBD70C40056A462 /* ContentView.swift */,
+				9FD6F8202BC5509700CC807A /* ExerciseView.swift */,
+				9FE605BA2BC58F7100095A2D /* StartExerciseView.swift */,
+				9FE605B82BC58F5900095A2D /* PreviousWorkoutsView.swift */,
+				9FE605BC2BC58F8400095A2D /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

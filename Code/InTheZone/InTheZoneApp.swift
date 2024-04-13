@@ -25,6 +25,9 @@ struct InTheZone: App {
                     }
             } else {
                 MainView()
+                    .onAppear {
+                        requestHealthKitAuthorization()
+                    }
             }
         }
     }

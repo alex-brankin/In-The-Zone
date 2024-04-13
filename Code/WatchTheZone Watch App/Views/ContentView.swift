@@ -24,7 +24,7 @@ struct ContentView: View {
             StartExerciseView(isRecording: $isRecording)
                 .tabItem {
                     Image(systemName: "play.circle")
-                    Text("Start Exercise")
+                    
                 }
                 .tag(1)
             

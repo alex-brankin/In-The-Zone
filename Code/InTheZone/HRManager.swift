@@ -18,8 +18,13 @@ class HealthKitManager: NSObject, ObservableObject {
             HKObjectType.quantityType(forIdentifier: .stepCount)!,
             HKObjectType.quantityType(forIdentifier: .restingHeartRate)!,
             HKObjectType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!,
-            HKObjectType.quantityType(forIdentifier: .vo2Max)!
+            HKObjectType.quantityType(forIdentifier: .vo2Max)!,
+            HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
+            HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!,
+            HKObjectType.quantityType(forIdentifier: .basalEnergyBurned)!
         ]
+
+
 
         let healthKitTypesToWrite: Set<HKSampleType> = []
 
@@ -81,21 +86,40 @@ class HealthKitManager: NSObject, ObservableObject {
     
     // Fetching Step Count
     func fetchStepCount(completion: @escaping (Double?, Date?, Error?) -> Void) {
-        let stepCountType = HKObjectType.quantityType(forIdentifier: .stepCount)!
-        let predicate = HKQuery.predicateForSamples(withStart: Date.distantPast, end: Date(), options: .strictStartDate)
-        
-        let query = HKSampleQuery(sampleType: stepCountType, predicate: predicate, limit: 1, sortDescriptors: nil) { (query, results, error) in
-            guard let samples = results as? [HKQuantitySample], let sample = samples.first else {
-                completion(nil, nil, error)
-                return
-            }
-            
-            let stepCount = sample.quantity.doubleValue(for: HKUnit.count())
-            completion(stepCount, sample.startDate, nil)
+        guard let stepCountType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
+            completion(nil, nil, nil)
+            return
         }
-        
+
+        // Define the start and end dates for the current day
+        let calendar = Calendar.current
+        let now = Date()
+        let startOfDay = calendar.startOfDay(for: now)
+        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endOfDay, options: .strictStartDate)
+
+        let query = HKStatisticsQuery(quantityType: stepCountType,
+                                       quantitySamplePredicate: predicate,
+                                       options: .cumulativeSum) { (query, result, error) in
+            if let result = result {
+                DispatchQueue.main.async {
+                    let stepCount = result.sumQuantity()?.doubleValue(for: .count()) ?? 0
+                    completion(stepCount, now, nil)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(nil, nil, error)
+                }
+                if let error = error {
+                    print("Error fetching step count: \(error.localizedDescription)")
+                }
+            }
+        }
+
         healthStore.execute(query)
     }
+
     
     // Fetching Resting Heart Rate
     func fetchRestingHeartRate(completion: @escaping (Double?, Date?, Error?) -> Void) {
@@ -155,11 +179,72 @@ class HealthKitManager: NSObject, ObservableObject {
         
         healthStore.execute(query)
     }
-
-
-
-
     
+    // Fetching Distance for Walking + Running
+    func fetchWalkingRunningDistance(completion: @escaping (Double?, Error?) -> Void) {
+        let distanceType = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!
+        let calendar = Calendar.current
+        let now = Date()
+        let startOfDay = calendar.startOfDay(for: now)
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+
+        let query = HKStatisticsQuery(quantityType: distanceType, quantitySamplePredicate: predicate, options: .cumulativeSum) { (_, result, error) in
+            guard let result = result, let sum = result.sumQuantity() else {
+                completion(nil, error)
+                return
+            }
+
+            let distance = sum.doubleValue(for: HKUnit.meter())
+            completion(distance, nil)
+        }
+
+        healthStore.execute(query)
+    }
+
+    // Fetching calories burned
+    func fetchActiveEnergy(completion: @escaping (Double?, Error?) -> Void) {
+        let activeEnergyType = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!
+        let calendar = Calendar.current
+        let now = Date()
+        let startOfDay = calendar.startOfDay(for: now)
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+
+        let query = HKStatisticsQuery(quantityType: activeEnergyType, quantitySamplePredicate: predicate, options: .cumulativeSum) { (_, result, error) in
+            guard let result = result, let sum = result.sumQuantity() else {
+                completion(nil, error)
+                return
+            }
+
+            let activeEnergy = sum.doubleValue(for: HKUnit.kilocalorie())
+            completion(activeEnergy, nil)
+        }
+
+        healthStore.execute(query)
+    }
+
+    // Fetching BMR
+    func fetchBMR(completion: @escaping (Double?, Error?) -> Void) {
+        let bmrType = HKObjectType.quantityType(forIdentifier: .basalEnergyBurned)!
+        let calendar = Calendar.current
+        let now = Date()
+        let startOfDay = calendar.startOfDay(for: now)
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+
+        let query = HKStatisticsQuery(quantityType: bmrType, quantitySamplePredicate: predicate, options: .cumulativeSum) { (_, result, error) in
+            guard let result = result, let sum = result.sumQuantity() else {
+                completion(nil, error)
+                return
+            }
+
+            let bmr = sum.doubleValue(for: HKUnit.kilocalorie())
+            completion(bmr, nil)
+        }
+
+        healthStore.execute(query)
+    }
+
+
+
     // Additional functions for fetching other health data types can be added here
     
 }

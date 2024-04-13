@@ -43,7 +43,13 @@ struct StartExerciseView: View {
                     }
                 }
             }
-            .navigationTitle("Start Exercise")
+            
         }
+    }
+}
+
+struct StartExerciseView_Previews: PreviewProvider {
+    static var previews: some View {
+        StartExerciseView(isRecording: .constant(false))
     }
 }

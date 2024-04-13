@@ -16,30 +16,43 @@ struct HRZoneChartView: View {
         var endAngle: Double
         var color: Color
         var bpmRange: (min: Double, max: Double)
+        var percentageTime: Double // Placeholder for percentage of time spent in this zone
     }
 
     var body: some View {
         VStack {
-            Text("Your Average Workout Zones")
+            Text("Workout Zones")
                 .font(.title2)
                 .fontWeight(.bold)
-                .padding()
+                .padding(.top, 20)
             
             HStack(spacing: 20) {
                 HeartRateZonesGraph(zoneData: calculateZoneData())
                 LegendView(zoneData: calculateZoneData())
             }
             .padding()
+            
+            // Table to display zone data and placeholder percentage of time spent in each zone
+            List(calculateZoneData(), id: \.name) { zone in
+                HStack {
+                    Text(zone.name)
+                        .font(.headline)
+                    Spacer()
+                    Text("\(Int(zone.percentageTime))%")
+                        .font(.subheadline)
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: 200) // Adjust height as needed
         }
     }
 
     func calculateZoneData() -> [ZoneData] {
         let zoneData: [ZoneData] = [
-            ZoneData(name: "Zone 1", startAngle: 0, endAngle: (0.5 * 360), color: .blue, bpmRange: (0.5 * maxHeartRate, 0.6 * maxHeartRate)),
-            ZoneData(name: "Zone 2", startAngle: (0.5 * 360), endAngle: (0.6 * 360), color: .green, bpmRange: (0.6 * maxHeartRate, 0.7 * maxHeartRate)),
-            ZoneData(name: "Zone 3", startAngle: (0.6 * 360), endAngle: (0.7 * 360), color: .yellow, bpmRange: (0.7 * maxHeartRate, 0.8 * maxHeartRate)),
-            ZoneData(name: "Zone 4", startAngle: (0.7 * 360), endAngle: (0.8 * 360), color: .red, bpmRange: (0.8 * maxHeartRate, 0.9 * maxHeartRate)),
-            ZoneData(name: "Zone 5", startAngle: (0.8 * 360), endAngle: 360, color: .purple, bpmRange: (0.9 * maxHeartRate, maxHeartRate))
+            ZoneData(name: "Zone 1", startAngle: 0, endAngle: (0.5 * 360), color: Color.blue.opacity(0.5), bpmRange: (0.5 * maxHeartRate, 0.6 * maxHeartRate), percentageTime: 20),
+            ZoneData(name: "Zone 2", startAngle: (0.5 * 360), endAngle: (0.6 * 360), color: .blue, bpmRange: (0.6 * maxHeartRate, 0.7 * maxHeartRate), percentageTime: 30),
+            ZoneData(name: "Zone 3", startAngle: (0.6 * 360), endAngle: (0.7 * 360), color: .green, bpmRange: (0.7 * maxHeartRate, 0.8 * maxHeartRate), percentageTime: 25),
+            ZoneData(name: "Zone 4", startAngle: (0.7 * 360), endAngle: (0.8 * 360), color: .orange, bpmRange: (0.8 * maxHeartRate, 0.9 * maxHeartRate), percentageTime: 15),
+            ZoneData(name: "Zone 5", startAngle: (0.8 * 360), endAngle: 360, color: .red, bpmRange: (0.9 * maxHeartRate, maxHeartRate), percentageTime: 10)
         ]
         return zoneData
     }
@@ -62,7 +75,7 @@ struct HeartRateZonesGraph: View {
                 }
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: 200) // Adjust height as needed
+        .frame(maxWidth: .infinity, maxHeight: 300) // Adjust height as needed
     }
 }
 
