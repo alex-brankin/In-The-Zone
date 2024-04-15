@@ -168,6 +168,7 @@ struct HeartTabsView: View {
 struct BoxedView: View {
     var title: String
     var value: String
+    @State private var isSheetPresented = false // State to track sheet presentation
     
     var body: some View {
         VStack {
@@ -177,11 +178,46 @@ struct BoxedView: View {
                 .font(.subheadline)
         }
         .padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity) // Set a fixed size for each box
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.gray.opacity(0.2))
         .cornerRadius(10)
+        .onTapGesture {
+            isSheetPresented = true // Present the sheet when tapped
+        }
+        .sheet(isPresented: $isSheetPresented) {
+            // Pass both title and value to DefaultSheetView
+            DefaultSheetView(title: title, value: value)
+                .presentationDetents([.medium]) // Specify the sheet to take up half the screen
+        }
     }
 }
+
+struct DefaultSheetView: View {
+    var title: String // Added title parameter
+    var value: String // Original value
+    
+    var body: some View {
+        VStack {
+            Text("\(title)") // Display the title
+                .font(.headline)
+            Text("\(value)")
+                .font(.subheadline)
+            
+            Button("Close") {
+                // Dismiss the sheet when the "Close" button is tapped
+                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                   let window = windowScene.windows.first {
+                    window.rootViewController?.dismiss(animated: true, completion: nil)
+                }
+            }
+            .padding()
+        }
+        .presentationDragIndicator(.visible) // Make the drag indicator visible
+    }
+}
+
+
+
 
 
 struct HeartTabsView_Previews: PreviewProvider {

@@ -8,36 +8,53 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var settings: SettingsModel
+    @State private var autoPauseRunning = false
+    @State private var autoPauseCycling = false
+    @State private var selectedUnit = MeasurementUnit.kilometers
     
     var body: some View {
-        List {
-            Section(header: Text("Workout Duration")) {
-                Stepper(value: $settings.workoutDuration, in: 1...60) {
-                    Text("\(settings.workoutDuration) minutes")
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Settings")
+                .font(.title)
+                .foregroundColor(.red)
+                .padding(.top, 20)
+                .padding(.leading, 10)
+            
+            List {
+                Section(header: Text("Auto-Pause").foregroundColor(.red)) {
+                    Toggle("Running", isOn: $autoPauseRunning)
+                    Toggle("Cycling", isOn: $autoPauseCycling)
+                }
+                
+                Section(header: Text("Other").foregroundColor(.red)) {
+                    HStack {
+                        Text("Units")
+                            .font(.body)
+                        Spacer()
+                        Text(selectedUnit.rawValue)
+                            .foregroundColor(.blue)
+                            .onTapGesture {
+                                toggleUnit()
+                            }
+                    }
                 }
             }
-            
-            Section(header: Text("Intensity")) {
-                Stepper(value: $settings.intensity, in: 1...10) {
-                    Text("Intensity \(settings.intensity)")
-                }
-            }
-            
-            Section(header: Text("Heart Rate Zone")) {
-                Stepper(value: $settings.heartRateZone, in: 1...5) {
-                    Text("Zone \(settings.heartRateZone)")
-                }
-            }
-            
-            // Add more sections as needed for additional settings
         }
-        .navigationTitle("Settings")
     }
+    
+    func toggleUnit() {
+        selectedUnit = (selectedUnit == .kilometers) ? .miles : .kilometers
+    }
+}
+
+enum MeasurementUnit: String {
+    case kilometers = "Kilometers"
+    case miles = "Miles"
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(settings: SettingsModel())
+        SettingsView()
     }
 }
+

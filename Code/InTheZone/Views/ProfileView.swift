@@ -55,7 +55,6 @@ struct ProfileView: View {
     @State private var showingImagePicker = false
 
     var body: some View {
-        NavigationView {
             VStack(alignment: .center) { // Align content in the center
                 if let image = profileImage {
                     image
@@ -114,7 +113,7 @@ struct ProfileView: View {
                 }
             }
         }
-    }
+    
     
     func loadImage() {
         guard let selectedImage = profileImage else { return }

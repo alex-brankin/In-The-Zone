@@ -14,55 +14,52 @@ struct NewUserView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
-                Rectangle()
-                    .frame(height: 500)
-                    .foregroundColor(.red) // Change color as needed
-                    .ignoresSafeArea()
-                    .padding(.bottom, -30)
-                    .overlay(
-                        Text("Welcome Image")
-                            .foregroundColor(.white)
+                VStack {
+                        Image("Icon")
+                        .frame(height: 500)
+                        .scaleEffect(0.97)
+                        .ignoresSafeArea()
+                        .padding(.bottom, -30)
+                    
+                    VStack(spacing: 12) {
+                        Text("Find Your Zone")
                             .font(.title)
-                    )
-                
-                VStack(spacing: 12) {
-                    Text("Find Your Zone")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    
-                    Text("Welcome to ")
-                        .foregroundColor(.secondary)
-                    +
-                    Text("In The Zone")
-                        .bold()
-                        .foregroundColor(.primary)
-                    +
-                    Text(", your ultimate companion for zone training excellence. Whether you're an athlete striving for peak performance or a fitness enthusiast looking to elevate your workouts, our app is here to guide you every step of the way. Get ready to dive into the zone and unlock your full potential with targeted training and real-time feedback. Let's embark on this journey together and reach new heights of fitness success!")
-                        .foregroundColor(.secondary)
-                    
-                    Spacer()
-                    
-                    Button("Get Started") {
-                        HealthKitManager().requestAuthorization { success in
-                            if success {
-                                print("HealthKit authorization granted.")
-                                // Update the authorization status and trigger navigation
-                                self.isAuthorized = true
-                                self.navigationActive = true
-                            } else {
-                                print("HealthKit authorization failed.")
+                            .fontWeight(.bold)
+                        
+                        Text("Welcome to ")
+                            .foregroundColor(.secondary)
+                        +
+                        Text("In The Zone")
+                            .bold()
+                            .foregroundColor(.primary)
+                        +
+                        Text(", your ultimate companion for zone training excellence. Whether you're an athlete striving for peak performance or a fitness enthusiast looking to elevate your workouts, our app is here to guide you every step of the way. Get ready to dive into the zone and unlock your full potential with targeted training and real-time feedback. Let's embark on this journey together and reach new heights of fitness success!")
+                            .foregroundColor(.secondary)
+                        
+                        Spacer()
+                        
+                        Button("Get Started") {
+                            HealthKitManager().requestAuthorization { success in
+                                if success {
+                                    print("HealthKit authorization granted.")
+                                    // Update the authorization status and trigger navigation
+                                    self.isAuthorized = true
+                                    self.navigationActive = true
+                                } else {
+                                    print("HealthKit authorization failed.")
+                                }
                             }
                         }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.red)
+                        .scaleEffect(1.2)
+                        .opacity(isAuthorized ? 1 : 1)
+                        
+                        Spacer()
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.red)
-                    .opacity(isAuthorized ? 0 : 1)
-                    
-                    Spacer()
+                    .padding(.horizontal)
+                    .multilineTextAlignment(.center)
                 }
-                .padding(.horizontal)
-                .multilineTextAlignment(.center)
             }
             .background(
                 EmptyView()
@@ -74,7 +71,7 @@ struct NewUserView: View {
             )
         }
     }
-}
+
 
 struct NewUserView_Previews: PreviewProvider {
     static var previews: some View {

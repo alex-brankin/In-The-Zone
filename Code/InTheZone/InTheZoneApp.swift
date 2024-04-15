@@ -8,25 +8,30 @@ let healthStore = HKHealthStore()
 struct InTheZone: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var healthKitManager = HealthKitManager()
+    @AppStorage("isFirstLaunch") private var isFirstLaunch = true
+    @State private var isLoading = true
 
     var body: some Scene {
         WindowGroup {
-            // Check if it's the first launch
-            if UserDefaults.standard.bool(forKey: "isFirstLaunch") {
-                // If it's the first launch, show NewUserView
-                NewUserView()
-                    .environmentObject(healthKitManager)
-                    .onAppear {
-                        // Set the first launch flag to false
-                        UserDefaults.standard.set(false, forKey: "isFirstLaunch")
-                    }
+            if isLoading {
+                // Show the loading screen initially
+                SplashScreen(isLoading: $isLoading)
             } else {
-                // If it's not the first launch, show ContentView
-                ContentView()
+                if isFirstLaunch {
+                    // If it's the first launch, show NewUserView
+                    NewUserView()
+                        .environmentObject(healthKitManager)
+                        .onAppear {
+                            // Set the first launch flag to false
+                            isFirstLaunch = false
+                        }
+                } else {
+                    // If it's not the first launch, show ContentView
+                    ContentView()
+                }
             }
         }
     }
-
 
     func requestHealthKitAuthorization() {
         // Call the requestAuthorization method of the HealthKitManager
@@ -47,19 +52,38 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 }
 
-struct LaunchScreenView: View {
+struct SplashScreen: View {
+    @Binding var isLoading: Bool
+
     var body: some View {
-        // Your SwiftUI launch screen content here
-        EKGLoadingView()
+        // Your loading screen content here
+        LoadingView()
+            .onAppear {
+                // Simulate loading time
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    // After loading, set isLoading to false
+                    isLoading = false
+                }
+            }
     }
 }
 
 struct MainView: View {
+    var body: some View {
+        // Your main app content here
+        ContentView()
+    }
+}
+
+struct FirtTimer: View {
     @StateObject private var healthKitManager = HealthKitManager()
 
     var body: some View {
-        // Your main app content here
+        // Your new user view content here
         NewUserView()
-            .environmentObject(healthKitManager)
+            .onAppear {
+                // Request HealthKit authorization when the view appears
+                InTheZone().requestHealthKitAuthorization()
+            }
     }
 }

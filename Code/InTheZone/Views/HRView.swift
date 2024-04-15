@@ -22,6 +22,7 @@ struct HRView: View {
                     AnimatedHeartView(currentBPM: 0)
                 }
                 VStack {
+                    
                     Text("Current")
                         .font(.headline)
                         .padding()
@@ -114,7 +115,7 @@ struct AnimatedHeartView: View {
     @State private var isHeartBeating: Bool = false // Initialize with false
     
     // Define minimum and maximum animation durations
-    private let minDuration: Double = 0.5
+    private let minDuration: Double = 0.3
     private let maxDuration: Double = 2.0
     
     var body: some View {

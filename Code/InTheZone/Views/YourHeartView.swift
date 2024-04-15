@@ -11,13 +11,16 @@ import HealthKit
 struct YourHeartView: View {
     
     var body: some View {
-        ScrollView {
+        ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 // Heart View (BPM in Heart)
                 HRView()
                 
                 // Boxes
                 HeartTabsView()
+                    .frame(width: 420, height: 200)
+                    .padding(.bottom, -10)
+                
                 
                 // Heart Rate Zones Graph
                 HRZoneChartView()
@@ -25,7 +28,9 @@ struct YourHeartView: View {
                 Spacer()
             }
             .padding() // Add some padding for better spacing
+            
         }
+        
     }
 }
 

@@ -30,7 +30,7 @@ struct StartExerciseView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: ExerciseView(isRecording: $isRecording)) {
+                NavigationLink(destination: ChooseExerciseView()) {
                     ZStack {
                         ImageButton(action: {
                             // Action to perform when the button is tapped
