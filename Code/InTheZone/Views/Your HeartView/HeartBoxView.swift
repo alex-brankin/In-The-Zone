@@ -91,7 +91,7 @@ struct HeartTabsView: View {
             }
         }
         
-        healthKitManager.fetchRestingHeartRate { restingHeartRate, _, error in
+        healthKitManager.fetchRestingHeartRateForToday { restingHeartRate, error in
             if let restingHeartRate = restingHeartRate {
                 self.restingHeartRate = restingHeartRate
             } else if let error = error {
@@ -99,7 +99,6 @@ struct HeartTabsView: View {
             }
         }
     }
-    
     // Fetches activity-related data
     private func fetchActivityData() {
         healthKitManager.fetchStepCount { stepCount, _, error in
@@ -201,6 +200,12 @@ struct SheetView: View {
 
     var body: some View {
         VStack {
+            Text("\(title)")
+                .font(.headline)
+                .padding(.top, 20)
+            
+            Divider()
+
             if title == "Step Count" {
                 StepCountView(totalSteps: Binding<Int>(
                     get: { Int(value) ?? 0 },
@@ -209,13 +214,25 @@ struct SheetView: View {
             } else if title == "Max Heart Rate" {
                 MaxHRView()
                 
-            } else {
-                Text("\(title)")
-                    .font(.headline)
-                Text("\(value)")
-                    .font(.subheadline)
+            } else if title == "VO2 Max" {
+                VO2MaxView()
+            } else if title == "HRV" {
+                HRVView()
+            } else if title == "Resting Heart Rate" {
+                RestingHRView()
+            } else if title == "Distance Travelled" {
+                DistanceView()
+            } else if title == "Active Energy" {
+                ActiveEnergyView()
+            } else if title == "Resting Energy" {
+                RestingEnergyView()
             }
-
+            
+            
+            else {
+                // Placeholder for the views i haven't completed yet
+            }
+            Spacer()
             Button("Close") {
                 if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                    let window = windowScene.windows.first {
@@ -233,11 +250,6 @@ struct SheetView: View {
         }
     
 }
-
-
-
-
-
 
 
 struct HeartTabsView_Previews: PreviewProvider {

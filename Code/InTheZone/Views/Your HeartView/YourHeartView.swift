@@ -19,11 +19,13 @@ struct YourHeartView: View {
                 // Boxes
                 HeartTabsView()
                     .frame(width: 420, height: 200)
-                    .padding(.bottom, -10)
+                    .padding(.bottom, 30)
                 
                 
                 // Heart Rate Zones Graph
-                HRZoneChartView()
+                BPMZonesCharts()
+                        
+                       
                 
                 Spacer()
             }

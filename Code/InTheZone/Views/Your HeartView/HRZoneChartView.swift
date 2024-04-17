@@ -6,107 +6,77 @@
 //
 
 import SwiftUI
+import HealthKit
+import SwiftUICharts
 
-struct HRZoneChartView: View {
-    let maxHeartRate: Double = 195 // Maximum heart rate
+struct BPMZonesCharts: View {
+    @State private var bpmData: [Double] = []
+    @State private var error: Error?
+    let healthManager = HealthKitManager()
     
-    struct ZoneData {
-        var name: String
-        var startAngle: Double
-        var endAngle: Double
-        var color: Color
-        var bpmRange: (min: Double, max: Double)
-        var percentageTime: Double // Placeholder for percentage of time spent in this zone
-    }
+    // Sample data for heart rate zones (percentages of max heart rate)
+    let maxHeartRate: Double = 200 // Example: replace with actual user input
+    let zonePercentages: [Double] = [60, 70, 80, 90, 100] // Example: replace with actual percentages
+    let zoneLabels: [String] = ["Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5"] // Example: replace with actual labels
 
     var body: some View {
         VStack {
-            Text("Workout Zones")
-                .font(.title2)
-                .fontWeight(.bold)
-                .padding(.top, 20)
             
-            HStack(spacing: 20) {
-                HeartRateZonesGraph(zoneData: calculateZoneData())
-                LegendView(zoneData: calculateZoneData())
-            }
-            .padding()
-        }
-    }
-
-    func calculateZoneData() -> [ZoneData] {
-        let zoneData: [ZoneData] = [
-            ZoneData(name: "Zone 1", startAngle: 0, endAngle: (0.5 * 360), color: Color.blue.opacity(0.5), bpmRange: (0.5 * maxHeartRate, 0.6 * maxHeartRate), percentageTime: 20),
-            ZoneData(name: "Zone 2", startAngle: (0.5 * 360), endAngle: (0.6 * 360), color: .blue, bpmRange: (0.6 * maxHeartRate, 0.7 * maxHeartRate), percentageTime: 30),
-            ZoneData(name: "Zone 3", startAngle: (0.6 * 360), endAngle: (0.7 * 360), color: .green, bpmRange: (0.7 * maxHeartRate, 0.8 * maxHeartRate), percentageTime: 25),
-            ZoneData(name: "Zone 4", startAngle: (0.7 * 360), endAngle: (0.8 * 360), color: .orange, bpmRange: (0.8 * maxHeartRate, 0.9 * maxHeartRate), percentageTime: 15),
-            ZoneData(name: "Zone 5", startAngle: (0.8 * 360), endAngle: 360, color: .red, bpmRange: (0.9 * maxHeartRate, maxHeartRate), percentageTime: 10)
-        ]
-        return zoneData
-    }
-}
-
-// Heart Rate Zones Graph component
-struct HeartRateZonesGraph: View {
-    let zoneData: [HRZoneChartView.ZoneData] // Array of heart rate zone data
-    
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                ForEach(zoneData.indices, id: \.self) { index in
-                    HeartRateZoneShape(startAngle: zoneData[index].startAngle,
-                                        endAngle: zoneData[index].endAngle)
-                        .fill(zoneData[index].color)
-                        .opacity(0.8)
-                        .rotationEffect(Angle(degrees: -90))
-                        .frame(width: geometry.size.width, height: geometry.size.height)
+            HStack {
+                Spacer() // Spacer to center align the charts horizontally
+                
+                VStack {
+                    if !bpmData.isEmpty {
+                        LineChartView(data: bpmData, title: "BPM", legend: "Today")
+                            .frame(width: 160, height: 160) // Adjust the size of the LineChartView
+                            .padding()
+                    } else if let error = error {
+                        Text("Error: \(error.localizedDescription)")
+                            .foregroundColor(.red)
+                            .padding()
+                    } else {
+                        ProgressView("Fetching BPM...")
+                            .padding()
+                    }
                 }
-            }
-        }
-        .frame(maxWidth: .infinity, maxHeight: 300) // Adjust height as needed
-    }
-}
-
-// Custom shape for heart rate zone
-struct HeartRateZoneShape: Shape {
-    var startAngle: Double
-    var endAngle: Double
-    
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
-        let radius = min(rect.width, rect.height) / 2
-        
-        path.move(to: center)
-        path.addArc(center: center, radius: radius, startAngle: Angle(degrees: startAngle), endAngle: Angle(degrees: endAngle), clockwise: false)
-        path.closeSubpath()
-        
-        return path
-    }
-}
-
-// Legend View
-struct LegendView: View {
-    let zoneData: [HRZoneChartView.ZoneData] // Array of heart rate zone data
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            ForEach(zoneData.indices, id: \.self) { index in
-                HStack {
-                    Rectangle()
-                        .fill(zoneData[index].color)
-                        .frame(width: 20, height: 10)
-                    Text("\(zoneData[index].name) - \(Int(zoneData[index].bpmRange.min))-\(Int(zoneData[index].bpmRange.max))")
-                        .font(.caption)
+                .onAppear {
+                    fetchBPMData()
                 }
+                
+                VStack {
+                    // Pie chart displaying heart rate zones
+                    PieChartView(data: calculateZonePercentages(), title: "Heart Rate Zones", legend: "Percentage", style: Styles.pieChartStyleOne)
+                        .frame(width: 160, height: 160) // Adjust the size of the PieChartView
+                        .padding()
+                }
+                
+                Spacer() // Spacer to center align the charts horizontally
+            }
+            
+        }
+    }
+    
+    // Function to calculate the percentage of max heart rate for each zone
+    private func calculateZonePercentages() -> [Double] {
+        let totalPercentage = zonePercentages.reduce(0, +)
+        return zonePercentages.map { $0 / 100 * maxHeartRate / totalPercentage }
+    }
+
+    private func fetchBPMData() {
+        healthManager.fetchBPMData { bpmData, error in
+            if let error = error {
+                self.error = error
+            } else if let bpmData = bpmData {
+                self.bpmData = bpmData
             }
         }
-        .padding(10)
     }
 }
 
-struct HRZoneChartView_Previews: PreviewProvider {
+
+struct BPMZonesCharts_Previews: PreviewProvider {
     static var previews: some View {
-        HRZoneChartView()
+        BPMZonesCharts()
     }
 }
+

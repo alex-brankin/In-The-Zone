@@ -62,6 +62,47 @@ class HealthKitManager: NSObject, ObservableObject {
         healthStore.execute(query)
     }
 
+    func fetchBPMData(completion: @escaping ([Double]?, Error?) -> Void) {
+        // Define the health store
+        let healthStore = HKHealthStore()
+        
+        // Define the BPM type
+        let bpmType = HKObjectType.quantityType(forIdentifier: .heartRate)!
+        
+        // Define the predicate to get data for the current day
+        let calendar = Calendar.current
+        let now = Date()
+        let startOfDay = calendar.startOfDay(for: now)
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+        
+        // Define the sort descriptor
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+        
+        // Define the BPM query
+        let query = HKSampleQuery(sampleType: bpmType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { query, results, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            
+            // Extract BPM values from the results
+            guard let samples = results as? [HKQuantitySample] else {
+                completion(nil, NSError(domain: "com.yourapp.error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to cast samples"]))
+                return
+            }
+            
+            let bpmData = samples.map { sample in
+                return sample.quantity.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))
+            }
+            
+            completion(bpmData, nil)
+        }
+        
+        // Execute the query
+        healthStore.execute(query)
+    }
+
+
     func startHeartRateObserver(completion: @escaping (Double?, Error?) -> Void) {
         let sampleType = HKObjectType.quantityType(forIdentifier: .heartRate)!
         let query = HKObserverQuery(sampleType: sampleType, predicate: nil) { (query, completionHandler, error) in
@@ -166,27 +207,73 @@ class HealthKitManager: NSObject, ObservableObject {
         healthStore.execute(query)
     }
 
-    
-    
-    
-    // Fetching Resting Heart Rate
-    func fetchRestingHeartRate(completion: @escaping (Double?, Date?, Error?) -> Void) {
+    func fetchRestingHeartRateForToday(completion: @escaping (Double?, Error?) -> Void) {
         let restingHeartRateType = HKObjectType.quantityType(forIdentifier: .restingHeartRate)!
-        let predicate = HKQuery.predicateForSamples(withStart: Date.distantPast, end: Date(), options: .strictStartDate)
+        
+        // Calculate the start date (today) and the end date (tomorrow)
+        let endDate = Date()
+        let startDate = Calendar.current.startOfDay(for: endDate)
+        let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startDate)!
+        
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endOfDay, options: .strictStartDate)
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
         
         let query = HKSampleQuery(sampleType: restingHeartRateType, predicate: predicate, limit: 1, sortDescriptors: [sortDescriptor]) { (query, results, error) in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            
             guard let samples = results as? [HKQuantitySample], let sample = samples.first else {
-                completion(nil, nil, error)
+                completion(nil, nil)
                 return
             }
             
             let restingHeartRate = sample.quantity.doubleValue(for: HKUnit(from: "count/min"))
-            completion(restingHeartRate, sample.startDate, nil)
+            completion(restingHeartRate, nil)
         }
         
         healthStore.execute(query)
     }
+
+
+    
+    
+    // Fetching Resting Heart Rate
+    func fetchRestingHeartRate(forLastDays days: Int, completion: @escaping ([Double]?, [Date]?, Error?) -> Void) {
+        let restingHeartRateType = HKObjectType.quantityType(forIdentifier: .restingHeartRate)!
+        
+        // Calculate the start date (7 days ago) and the end date (now)
+        let endDate = Date()
+        guard let startDate = Calendar.current.date(byAdding: .day, value: -days, to: endDate) else {
+            completion(nil, nil, NSError(domain: "com.yourapp.error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to calculate start date"]))
+            return
+        }
+        
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictStartDate)
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+        
+        let query = HKSampleQuery(sampleType: restingHeartRateType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { (query, results, error) in
+            guard let samples = results as? [HKQuantitySample] else {
+                completion(nil, nil, error)
+                return
+            }
+            
+            // Extract resting heart rate values and corresponding dates
+            var restingHeartRates: [Double] = []
+            var dates: [Date] = []
+            for sample in samples {
+                let heartRate = sample.quantity.doubleValue(for: HKUnit(from: "count/min"))
+                restingHeartRates.append(heartRate)
+                dates.append(sample.startDate)
+            }
+            
+            completion(restingHeartRates, dates, nil)
+        }
+        
+        healthStore.execute(query)
+    }
+
 
     
     // Fetching Heart Rate Variability
