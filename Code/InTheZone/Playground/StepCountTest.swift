@@ -1,7 +1,7 @@
 import SwiftUI
 import HealthKit
 
-struct StepCountView: View {
+struct StepTestView: View {
     @State private var stepCount: Int = 0
     let healthStore = HKHealthStore()
 
@@ -68,6 +68,6 @@ struct StepCountView: View {
 
 struct StepCountView_Previews: PreviewProvider {
     static var previews: some View {
-        StepCountView()
+        StepTestView()
     }
 }

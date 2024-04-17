@@ -83,6 +83,52 @@ class HealthKitManager: NSObject, ObservableObject {
         healthStore.execute(query)
     }
 
+    // Fetching Average Heart Rate for the Day
+    func fetchAverageHeartRateForDay(completion: @escaping (Double?, Error?) -> Void) {
+        let heartRateType = HKObjectType.quantityType(forIdentifier: .heartRate)!
+        let calendar = Calendar.current
+        let now = Date()
+        let startOfDay = calendar.startOfDay(for: now)
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+        
+        let statisticsOptions: HKStatisticsOptions = [.discreteAverage]
+        
+        let query = HKStatisticsQuery(quantityType: heartRateType, quantitySamplePredicate: predicate, options: statisticsOptions) { (_, result, error) in
+            guard let result = result else {
+                completion(nil, error)
+                return
+            }
+            
+            let averageHeartRate = result.averageQuantity()?.doubleValue(for: HKUnit(from: "count/min")) ?? 0
+            completion(averageHeartRate, nil)
+        }
+        
+        healthStore.execute(query)
+    }
+
+    // Fetching Maximum Heart Rate for the Day
+    func fetchMaximumHeartRateForDay(completion: @escaping (Double?, Error?) -> Void) {
+        let heartRateType = HKObjectType.quantityType(forIdentifier: .heartRate)!
+        let calendar = Calendar.current
+        let now = Date()
+        let startOfDay = calendar.startOfDay(for: now)
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+        
+        let statisticsOptions: HKStatisticsOptions = [.discreteMax]
+        
+        let query = HKStatisticsQuery(quantityType: heartRateType, quantitySamplePredicate: predicate, options: statisticsOptions) { (_, result, error) in
+            guard let result = result else {
+                completion(nil, error)
+                return
+            }
+            
+            let maximumHeartRate = result.maximumQuantity()?.doubleValue(for: HKUnit(from: "count/min")) ?? 0
+            completion(maximumHeartRate, nil)
+        }
+        
+        healthStore.execute(query)
+    }
+    
     
     // Fetching Step Count
     func fetchStepCount(completion: @escaping (Double?, Date?, Error?) -> Void) {
@@ -120,6 +166,8 @@ class HealthKitManager: NSObject, ObservableObject {
         healthStore.execute(query)
     }
 
+    
+    
     
     // Fetching Resting Heart Rate
     func fetchRestingHeartRate(completion: @escaping (Double?, Date?, Error?) -> Void) {

@@ -50,6 +50,16 @@
 		9FE605BD2BC58F8400095A2D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE605BC2BC58F8400095A2D /* SettingsView.swift */; };
 		9FE605BF2BC58F9600095A2D /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE605BE2BC58F9600095A2D /* Workout.swift */; };
 		9FE605C12BC593FB00095A2D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE605C02BC593FB00095A2D /* Settings.swift */; };
+		9FF71D8F2BCF6897009B30F3 /* Notifcations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D8E2BCF6897009B30F3 /* Notifcations.swift */; };
+		9FF71D922BCFE81C009B30F3 /* StepCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D912BCFE81C009B30F3 /* StepCountView.swift */; };
+		9FF71D942BCFE9C6009B30F3 /* MaxHRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D932BCFE9C6009B30F3 /* MaxHRView.swift */; };
+		9FF71D962BCFE9DF009B30F3 /* VO2MaxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D952BCFE9DF009B30F3 /* VO2MaxView.swift */; };
+		9FF71D982BCFE9EA009B30F3 /* HRVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D972BCFE9EA009B30F3 /* HRVView.swift */; };
+		9FF71D9A2BCFE9FD009B30F3 /* RestingHRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D992BCFE9FD009B30F3 /* RestingHRView.swift */; };
+		9FF71D9C2BCFEA21009B30F3 /* DistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D9B2BCFEA21009B30F3 /* DistanceView.swift */; };
+		9FF71D9E2BCFEA30009B30F3 /* ActiveEnergyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D9D2BCFEA30009B30F3 /* ActiveEnergyView.swift */; };
+		9FF71DA02BCFEA3A009B30F3 /* RestingEnergyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D9F2BCFEA3A009B30F3 /* RestingEnergyView.swift */; };
+		9FF71DA22BCFEF37009B30F3 /* MaxHeartRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71DA12BCFEF37009B30F3 /* MaxHeartRate.swift */; };
 		9FFC528D2BBCC08A0095DD95 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC528B2BBCC0860095DD95 /* HealthKit.framework */; };
 		9FFC52922BBCC0950095DD95 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */; };
 /* End PBXBuildFile section */
@@ -151,6 +161,16 @@
 		9FE605BC2BC58F8400095A2D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9FE605BE2BC58F9600095A2D /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		9FE605C02BC593FB00095A2D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		9FF71D8E2BCF6897009B30F3 /* Notifcations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifcations.swift; sourceTree = "<group>"; };
+		9FF71D912BCFE81C009B30F3 /* StepCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountView.swift; sourceTree = "<group>"; };
+		9FF71D932BCFE9C6009B30F3 /* MaxHRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxHRView.swift; sourceTree = "<group>"; };
+		9FF71D952BCFE9DF009B30F3 /* VO2MaxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VO2MaxView.swift; sourceTree = "<group>"; };
+		9FF71D972BCFE9EA009B30F3 /* HRVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRVView.swift; sourceTree = "<group>"; };
+		9FF71D992BCFE9FD009B30F3 /* RestingHRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestingHRView.swift; sourceTree = "<group>"; };
+		9FF71D9B2BCFEA21009B30F3 /* DistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceView.swift; sourceTree = "<group>"; };
+		9FF71D9D2BCFEA30009B30F3 /* ActiveEnergyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveEnergyView.swift; sourceTree = "<group>"; };
+		9FF71D9F2BCFEA3A009B30F3 /* RestingEnergyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestingEnergyView.swift; sourceTree = "<group>"; };
+		9FF71DA12BCFEF37009B30F3 /* MaxHeartRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxHeartRate.swift; sourceTree = "<group>"; };
 		9FFC528B2BBCC0860095DD95 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -199,6 +219,8 @@
 		9F069D6F2BCD481F0028C714 /* Playground */ = {
 			isa = PBXGroup;
 			children = (
+				9FCBB72F2BBDD8C20056A462 /* LoginView.swift */,
+				9FCBB7312BBDD8D00056A462 /* RegisterView.swift */,
 				9FD6F8142BC421AF00CC807A /* StepCountTest.swift */,
 				9FDDF2882BCA4A6700916DD1 /* Test.swift */,
 			);
@@ -210,6 +232,7 @@
 			children = (
 				9F400A252BCD47220089A806 /* Workout.swift */,
 				9F069D6D2BCD47AC0028C714 /* Step.swift */,
+				9FF71DA12BCFEF37009B30F3 /* MaxHeartRate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -256,6 +279,7 @@
 				9F99CD382BBC59390019BF15 /* InTheZone.entitlements */,
 				9F99CD092BBC58D20019BF15 /* InTheZoneApp.swift */,
 				9F79CBDF2BBC5FA200E130F3 /* Connectivity.swift */,
+				9FF71D8E2BCF6897009B30F3 /* Notifcations.swift */,
 				9F400A242BCD46F80089A806 /* Store */,
 				9F400A002BCACAE90089A806 /* SettingsManager.swift */,
 				9F400A222BCD46E40089A806 /* Models */,
@@ -337,18 +361,11 @@
 		9FCBB7262BBD765F0056A462 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9FCBB72F2BBDD8C20056A462 /* LoginView.swift */,
-				9FCBB7312BBDD8D00056A462 /* RegisterView.swift */,
-				9FCBB7332BBDD8E00056A462 /* WorkoutsView.swift */,
-				9FD6F81C2BC48B8800CC807A /* HeartBoxView.swift */,
-				9FCBB7392BBDDD330056A462 /* YourHeartView.swift */,
 				9FDDF28A2BCA589800916DD1 /* NewUserView.swift */,
-				9FD6F81E2BC4B23700CC807A /* HRZoneChartView.swift */,
-				9FD6F8162BC439E800CC807A /* HRView.swift */,
-				9F400A022BCB40280089A806 /* HRPulse.swift */,
-				9FCBB7352BBDD8F50056A462 /* ProfileView.swift */,
-				9FCBB7372BBDD8FD0056A462 /* SettingsView.swift */,
-				9FCBB7272BBD9BE70056A462 /* LoadingView.swift */,
+				9FCBB7332BBDD8E00056A462 /* WorkoutsView.swift */,
+				9FF71D8C2BCF3DAE009B30F3 /* Profile */,
+				9FF71D8B2BCF3D84009B30F3 /* Your HeartView */,
+				9FF71D8D2BCF3DD1009B30F3 /* Splashscreen */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -364,6 +381,51 @@
 				9FE605BC2BC58F8400095A2D /* SettingsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		9FF71D8B2BCF3D84009B30F3 /* Your HeartView */ = {
+			isa = PBXGroup;
+			children = (
+				9FCBB7392BBDDD330056A462 /* YourHeartView.swift */,
+				9FD6F81C2BC48B8800CC807A /* HeartBoxView.swift */,
+				9FF71D902BCFE7E5009B30F3 /* Box Views */,
+				9FD6F8162BC439E800CC807A /* HRView.swift */,
+				9FD6F81E2BC4B23700CC807A /* HRZoneChartView.swift */,
+			);
+			path = "Your HeartView";
+			sourceTree = "<group>";
+		};
+		9FF71D8C2BCF3DAE009B30F3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9FCBB7352BBDD8F50056A462 /* ProfileView.swift */,
+				9FCBB7372BBDD8FD0056A462 /* SettingsView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		9FF71D8D2BCF3DD1009B30F3 /* Splashscreen */ = {
+			isa = PBXGroup;
+			children = (
+				9FCBB7272BBD9BE70056A462 /* LoadingView.swift */,
+				9F400A022BCB40280089A806 /* HRPulse.swift */,
+			);
+			path = Splashscreen;
+			sourceTree = "<group>";
+		};
+		9FF71D902BCFE7E5009B30F3 /* Box Views */ = {
+			isa = PBXGroup;
+			children = (
+				9FF71D932BCFE9C6009B30F3 /* MaxHRView.swift */,
+				9FF71D952BCFE9DF009B30F3 /* VO2MaxView.swift */,
+				9FF71D972BCFE9EA009B30F3 /* HRVView.swift */,
+				9FF71D992BCFE9FD009B30F3 /* RestingHRView.swift */,
+				9FF71D912BCFE81C009B30F3 /* StepCountView.swift */,
+				9FF71D9B2BCFEA21009B30F3 /* DistanceView.swift */,
+				9FF71D9D2BCFEA30009B30F3 /* ActiveEnergyView.swift */,
+				9FF71D9F2BCFEA3A009B30F3 /* RestingEnergyView.swift */,
+			);
+			path = "Box Views";
 			sourceTree = "<group>";
 		};
 		9FFC528A2BBCC0860095DD95 /* Frameworks */ = {
@@ -573,28 +635,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FCBB7382BBDD8FD0056A462 /* SettingsView.swift in Sources */,
+				9FF71D9C2BCFEA21009B30F3 /* DistanceView.swift in Sources */,
+				9FF71DA22BCFEF37009B30F3 /* MaxHeartRate.swift in Sources */,
 				9FD6F8172BC439E800CC807A /* HRView.swift in Sources */,
 				9FD6F8152BC421AF00CC807A /* StepCountTest.swift in Sources */,
+				9FF71D922BCFE81C009B30F3 /* StepCountView.swift in Sources */,
 				9F99CD132BBC58D30019BF15 /* Persistence.swift in Sources */,
 				9F79CBE02BBC5FA200E130F3 /* Connectivity.swift in Sources */,
 				9FCBB7282BBD9BE70056A462 /* LoadingView.swift in Sources */,
 				9FCBB73E2BBDE3E20056A462 /* ContentView.swift in Sources */,
+				9FF71D942BCFE9C6009B30F3 /* MaxHRView.swift in Sources */,
 				9F99CD162BBC58D30019BF15 /* InTheZone.xcdatamodeld in Sources */,
+				9FF71D9A2BCFE9FD009B30F3 /* RestingHRView.swift in Sources */,
 				9FD6F81F2BC4B23700CC807A /* HRZoneChartView.swift in Sources */,
 				9F99CD3E2BBC5B410019BF15 /* HRManager.swift in Sources */,
+				9FF71D9E2BCFEA30009B30F3 /* ActiveEnergyView.swift in Sources */,
 				9F400A032BCB40280089A806 /* HRPulse.swift in Sources */,
 				9FCBB7302BBDD8C20056A462 /* LoginView.swift in Sources */,
 				9FDDF2892BCA4A6700916DD1 /* Test.swift in Sources */,
 				9FCBB7342BBDD8E00056A462 /* WorkoutsView.swift in Sources */,
+				9FF71DA02BCFEA3A009B30F3 /* RestingEnergyView.swift in Sources */,
 				9FCBB7322BBDD8D00056A462 /* RegisterView.swift in Sources */,
 				9FCBB73A2BBDDD330056A462 /* YourHeartView.swift in Sources */,
 				9F069D6E2BCD47AC0028C714 /* Step.swift in Sources */,
+				9FF71D962BCFE9DF009B30F3 /* VO2MaxView.swift in Sources */,
 				9F99CD0A2BBC58D20019BF15 /* InTheZoneApp.swift in Sources */,
 				9F400A012BCACAE90089A806 /* SettingsManager.swift in Sources */,
 				9FD6F81D2BC48B8800CC807A /* HeartBoxView.swift in Sources */,
 				9F400A262BCD47220089A806 /* Workout.swift in Sources */,
 				9FCBB7362BBDD8F50056A462 /* ProfileView.swift in Sources */,
+				9FF71D8F2BCF6897009B30F3 /* Notifcations.swift in Sources */,
 				9FDDF28B2BCA589800916DD1 /* NewUserView.swift in Sources */,
+				9FF71D982BCFE9EA009B30F3 /* HRVView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -810,7 +882,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.InTheZone;
+				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.ITZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -842,7 +914,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.InTheZone;
+				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.ITZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -905,13 +977,13 @@
 				INFOPLIST_KEY_CFBundleDisplayName = WatchTheZone;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow access to enjoy all the features of our application.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = comp3000.abrankin.InTheZone;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = comp3000.abrankin.ITZ;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.InTheZone.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.ITZ.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -937,13 +1009,13 @@
 				INFOPLIST_KEY_CFBundleDisplayName = WatchTheZone;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow access to enjoy all the features of our application.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = comp3000.abrankin.InTheZone;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = comp3000.abrankin.ITZ;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.InTheZone.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.ITZ.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

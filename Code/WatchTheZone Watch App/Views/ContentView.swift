@@ -16,21 +16,21 @@ struct ContentView: View {
         TabView(selection: $selectedTab) {
             PreviousWorkoutsView(previousWorkouts: previousWorkouts)
                 .tabItem {
-                    Image(systemName: "list.bullet")
+                    Image(systemName: "circle.fill")
                     Text("Previous Workouts")
                 }
                 .tag(0)
             
             StartExerciseView(isRecording: $isRecording)
                 .tabItem {
-                    Image(systemName: "play.circle")
+                    Image(systemName: "circle.fill")
                     
                 }
                 .tag(1)
             
             SettingsView()
                 .tabItem {
-                    Image(systemName: "gear")
+                    Image(systemName: "circle.fill")
                     Text("Settings")
                 }
                 .tag(2)

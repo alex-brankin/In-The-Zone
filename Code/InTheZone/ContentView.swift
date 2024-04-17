@@ -53,7 +53,7 @@ struct ContentView: View {
 struct FirstView: View {
     var body: some View {
         WorkoutsView()
-            .navigationTitle("Workouts")
+            
             
             
     }
