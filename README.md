@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/alex-brankin/In-The-Zone">
-  <img src="https://github.com/alex-brankin/In-The-Zone/blob/main/Design/512px.png" alt="512px" border="0" width="171" height="171">
+  <img src="https://github.com/alex-brankin/In-The-Zone/blob/main/Design/AppIcons/1024px.png" alt="512px" border="0" width="171" height="171">
   </a>
 </p>
 
