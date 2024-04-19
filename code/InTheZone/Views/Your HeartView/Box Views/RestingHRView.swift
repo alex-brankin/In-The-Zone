@@ -29,6 +29,7 @@ struct RestingHRView: View {
                 ProgressView("Fetching Resting Heart Rate...")
                     .padding()
             }
+            
         }
         
         .onAppear {

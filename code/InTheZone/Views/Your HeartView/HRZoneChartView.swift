@@ -35,8 +35,10 @@ struct BPMZonesCharts: View {
                             .foregroundColor(.red)
                             .padding()
                     } else {
-                        ProgressView("Fetching BPM...")
+                        LineChartView(data: [], title: "BPM", legend: "Today")
+                            .frame(width: 160, height: 160) // Adjust the size of the LineChartView
                             .padding()
+                            .overlay(ProgressView("Fetching BPM..."))
                     }
                 }
                 .onAppear {

@@ -204,6 +204,7 @@ struct AnimatedHeartView: View {
             .aspectRatio(contentMode: .fit)
             .frame(width: 200, height: 200)
             .foregroundColor(.red)
+            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             .scaleEffect(isHeartBeating ? 1.2 : 1.0)
             .opacity(isHeartBeating ? 1.0 : 0.8)
             .onAppear {

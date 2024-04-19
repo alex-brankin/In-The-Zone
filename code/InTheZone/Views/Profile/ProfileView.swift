@@ -10,6 +10,7 @@ import PhotosUI
 
 struct ProfileView: View {
     @StateObject var viewModel = ProfileViewModel()
+    @EnvironmentObject var userData: UserData
     @AppStorage("fullName") private var fullName: String = ""
     @AppStorage("age") private var age: Int = 0
     @State private var showingImagePicker = false
@@ -36,13 +37,14 @@ struct ProfileView: View {
             .onAppear {
                 viewModel.loadProfileImage()
             }
-            Text(fullName) // Display user's name
+            
+            Text(userData.name) // Display user's name
                 .font(.title)
             
             Form {
                 // Personal Information Section
                 Section(header: Text("Personal Information")) {
-                    TextField("Full Name", text: $fullName)
+                    TextField("Full Name", text: $userData.name)
                     Stepper(value: $age, in: 0...150, label: {
                         Text("Age: \(age)")
                     })
@@ -82,5 +84,6 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+            .environmentObject(UserData())
     }
 }

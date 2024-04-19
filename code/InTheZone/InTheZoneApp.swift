@@ -8,7 +8,6 @@ let healthStore = HKHealthStore()
 struct InTheZone: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var healthKitManager = HealthKitManager()
-    @AppStorage("isFirstLaunch") private var isFirstLaunch = true
     @State private var isLoading = true
 
     var body: some Scene {
@@ -17,21 +16,17 @@ struct InTheZone: App {
                 // Show the loading screen initially
                 SplashScreen(isLoading: $isLoading)
             } else {
-                if isFirstLaunch {
                     // If it's the first launch, show NewUserView
                     NewUserView()
                         .environmentObject(healthKitManager)
                         .onAppear {
                             // Set the first launch flag to false
-                            isFirstLaunch = false
+                           
                         }
-                } else {
-                    // If it's not the first launch, show ContentView
-                    ContentView()
                 }
             }
         }
-    }
+    
 
     func requestHealthKitAuthorization() {
         // Call the requestAuthorization method of the HealthKitManager

@@ -12,7 +12,7 @@ struct LoadingView: View {
         ZStack {
             // Background with HRPulse animation
             HRPulse()
-                .opacity(0.5) // Adjust opacity as needed
+                .opacity(0.6) // Adjust opacity as needed
                 .edgesIgnoringSafeArea(.all)
             
             // Content in the foreground
@@ -21,7 +21,6 @@ struct LoadingView: View {
                 Text("In The Zone")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(.white) // Text color in dark mode
                     
                 
                 ProgressView()
@@ -30,7 +29,7 @@ struct LoadingView: View {
                 Spacer()
             }
         }
-        .preferredColorScheme(.dark) // Force dark mode
+       
     }
 }
 

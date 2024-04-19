@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var userData: UserData
     @State private var selectedTab = 1
     @State private var currentBPM: Double = 0 // Define a State variable to hold the current BPM
     
@@ -69,11 +70,30 @@ struct SecondView: View {
 }
 
 struct ThirdView: View {
+    @State private var showingSettings = false
+    
     var body: some View {
-        ProfileView()
+        ZStack(alignment: .topTrailing) {
+            ProfileView()
+                .environmentObject(UserData())
             
+            Button(action: {
+                showingSettings.toggle()
+            }) {
+                Image(systemName: "gear")
+                    .foregroundColor(.primary)
+                    .padding()
+            }
+            .sheet(isPresented: $showingSettings) {
+                SettingsView()
+            }
+            .padding(.trailing)
+            .padding(.top, -20) // Adjust as needed to position the settings gear icon
+        }
     }
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

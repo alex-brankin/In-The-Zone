@@ -63,6 +63,8 @@
 		9FE605C12BC593FB00095A2D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE605C02BC593FB00095A2D /* Settings.swift */; };
 		9FEE2E0A2BD1C208000A65CE /* AppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FEE2E092BD1C208000A65CE /* AppInfo.plist */; };
 		9FEE2E0C2BD1C8C8000A65CE /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE2E0B2BD1C8C8000A65CE /* ProfileViewModel.swift */; };
+		9FEE2E122BD28236000A65CE /* GetUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE2E112BD28236000A65CE /* GetUserInfoView.swift */; };
+		9FEE2E142BD28DA2000A65CE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE2E132BD28DA2000A65CE /* UserData.swift */; };
 		9FF71D8F2BCF6897009B30F3 /* Notifcations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D8E2BCF6897009B30F3 /* Notifcations.swift */; };
 		9FF71D922BCFE81C009B30F3 /* StepCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D912BCFE81C009B30F3 /* StepCountView.swift */; };
 		9FF71D942BCFE9C6009B30F3 /* MaxHRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D932BCFE9C6009B30F3 /* MaxHRView.swift */; };
@@ -189,6 +191,8 @@
 		9FE605C02BC593FB00095A2D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		9FEE2E092BD1C208000A65CE /* AppInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppInfo.plist; sourceTree = "<group>"; };
 		9FEE2E0B2BD1C8C8000A65CE /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		9FEE2E112BD28236000A65CE /* GetUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserInfoView.swift; sourceTree = "<group>"; };
+		9FEE2E132BD28DA2000A65CE /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		9FF71D8E2BCF6897009B30F3 /* Notifcations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifcations.swift; sourceTree = "<group>"; };
 		9FF71D912BCFE81C009B30F3 /* StepCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountView.swift; sourceTree = "<group>"; };
 		9FF71D932BCFE9C6009B30F3 /* MaxHRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxHRView.swift; sourceTree = "<group>"; };
@@ -266,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				9F400A252BCD47220089A806 /* Workout.swift */,
+				9FEE2E132BD28DA2000A65CE /* UserData.swift */,
 				9F069D6D2BCD47AC0028C714 /* Step.swift */,
 				9FF71DA12BCFEF37009B30F3 /* MaxHeartRate.swift */,
 			);
@@ -415,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				9FDDF28A2BCA589800916DD1 /* NewUserView.swift */,
+				9FEE2E112BD28236000A65CE /* GetUserInfoView.swift */,
 				9FCBB7332BBDD8E00056A462 /* WorkoutsView.swift */,
 				9FF71D8C2BCF3DAE009B30F3 /* Profile */,
 				9FF71D8B2BCF3D84009B30F3 /* Your HeartView */,
@@ -715,6 +721,7 @@
 				9FD6F81F2BC4B23700CC807A /* HRZoneChartView.swift in Sources */,
 				9F99CD3E2BBC5B410019BF15 /* HRManager.swift in Sources */,
 				9FF71D9E2BCFEA30009B30F3 /* ActiveEnergyView.swift in Sources */,
+				9FEE2E142BD28DA2000A65CE /* UserData.swift in Sources */,
 				9FB7C2FA2BD03A37007D7346 /* ProfileTesting.swift in Sources */,
 				9F400A032BCB40280089A806 /* HRPulse.swift in Sources */,
 				9FEE2E0C2BD1C8C8000A65CE /* ProfileViewModel.swift in Sources */,
@@ -722,6 +729,7 @@
 				9FDDF2892BCA4A6700916DD1 /* Test.swift in Sources */,
 				9FCBB7342BBDD8E00056A462 /* WorkoutsView.swift in Sources */,
 				9FF71DA02BCFEA3A009B30F3 /* RestingEnergyView.swift in Sources */,
+				9FEE2E122BD28236000A65CE /* GetUserInfoView.swift in Sources */,
 				9FCBB7322BBDD8D00056A462 /* RegisterView.swift in Sources */,
 				9FCBB73A2BBDDD330056A462 /* YourHeartView.swift in Sources */,
 				9F069D6E2BCD47AC0028C714 /* Step.swift in Sources */,
