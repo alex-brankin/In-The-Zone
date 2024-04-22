@@ -11,34 +11,50 @@ import HealthKit
 struct WorkoutsView: View {
     @StateObject var workoutFinder = WorkoutFinder()
     @State private var myWorkouts: [HKWorkout] = []
+    @State private var searchText = ""
 
     var body: some View {
-        List(myWorkouts, id: \.uuid) { workout in
-            NavigationLink(destination: WorkoutDetailView(workout: workout)) {
-                HStack {
-                    Image(systemName: imageForActivity(workout.workoutActivityType))
-                        .font(.title)
-                    VStack(alignment: .leading) {
-                        Text("\(formattedActivity(for: workout))").font(.headline)
-                        Text("Duration: \(formattedDuration(for: workout))").font(.subheadline)
-                        Text("Date: \(formattedStartDate(for: workout))").font(.subheadline)
-            //            Text("Activity: \(formattedActivity(for: workout))")
+            List {
+                ForEach(filteredWorkouts(), id: \.uuid) { workout in
+                    NavigationLink(destination: WorkoutDetailView(workout: workout)) {
+                        HStack {
+                            Image(systemName: imageForActivity(workout.workoutActivityType))
+                                .font(.title)
+                            VStack(alignment: .leading) {
+                                Text("\(formattedActivity(for: workout))").font(.headline)
+                                Text("Duration: \(formattedDuration(for: workout))").font(.subheadline)
+                                Text("Date: \(formattedStartDate(for: workout))").font(.subheadline)
+                            }
+                        }
+                    }
+                }
+            }
+            .listStyle(PlainListStyle())
+            .searchable(text: $searchText)
+            .onAppear {
+                // Retrieve workouts when the view appears
+                workoutFinder.retrieveWorkouts { workouts, error in
+                    if let error = error {
+                        // Handle error
+                        print("Error retrieving workouts: \(error.localizedDescription)")
+                    } else {
+                        // Update the state with the retrieved workouts
+                        if let workouts = workouts {
+                            myWorkouts = workouts
+                        }
                     }
                 }
             }
         }
-        .onAppear {
-            // Retrieve workouts when the view appears
-            workoutFinder.retrieveWorkouts { workouts, error in
-                if let error = error {
-                    // Handle error
-                    print("Error retrieving workouts: \(error.localizedDescription)")
-                } else {
-                    // Update the state with the retrieved workouts
-                    if let workouts = workouts {
-                        myWorkouts = workouts
-                    }
-                }
+    
+    
+    private func filteredWorkouts() -> [HKWorkout] {
+        if searchText.isEmpty {
+            return myWorkouts
+        } else {
+            return myWorkouts.filter { workout in
+                let activityString = formattedActivity(for: workout).lowercased()
+                return activityString.contains(searchText.lowercased())
             }
         }
     }
@@ -90,6 +106,7 @@ struct WorkoutsView: View {
         return activityString
     }
 }
+
 
 struct WorkoutDetailView: View {
     let workout: HKWorkout

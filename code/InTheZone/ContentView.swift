@@ -43,6 +43,16 @@ struct ContentView: View {
                 Text("Profile")
             }
             .tag(2)
+            
+            NavigationStack {
+                SettingsView()
+                    .navigationBarTitle("Settings")
+            }
+            .tabItem {
+                Image(systemName: "gear")
+                Text("Settings")
+            }
+            .tag(3)
         }
         .accentColor(.red)
         .onAppear {
@@ -54,9 +64,6 @@ struct ContentView: View {
 struct FirstView: View {
     var body: some View {
         WorkoutsView()
-            
-            
-            
     }
 }
 
@@ -65,7 +72,6 @@ struct SecondView: View {
     
     var body: some View {
         YourHeartView()
-            
     }
 }
 
@@ -87,13 +93,12 @@ struct ThirdView: View {
             .sheet(isPresented: $showingSettings) {
                 SettingsView()
             }
+            .navigationBarTitle("Profile")
             .padding(.trailing)
-            .padding(.top, -20) // Adjust as needed to position the settings gear icon
+            .padding(.top, -20)
         }
     }
 }
-
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

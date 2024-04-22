@@ -58,26 +58,30 @@ struct HRView: View {
                 }
                 
                 VStack {
-                    Text(showMaxHeartRate ? "Highest" : showAverageHeartRate ? "Average" : "Current")
+                    Text(showMaxHeartRate ? "Highest" : showAverageHeartRate ? "Average" : "")
                         .font(.headline)
                         .padding()
                         .offset(y: 110)
+                        .colorInvert()
                     
                     Text("BPM")
                         .font(.largeTitle)
                         .padding()
                         .offset(y: 60)
+                        .colorInvert()
                     
                     if let currentDisplayedHeartRate = currentDisplayedHeartRate {
                         Text("\(Int(currentDisplayedHeartRate))")
                             .font(.largeTitle)
                             .padding()
                             .offset(y: -80)
+                            .colorInvert()
                     } else {
                         Text("N/A")
                             .font(.largeTitle)
                             .padding()
                             .offset(y: -80)
+                            .colorInvert()
                     }
                 }
             }
@@ -89,11 +93,20 @@ struct HRView: View {
                     .padding(.top)
             }
             else {
-                Text("Please allow us access to your health data in order to fetch your heart rate data.")
-                    .multilineTextAlignment(.center)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                    .padding(.top)
+                Button(action: {
+                    fetchHealthData()
+                }) {
+                    VStack{
+                        Text("Please allow us access to your health data.")
+                            .multilineTextAlignment(.center)
+                            .font(.subheadline)
+                            .foregroundColor(.blue)
+                        Text("Tap here to authorize.")
+                            .multilineTextAlignment(.center)
+                            .font(.subheadline)
+                            .foregroundColor(.blue)
+                    }
+                }
             }
             
         }

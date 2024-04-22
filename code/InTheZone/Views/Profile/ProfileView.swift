@@ -31,6 +31,7 @@ struct ProfileView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 150, height: 150)
+                        .foregroundStyle(.black)
                         
                 }
             }
@@ -45,12 +46,10 @@ struct ProfileView: View {
                 // Personal Information Section
                 Section(header: Text("Personal Information")) {
                     TextField("Full Name", text: $userData.name)
-                    Stepper(value: $age, in: 0...150, label: {
-                        Text("Age: \(age)")
-                    })
+                    Text("Age: \(userData.calculatedAge)")
+                    
                 }
                 
-                // Achievements Section
                 // Achievements Section
                 Section(header: Text("Achievements")) {
                     // Grid of images and text placeholders
@@ -60,10 +59,27 @@ struct ProfileView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 100, height: 100)
-                            Text("UK Trophy")
+                            Text("UK Distance")
                                 .font(.caption)
                         }
-                        ForEach(1..<9) { index in
+                        VStack {
+                            Image("StepTrophy")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100)
+                            Text("Annual Step Goal")
+                                .font(.caption)
+                        }
+                        VStack {
+                            Image("HRTrophy")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100)
+                            Text("Zone 2 Champion")
+                                .font(.caption)
+                        }
+                        
+                        ForEach(1..<7) { index in
                             VStack {
                                 Image("placeholdertrophy")
                                     .resizable()
@@ -80,6 +96,7 @@ struct ProfileView: View {
         }
     }
 }
+
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {

@@ -1,7 +1,34 @@
 import HealthKit
+import Foundation
+
+extension Date {
+    static var startOfDay: Date {
+        Calendar.current.startOfDay(for: Date())
+    }
+    
+    static var startOfWeek: Date {
+        let calendar = Calendar.current
+        var components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())
+        components.weekday = 2 // Monday
+        
+        return calendar.date(from: components)!
+    
+    }
+    
+    static var oneMonthAgo: Date {
+        let calendar = Calendar.current
+        let oneMonth = calendar.date(byAdding: .month, value: -1, to: Date())
+        return calendar.startOfDay(for: oneMonth!)
+    }
+}
+
+
 
 class HealthKitManager: NSObject, ObservableObject {
     let healthStore = HKHealthStore()
+
+    
+    
 
     // MARK: - Authorization
     
@@ -206,6 +233,31 @@ class HealthKitManager: NSObject, ObservableObject {
 
         healthStore.execute(query)
     }
+    
+    @Published var oneMonthChartData = [DailyRestingView]()
+
+    func fetchDailyResting(startDate: Date, completion: @escaping ([Date: Double]) -> Void) {
+        let restingHeartRateType = HKObjectType.quantityType(forIdentifier: .restingHeartRate)!
+        let interval = DateComponents(day: 1)
+        
+        let query = HKStatisticsCollectionQuery(quantityType: restingHeartRateType, quantitySamplePredicate: nil, anchorDate: startDate, intervalComponents: interval)
+        
+        query.initialResultsHandler = { query, result, error in
+            guard let result = result else {
+                completion([:])
+                return
+            }
+            
+            var dailyRestingHeartRate = [Date: Double]()
+            
+            result.enumerateStatistics(from: startDate, to: Date()) { statistics, stop in
+                dailyRestingHeartRate[statistics.startDate] = statistics.sumQuantity()?.doubleValue(for: .count()) ?? 0
+            }
+            completion(dailyRestingHeartRate)
+        }
+        healthStore.execute(query)
+    }
+
 
     func fetchRestingHeartRateForToday(completion: @escaping (Double?, Error?) -> Void) {
         let restingHeartRateType = HKObjectType.quantityType(forIdentifier: .restingHeartRate)!
@@ -383,3 +435,17 @@ class HealthKitManager: NSObject, ObservableObject {
     // Additional functions for fetching other health data types can be added here
     
 }
+
+
+// MARK: Chart Data
+extension HealthKitManager {
+    func fetchPastMonthRestingHeartRateData(){
+        fetchDailyResting(startDate: .oneMonthAgo) { dailyRestingHeartRate in
+            DispatchQueue.main.async {
+                let chartData = dailyRestingHeartRate.map { DailyRestingView(date: $0.key, RestingHeardRate: $0.value) }
+                self.oneMonthChartData = chartData
+            }
+        }
+    }
+}
+

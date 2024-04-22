@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-class MaxHeartRateManager: ObservableObject {
-    static let shared = MaxHeartRateManager()
+//class MaxHeartRateManager: ObservableObject {
+   // static let shared = MaxHeartRateManager()
     
-    @Published var maxHeartRate: Int {
-        didSet {
-            UserDefaults.standard.set(maxHeartRate, forKey: "maxHeartRate")
-        }
-    }
+    //@Published var maxHeartRate: Int {
+        //didSet {
+          //  UserDefaults.standard.set(maxHeartRate, forKey: "maxHeartRate")
+       // }
+   // }
     
-    private init() {
-        self.maxHeartRate = UserDefaults.standard.integer(forKey: "maxHeartRate")
-    }
-}
+   // private init() {
+       // self.maxHeartRate = UserDefaults.standard.integer(forKey: "maxHeartRate")
+   // }
+//}

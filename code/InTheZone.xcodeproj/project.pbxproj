@@ -14,6 +14,9 @@
 		9F400A032BCB40280089A806 /* HRPulse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F400A022BCB40280089A806 /* HRPulse.swift */; };
 		9F400A262BCD47220089A806 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F400A252BCD47220089A806 /* Workout.swift */; };
 		9F60B6E22BCA21EF0057D056 /* CircleAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F60B6E12BCA21EF0057D056 /* CircleAnimation.swift */; };
+		9F6EB2962BD4617900633C49 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB2952BD4617900633C49 /* Utils.swift */; };
+		9F6EB2982BD46E6800633C49 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB2972BD46E6800633C49 /* SwiftUIView.swift */; };
+		9F6EB29A2BD4738000633C49 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB2992BD4738000633C49 /* Data.swift */; };
 		9F79CBE02BBC5FA200E130F3 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F79CBDF2BBC5FA200E130F3 /* Connectivity.swift */; };
 		9F99CD0A2BBC58D20019BF15 /* InTheZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD092BBC58D20019BF15 /* InTheZoneApp.swift */; };
 		9F99CD0E2BBC58D30019BF15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F99CD0D2BBC58D30019BF15 /* Assets.xcassets */; };
@@ -32,7 +35,7 @@
 		9FAF677F2BD1B7B20091D5C8 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAF677E2BD1B7B20091D5C8 /* SummaryView.swift */; };
 		9FAF67812BD1B7F00091D5C8 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAF67802BD1B7F00091D5C8 /* WorkoutManager.swift */; };
 		9FAF67832BD1B9CF0091D5C8 /* SelectZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAF67822BD1B9CF0091D5C8 /* SelectZoneView.swift */; };
-		9FB7C2F82BD02B9D007D7346 /* FLCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 9FB7C2F72BD02B9D007D7346 /* FLCharts */; };
+		9FB079A62BD3EB1300ED97AB /* HRZones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB079A52BD3EB1300ED97AB /* HRZones.swift */; };
 		9FB7C2FA2BD03A37007D7346 /* ProfileTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB7C2F92BD03A37007D7346 /* ProfileTesting.swift */; };
 		9FCBB6FC2BBD70C40056A462 /* WatchTheZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB6FB2BBD70C40056A462 /* WatchTheZoneApp.swift */; };
 		9FCBB6FE2BBD70C40056A462 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB6FD2BBD70C40056A462 /* StartView.swift */; };
@@ -65,6 +68,7 @@
 		9FEE2E0C2BD1C8C8000A65CE /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE2E0B2BD1C8C8000A65CE /* ProfileViewModel.swift */; };
 		9FEE2E122BD28236000A65CE /* GetUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE2E112BD28236000A65CE /* GetUserInfoView.swift */; };
 		9FEE2E142BD28DA2000A65CE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE2E132BD28DA2000A65CE /* UserData.swift */; };
+		9FEE2E162BD2F08B000A65CE /* PlayingWithSwiftCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE2E152BD2F08B000A65CE /* PlayingWithSwiftCharts.swift */; };
 		9FF71D8F2BCF6897009B30F3 /* Notifcations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D8E2BCF6897009B30F3 /* Notifcations.swift */; };
 		9FF71D922BCFE81C009B30F3 /* StepCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D912BCFE81C009B30F3 /* StepCountView.swift */; };
 		9FF71D942BCFE9C6009B30F3 /* MaxHRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D932BCFE9C6009B30F3 /* MaxHRView.swift */; };
@@ -135,6 +139,9 @@
 		9F400A022BCB40280089A806 /* HRPulse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRPulse.swift; sourceTree = "<group>"; };
 		9F400A252BCD47220089A806 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		9F60B6E12BCA21EF0057D056 /* CircleAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleAnimation.swift; sourceTree = "<group>"; };
+		9F6EB2952BD4617900633C49 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		9F6EB2972BD46E6800633C49 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		9F6EB2992BD4738000633C49 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		9F79CBDF2BBC5FA200E130F3 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		9F99CD062BBC58D20019BF15 /* InTheZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InTheZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F99CD092BBC58D20019BF15 /* InTheZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTheZoneApp.swift; sourceTree = "<group>"; };
@@ -158,6 +165,7 @@
 		9FAF677E2BD1B7B20091D5C8 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryView.swift; path = "WatchTheZone Watch App/Views/SummaryView.swift"; sourceTree = SOURCE_ROOT; };
 		9FAF67802BD1B7F00091D5C8 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		9FAF67822BD1B9CF0091D5C8 /* SelectZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectZoneView.swift; sourceTree = "<group>"; };
+		9FB079A52BD3EB1300ED97AB /* HRZones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRZones.swift; sourceTree = "<group>"; };
 		9FB7C2F92BD03A37007D7346 /* ProfileTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTesting.swift; sourceTree = "<group>"; };
 		9FCBB6F92BBD70C40056A462 /* WatchTheZone Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchTheZone Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FCBB6FB2BBD70C40056A462 /* WatchTheZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTheZoneApp.swift; sourceTree = "<group>"; };
@@ -193,6 +201,7 @@
 		9FEE2E0B2BD1C8C8000A65CE /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		9FEE2E112BD28236000A65CE /* GetUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserInfoView.swift; sourceTree = "<group>"; };
 		9FEE2E132BD28DA2000A65CE /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		9FEE2E152BD2F08B000A65CE /* PlayingWithSwiftCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingWithSwiftCharts.swift; sourceTree = "<group>"; };
 		9FF71D8E2BCF6897009B30F3 /* Notifcations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifcations.swift; sourceTree = "<group>"; };
 		9FF71D912BCFE81C009B30F3 /* StepCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountView.swift; sourceTree = "<group>"; };
 		9FF71D932BCFE9C6009B30F3 /* MaxHRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxHRView.swift; sourceTree = "<group>"; };
@@ -218,7 +227,6 @@
 				9FF71DAA2BD016AA009B30F3 /* SwiftUICharts in Frameworks */,
 				9FFC528D2BBCC08A0095DD95 /* HealthKit.framework in Frameworks */,
 				9FFC52922BBCC0950095DD95 /* HealthKitUI.framework in Frameworks */,
-				9FB7C2F82BD02B9D007D7346 /* FLCharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,10 +266,13 @@
 			children = (
 				9FCBB72F2BBDD8C20056A462 /* LoginView.swift */,
 				9FCBB7312BBDD8D00056A462 /* RegisterView.swift */,
+				9FB079A52BD3EB1300ED97AB /* HRZones.swift */,
 				9FD6F8142BC421AF00CC807A /* StepCountTest.swift */,
 				9FDDF2882BCA4A6700916DD1 /* Test.swift */,
 				9FB7C2F92BD03A37007D7346 /* ProfileTesting.swift */,
 				9FF71DA72BD01428009B30F3 /* TestChart.swift */,
+				9FEE2E152BD2F08B000A65CE /* PlayingWithSwiftCharts.swift */,
+				9F6EB2972BD46E6800633C49 /* SwiftUIView.swift */,
 			);
 			path = Playground;
 			sourceTree = "<group>";
@@ -477,6 +488,8 @@
 		9FF71D902BCFE7E5009B30F3 /* Box Views */ = {
 			isa = PBXGroup;
 			children = (
+				9F6EB2952BD4617900633C49 /* Utils.swift */,
+				9F6EB2992BD4738000633C49 /* Data.swift */,
 				9FF71D932BCFE9C6009B30F3 /* MaxHRView.swift */,
 				9FF71DA32BD00CA5009B30F3 /* LineChart.swift */,
 				9FF71D952BCFE9DF009B30F3 /* VO2MaxView.swift */,
@@ -519,7 +532,6 @@
 			name = InTheZone;
 			packageProductDependencies = (
 				9FF71DA92BD016AA009B30F3 /* SwiftUICharts */,
-				9FB7C2F72BD02B9D007D7346 /* FLCharts */,
 			);
 			productName = InTheZone;
 			productReference = 9F99CD062BBC58D20019BF15 /* InTheZone.app */;
@@ -638,7 +650,6 @@
 			packageReferences = (
 				9FCBB72E2BBDD2600056A462 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				9FF71DA52BD011AA009B30F3 /* XCRemoteSwiftPackageReference "ChartView" */,
-				9FB7C2F62BD02B9D007D7346 /* XCRemoteSwiftPackageReference "FLCharts" */,
 			);
 			productRefGroup = 9F99CD072BBC58D20019BF15 /* Products */;
 			projectDirPath = "";
@@ -705,6 +716,7 @@
 			files = (
 				9FCBB7382BBDD8FD0056A462 /* SettingsView.swift in Sources */,
 				9FF71D9C2BCFEA21009B30F3 /* DistanceView.swift in Sources */,
+				9F6EB2982BD46E6800633C49 /* SwiftUIView.swift in Sources */,
 				9FF71DA42BD00CA5009B30F3 /* LineChart.swift in Sources */,
 				9FF71DA22BCFEF37009B30F3 /* MaxHeartRate.swift in Sources */,
 				9FD6F8172BC439E800CC807A /* HRView.swift in Sources */,
@@ -718,6 +730,7 @@
 				9FF71D942BCFE9C6009B30F3 /* MaxHRView.swift in Sources */,
 				9F99CD162BBC58D30019BF15 /* InTheZone.xcdatamodeld in Sources */,
 				9FF71D9A2BCFE9FD009B30F3 /* RestingHRView.swift in Sources */,
+				9F6EB29A2BD4738000633C49 /* Data.swift in Sources */,
 				9FD6F81F2BC4B23700CC807A /* HRZoneChartView.swift in Sources */,
 				9F99CD3E2BBC5B410019BF15 /* HRManager.swift in Sources */,
 				9FF71D9E2BCFEA30009B30F3 /* ActiveEnergyView.swift in Sources */,
@@ -727,9 +740,11 @@
 				9FEE2E0C2BD1C8C8000A65CE /* ProfileViewModel.swift in Sources */,
 				9FCBB7302BBDD8C20056A462 /* LoginView.swift in Sources */,
 				9FDDF2892BCA4A6700916DD1 /* Test.swift in Sources */,
+				9FEE2E162BD2F08B000A65CE /* PlayingWithSwiftCharts.swift in Sources */,
 				9FCBB7342BBDD8E00056A462 /* WorkoutsView.swift in Sources */,
 				9FF71DA02BCFEA3A009B30F3 /* RestingEnergyView.swift in Sources */,
 				9FEE2E122BD28236000A65CE /* GetUserInfoView.swift in Sources */,
+				9F6EB2962BD4617900633C49 /* Utils.swift in Sources */,
 				9FCBB7322BBDD8D00056A462 /* RegisterView.swift in Sources */,
 				9FCBB73A2BBDDD330056A462 /* YourHeartView.swift in Sources */,
 				9F069D6E2BCD47AC0028C714 /* Step.swift in Sources */,
@@ -743,6 +758,7 @@
 				9FF71D8F2BCF6897009B30F3 /* Notifcations.swift in Sources */,
 				9FDDF28B2BCA589800916DD1 /* NewUserView.swift in Sources */,
 				9FF71D982BCFE9EA009B30F3 /* HRVView.swift in Sources */,
+				9FB079A62BD3EB1300ED97AB /* HRZones.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1252,14 +1268,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9FB7C2F62BD02B9D007D7346 /* XCRemoteSwiftPackageReference "FLCharts" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/francescoleoni98/FLCharts";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.9.1;
-			};
-		};
 		9FCBB72E2BBDD2600056A462 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1279,11 +1287,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9FB7C2F72BD02B9D007D7346 /* FLCharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9FB7C2F62BD02B9D007D7346 /* XCRemoteSwiftPackageReference "FLCharts" */;
-			productName = FLCharts;
-		};
 		9FF71DA92BD016AA009B30F3 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9FF71DA52BD011AA009B30F3 /* XCRemoteSwiftPackageReference "ChartView" */;

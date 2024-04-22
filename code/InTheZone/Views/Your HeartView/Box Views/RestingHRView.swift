@@ -6,37 +6,33 @@
 //
 
 import SwiftUI
-import SwiftUICharts
 import HealthKit
+import Charts
 
 struct RestingHRView: View {
     @State private var restingHeartRates: [Double] = []
     @State private var dates: [Date]?
     @State private var error: Error?
     let healthManager = HealthKitManager()
-
+    
     var body: some View {
         VStack {
-
-            if !restingHeartRates.isEmpty {
-                LineView(data: restingHeartRates, title: "Resting Heart Rate", legend: "Last 7 Days")
-                    .padding()
-            } else if let error = error {
-                Text("Error: \(error.localizedDescription)")
-                    .foregroundColor(.red)
-                    .padding()
-            } else {
-                ProgressView("Fetching Resting Heart Rate...")
-                    .padding()
+            if !healthManager.oneMonthChartData.isEmpty {
+                Chart {
+                    ForEach(healthManager.oneMonthChartData) { daily in
+                        LineMark(
+                            x: .value(daily.date.formatted(), daily.date, unit: .day),
+                            y: .value("Heart Rate", daily.RestingHeardRate))
+                    }
+                }
+                .padding()
             }
-            
         }
-        
         .onAppear {
             fetchRestingHeartRates()
         }
     }
-
+    
     func fetchRestingHeartRates() {
         healthManager.fetchRestingHeartRate(forLastDays: 7) { restingHeartRates, dates, error in
             if let error = error {
@@ -48,6 +44,46 @@ struct RestingHRView: View {
         }
     }
 }
+
+
+struct RestingHeartRateInfoView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+                
+            
+            Text("Resting heart rate (RHR) is the number of heartbeats per minute when the body is at rest. It's a measure of cardiovascular fitness and can be an indicator of overall health.")
+                .font(.body)
+                .foregroundColor(.secondary)
+            
+            Divider()
+            
+            Text("Factors Affecting RHR:")
+                .font(.headline)
+            
+            Text("1. Fitness Level: Higher fitness levels are associated with lower RHR.")
+                .font(.body)
+                .foregroundColor(.secondary)
+            
+            Text("2. Age: RHR tends to increase with age.")
+                .font(.body)
+                .foregroundColor(.secondary)
+            
+            Text("3. Stress and Health Conditions: Stress and certain health conditions can elevate RHR.")
+                .font(.body)
+                .foregroundColor(.secondary)
+        }
+        .padding()
+        .background(Color.white)
+        .padding()
+    }
+}
+
+struct RestingHeartRateInfoView_Previews: PreviewProvider {
+    static var previews: some View {
+        RestingHeartRateInfoView()
+    }
+}
+
 
 struct RestingHeartRateChartView_Previews: PreviewProvider {
     static var previews: some View {

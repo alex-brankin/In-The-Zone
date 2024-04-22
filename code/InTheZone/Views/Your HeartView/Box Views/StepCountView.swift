@@ -74,6 +74,40 @@ struct StepCountView: View {
             }
         }
 
+struct StepsInfoView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            
+            Text("Step count is a measure of the number of steps taken by an individual in a given time period. It's commonly used as a metric for physical activity and daily movement.")
+                .font(.body)
+                .foregroundColor(.secondary)
+            
+            Divider()
+            
+            Text("Benefits of Tracking Steps:")
+                .font(.headline)
+            
+            Text("1. Encourages Physical Activity: Tracking steps can motivate individuals to increase their daily activity levels.")
+                .font(.body)
+                .foregroundColor(.secondary)
+            
+            Text("2. Goal Setting: Setting step goals can help individuals establish and achieve fitness targets.")
+                .font(.body)
+                .foregroundColor(.secondary)
+        }
+        .padding()
+        .background(Color.white)
+        .padding()
+    }
+}
+
+struct StepsInfoView_Previews: PreviewProvider {
+    static var previews: some View {
+        StepsInfoView()
+    }
+}
+
+
 struct StepPreview: PreviewProvider {
     static var previews: some View {
         StepCountView(totalSteps: .constant(5000), goalSteps: .constant(10000))

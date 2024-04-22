@@ -10,7 +10,7 @@ import HealthKit
 
 struct HeartTabsView: View {
     @StateObject private var healthKitManager = HealthKitManager()
-    @ObservedObject var maxHeartRateManager = MaxHeartRateManager.shared
+    @ObservedObject private var userData = UserData()
     @State private var vo2Max: Double?
     @State private var hrv: Double?
     @State private var restingHeartRate: Double?
@@ -36,7 +36,7 @@ struct HeartTabsView: View {
             // Boxes
             LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
                 if selectedTabIndex == 0 {
-                    BoxedView(title: "Max Heart Rate", value: "\(MaxHeartRateManager.shared.maxHeartRate)")
+                    BoxedView(title: "Max Heart Rate", value: "\(userData.maxHeartRate)")
                     BoxedView(title: "VO2 Max", value: vo2Max != nil ? "\(vo2Max!)" : "N/A")
                     BoxedView(title: "HRV", value: formattedHRV(hrv))
                     BoxedView(title: "Resting Heart Rate", value: formattedValue(restingHeartRate))
@@ -217,46 +217,103 @@ struct BoxedView: View {
     }
 }
 
+struct InfoView: View {
+    var title: String // Title for the information view
+    
+    var body: some View {
+        VStack {
+            
+            if title == "Max Heart Rate" {
+                MaxHeartRateInfoView()
+                    .navigationTitle("Max Heart Rate")
+            }
+            if title == "VO2 Max" {
+                VO2MaxInfoView()
+                    .navigationTitle("VO2 Max")
+            }
+            if title == "HRV" {
+                HRVInfoView()
+                    .navigationTitle("HRV")
+            }
+            if title == "Resting Heart Rate" {
+                RestingHeartRateInfoView()
+                    .navigationTitle("Resting Heart Rate")
+            }
+            if title == "Step Count" {
+                StepsInfoView()
+                    .navigationTitle("Step Count")
+            }
+            if title == "Distance Travelled" {
+                DistanceInfoView()
+                    .navigationTitle("Distance Travelled")
+            }
+            if title == "Active Energy" {
+                ActiveEnergyInfoView()
+                    .navigationTitle("Active Energy")
+            }
+            if title == "BMR" {
+                RestingEnergyView()
+                    .navigationTitle("BMR")
+            }
+        }
+    }
+}
+
+
 struct SheetView: View {
     var title: String
     var value: String
 
     @State private var goalSteps = UserDefaults.standard.integer(forKey: "goalSteps")
-    @State private var isMaxHeartRateSheetPresented = false
+    @State private var isInfoViewPresented = false // State to control the visibility of the information view
 
     var body: some View {
-        VStack {
-            Text("\(title)")
-                .font(.headline)
-                .padding(.top, 20)
-            
-            Divider()
-
-            if title == "Step Count" {
-                StepCountView(totalSteps: Binding<Int>(
-                    get: { Int(value) ?? 0 },
-                    set: { _ in }
-                ), goalSteps: $goalSteps) // Pass totalSteps as Binding
-            } else if title == "Max Heart Rate" {
-                MaxHRView()
+        NavigationStack {
+            VStack {
+                HStack {
+                    Spacer()
+                    Text("\(title)")
+                        .font(.headline)
+                        .padding(.top, 20)
+                        .padding(.leading, 30)
+                    
+                    Spacer()
+                    NavigationLink(
+                        destination: InfoView(title: title),
+                        isActive: $isInfoViewPresented,
+                        label: {
+                            Image(systemName: "info.circle")
+                                .foregroundColor(.blue)
+                                .padding(.top, 15)
+                                .padding(.trailing,10)
+                        }
+                    )
+                    .isDetailLink(false) // Disable automatic push behavior
+                }
                 
-            } else if title == "VO2 Max" {
-                VO2MaxView()
-            } else if title == "HRV" {
-                HRVView()
-            } else if title == "Resting Heart Rate" {
-                RestingHRView()
-            } else if title == "Distance Travelled" {
-                DistanceView()
-            } else if title == "Active Energy" {
-                ActiveEnergyView()
-            } else if title == "Resting Energy" {
-                RestingEnergyView()
-            }
-            
-            
-            else {
-                // Placeholder for the views i haven't completed yet
+                Divider()
+                
+                if title == "Step Count" {
+                    StepCountView(totalSteps: Binding<Int>(
+                        get: { Int(value) ?? 0 },
+                        set: { _ in }
+                    ), goalSteps: $goalSteps) // Pass totalSteps as Binding
+                } else if title == "Max Heart Rate" {
+                    MaxHRView()
+                    
+                } else if title == "VO2 Max" {
+                    VO2MaxView()
+                } else if title == "HRV" {
+                    HRVView()
+                } else if title == "Resting Heart Rate" {
+                    RestingHRView()
+                } else if title == "Distance Travelled" {
+                    DistanceView()
+                } else if title == "Active Energy" {
+                    ActiveEnergyView()
+                } else if title == "Resting Energy" {
+                    RestingEnergyView()
+                }
             }
             Spacer()
             Button("Close") {
@@ -272,10 +329,10 @@ struct SheetView: View {
             // Save the updated goalSteps value to UserDefaults when the view disappears
             UserDefaults.standard.set(goalSteps, forKey: "goalSteps")
         }
-        
-        }
-    
+    }
 }
+
+
 
 
 struct HeartTabsView_Previews: PreviewProvider {

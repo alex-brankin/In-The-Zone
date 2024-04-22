@@ -15,7 +15,7 @@ class WorkoutFinder: NSObject, ObservableObject  {
     // Function to retrieve workouts with the brand "InTheZone"
     func retrieveWorkouts(completion: @escaping ([HKWorkout]?, Error?) -> Void) {
         // Create a predicate to filter workouts based on metadata
-        let predicate = HKQuery.predicateForObjects(withMetadataKey: brandMetadataKey, allowedValues: ["InTheZone"])
+        _ = HKQuery.predicateForObjects(withMetadataKey: brandMetadataKey, allowedValues: ["InTheZone"])
 
         // Create a sort descriptor to sort workouts by start date in descending order
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
