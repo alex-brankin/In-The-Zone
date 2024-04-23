@@ -30,8 +30,7 @@ struct WelcomeView: View {
     @State private var isNextViewActive = false
     @State private var selectedDate = Date()
     let maxNameLength = 25
-    
-    @State private var errorMessage: String? // Define state variable for error message
+    @State private var errorMessage = ""
     
     var body: some View {
         VStack {
@@ -62,7 +61,7 @@ struct WelcomeView: View {
                     .foregroundColor(.primary)
                     .padding(.top, 5)
                 
-                DatePicker("Date of Birth", selection: $userData.dateOfBirth, in: ...Date().addingTimeInterval(-4*365*24*60*60), displayedComponents: .date)
+                DatePicker("Date of Birth", selection: $userData.dateOfBirth, in: ...Date(), displayedComponents: .date)
                     .padding()
                     .datePickerStyle(.wheel)
                     .foregroundColor(.primary)
@@ -72,69 +71,65 @@ struct WelcomeView: View {
             }
             .padding()
             
-            if let errorMessage {
-                Text(errorMessage)
-                    .foregroundColor(.red)
-                    .padding(.top)
-            }
-            
-            Button(action: {
-                // Validate user input before proceeding
-                guard validateUserData() else {
-                    errorMessage = "It seems you forgot to tell us your name!"
-                    return
-                }
-                isNextViewActive = true
-            }) {
-                Text("Continue")
-                    .font(.headline)
+            if !errorMessage.isEmpty {
+                            Text(errorMessage)
+                                .foregroundColor(.red)
+                                .padding(.top)
+                        }
+
+                        Button(action: {
+                            // Validate user input before proceeding
+                            if !validateUserData() {
+                                return
+                            }
+                            isNextViewActive = true
+                        }) {
+                            Text("Continue")
+                                .frame(width: 300)
+                                .padding()
+                                .background(Color.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                .padding(.horizontal)
+                                .shadow(radius: 5)
+                        }
+                        .padding()
+
+                        Spacer()
+                    }
                     .padding()
-                    .foregroundColor(.white)
-                    .background(Color.red)
-                    .cornerRadius(10)
+                    .ignoresSafeArea()
+                    .fullScreenCover(isPresented: $isNextViewActive) {
+                        ContentView()
+                            .environmentObject(userData)
+                    }
+                }
+
+                // Function to validate user input
+                func validateUserData() -> Bool {
+                    errorMessage = ""
+
+                    // Check if name is not empty
+                    guard !userData.name.isEmpty else {
+                        errorMessage = "It seems you forgot to tell us your name!"
+                        return false
+                    }
+
+                    // Check if age is valid
+                    guard userData.calculatedAge > 0 else {
+                        errorMessage = "It seems you forgot to select your date of birth!"
+                        return false
+                    }
+                    // Check if user is 4 years or older
+                    guard userData.calculatedAge > 3 else {
+                        errorMessage = "Our app is designed for users aged 4 and above."
+                        return false
+                    }
+
+
+                    return true
+                }
             }
-            .padding()
-            
-            Spacer()
-        }
-        .padding()
-        .ignoresSafeArea()
-        .fullScreenCover(isPresented: $isNextViewActive) {
-            ContentView()
-                .environmentObject(userData) // Pass the userData object to the next view
-        }
-    }
-    
-    // Function to validate user input
-    func validateUserData() -> Bool {
-        // Check if name is not empty
-        guard !userData.name.isEmpty else {
-            return false
-        }
-        
-        // Additional validation logic can be added here
-        
-        return true
-    }
-}
-
-struct NextView: View {
-    @EnvironmentObject var userData: UserData
-
-    var body: some View {
-        VStack {
-            Text("Welcome \(userData.name)!")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding()
-            
-            Text("Your age is \(userData.age).")
-                .padding()
-            
-            // Other content of the NextView
-        }
-    }
-}
 
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {

@@ -227,7 +227,7 @@ struct AnimatedHeartView: View {
     
     private func startAnimationIfNeeded() {
         // Clamp heart rate values to ensure they fall within a reasonable range
-        let clampedBPM = min(max(currentBPM, 20), 200)
+        let clampedBPM = min(max(currentBPM, 30), 210) // Apple Watch Limitations
         
         // Print current BPM
         print("Animation BPM: \(clampedBPM)")

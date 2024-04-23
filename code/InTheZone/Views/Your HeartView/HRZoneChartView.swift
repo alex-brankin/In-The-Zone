@@ -14,10 +14,10 @@ struct BPMZonesCharts: View {
     @State private var error: Error?
     let healthManager = HealthKitManager()
     
-    // Sample data for heart rate zones (percentages of max heart rate)
-    let maxHeartRate: Double = 200 // Example: replace with actual user input
-    let zonePercentages: [Double] = [60, 70, 80, 90, 100] // Example: replace with actual percentages
-    let zoneLabels: [String] = ["Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5"] // Example: replace with actual labels
+    // Sample data
+    let maxHeartRate: Double = 200
+    let zonePercentages: [Double] = [60, 70, 80, 90, 100]
+    let zoneLabels: [String] = ["Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5"]
 
     var body: some View {
         VStack {

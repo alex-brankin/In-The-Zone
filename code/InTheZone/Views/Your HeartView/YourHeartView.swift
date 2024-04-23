@@ -29,7 +29,7 @@ struct YourHeartView: View {
                 
                 Spacer()
             }
-            .padding() // Add some padding for better spacing
+            .padding() 
             
         }
         

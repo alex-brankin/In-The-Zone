@@ -6,27 +6,96 @@
 //
 
 import SwiftUI
+import HealthKit
+import Charts
 
 struct VO2MaxView: View {
-    @State private var selectedDuration = 1 // Default to 1 day
+    @State private var selectedRange: String = "7D"
+    let dateRanges = ["7D", "30D", "1Y"]
+    @State private var healthData: [VO2MaxChart] = []
+    private let healthStore = HKHealthStore()
     
     var body: some View {
-        VStack {
-            Picker(selection: $selectedDuration, label: Text("Duration")) {
-                Text("1D").tag(1)
-                Text("7D").tag(7)
-                Text("30D").tag(30)
-                Text("1Y").tag(365)
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    Picker("Select Range", selection: $selectedRange) {
+                        ForEach(dateRanges, id: \.self) { range in
+                            Text(range)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .padding()
+                    
+                    Chart {
+                        ForEach(healthData, id: \.id) { data in
+                            LineMark(
+                                x: .value("Date", data.date, unit: .day),
+                                y: .value("VO2 Max", data.value)
+                            )
+                            .foregroundStyle(.blue)
+                        }
+                    }
+                    .frame(height: 200)
+                    .padding(.horizontal)
+                }
             }
-            .pickerStyle(SegmentedPickerStyle())
-            .padding()
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                fetchHealthData()
+            }
+        }
+        
+    }
+    
+    func fetchHealthData() {
+        let calendar = Calendar.current
+        let endDate = Date()
+        let sampleType = HKObjectType.quantityType(forIdentifier: .vo2Max)!
+        
+        // Start fetching data from 7 days ago
+        guard var startDate = calendar.date(byAdding: .day, value: -7, to: endDate) else { return }
+        
+        for i in 0..<7 {
+            // Move to the next day
+            let nextDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
             
-            Text("Selected Duration: \(selectedDuration)")
+            let predicate = HKQuery.predicateForSamples(withStart: startDate, end: nextDate, options: .strictEndDate)
             
-            // Add your VO2 max calculation logic here based on the selected duration
+            let query = HKStatisticsQuery(quantityType: sampleType, quantitySamplePredicate: predicate, options: .discreteAverage) { query, result, error in
+                guard let result = result, let average = result.averageQuantity() else {
+                    if let error = error {
+                        print("Error fetching VO2 max data for chart: \(error.localizedDescription)")
+                    }
+                    // If data is not available for this day, move to the next day
+                    startDate = nextDate
+                    return
+                }
+                
+                let value = average.doubleValue(for: HKUnit(from: "ml/min/kg"))
+                healthData.append(VO2MaxChart(id: i, date: startDate, value: value))
+                
+                // Move to the next day
+                startDate = nextDate
+                
+                // Once all data points are fetched, sort them by date
+                if i == 6 {
+                    healthData.sort { $0.date < $1.date }
+                }
+            }
+            
+            healthStore.execute(query)
         }
     }
 }
+
+struct VO2MaxChart {
+    let id: Int
+    let date: Date
+    let value: Double
+}
+
+
 
 struct VO2MaxInfoView: View {
     var body: some View {
@@ -55,8 +124,6 @@ struct VO2MaxInfoView: View {
                 .foregroundColor(.secondary)
             
         }
-        .padding()
-        .background(Color.white)
         .padding()
     }
 }

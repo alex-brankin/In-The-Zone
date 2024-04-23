@@ -10,40 +10,97 @@ import HealthKit
 import Charts
 
 struct RestingHRView: View {
-    @State private var restingHeartRates: [Double] = []
-    @State private var dates: [Date]?
-    @State private var error: Error?
-    let healthManager = HealthKitManager()
+    @State private var selectedRange: String = "7D"
+    let dateRanges = ["7D", "30D", "1Y"]
+    @State private var healthData: [RHRChartData] = []
+    private let healthStore = HKHealthStore()
     
     var body: some View {
-        VStack {
-            if !healthManager.oneMonthChartData.isEmpty {
-                Chart {
-                    ForEach(healthManager.oneMonthChartData) { daily in
-                        LineMark(
-                            x: .value(daily.date.formatted(), daily.date, unit: .day),
-                            y: .value("Heart Rate", daily.RestingHeardRate))
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    Picker("Select Range", selection: $selectedRange) {
+                        ForEach(dateRanges, id: \.self) { range in
+                            Text(range)
+                        }
                     }
+                    .pickerStyle(.segmented)
+                    .padding()
+                    
+                    Chart {
+                        ForEach(healthData, id: \.id) { data in
+                            LineMark(
+                                x: .value("Date", data.date, unit: .day),
+                                y: .value("Resting Heart Rate", data.value)
+                            )
+                            .foregroundStyle(.blue)
+                            
+                        }
+                    }
+                    .frame(height: 200)
+                    .padding(.horizontal)
                 }
-                .padding()
             }
-        }
-        .onAppear {
-            fetchRestingHeartRates()
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                fetchHealthData()
+            }
+            .onChange(of: selectedRange) { _ in
+                fetchHealthData()
+            }
         }
     }
     
-    func fetchRestingHeartRates() {
-        healthManager.fetchRestingHeartRate(forLastDays: 7) { restingHeartRates, dates, error in
-            if let error = error {
-                self.error = error
-            } else if let restingHeartRates = restingHeartRates {
-                self.restingHeartRates = restingHeartRates
-                self.dates = dates
-            }
+    func fetchHealthData() {
+        let endDate = Date()
+        var startDate = Date()
+        
+        switch selectedRange {
+        case "1D":
+            startDate = endDate.addingTimeInterval(-86400)
+        case "7D":
+            startDate = endDate.addingTimeInterval(-86400 * 7)
+        case "30D":
+            startDate = endDate.addingTimeInterval(-86400 * 30)
+        case "1Y":
+            startDate = endDate.addingTimeInterval(-86400 * 365)
+        default:
+            break
         }
+        
+        let sampleType = HKObjectType.quantityType(forIdentifier: .restingHeartRate)!
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictEndDate)
+        
+        let query = HKStatisticsQuery(quantityType: sampleType, quantitySamplePredicate: predicate, options: .discreteAverage) { query, result, error in
+            guard let result = result, let average = result.averageQuantity() else {
+                if let error = error {
+                    print("Error fetching resting heart rate data: \(error.localizedDescription)")
+                }
+                return
+            }
+            
+            let value = average.doubleValue(for: HKUnit.count().unitDivided(by: .minute()))
+            healthData.append(RHRChartData(id: healthData.count, date: endDate, value: value))
+            print("Resting Heart Rate: \(value)")
+            print(healthData)
+        }
+        
+        healthStore.execute(query)
     }
 }
+
+struct RHRChartData {
+    let id: Int
+    let date: Date
+    let value: Double
+}
+
+struct RestingHeartRateView_Previews: PreviewProvider {
+    static var previews: some View {
+        RestingHRView()
+    }
+}
+
 
 
 struct RestingHeartRateInfoView: View {
@@ -73,20 +130,11 @@ struct RestingHeartRateInfoView: View {
                 .foregroundColor(.secondary)
         }
         .padding()
-        .background(Color.white)
-        .padding()
     }
 }
 
 struct RestingHeartRateInfoView_Previews: PreviewProvider {
     static var previews: some View {
         RestingHeartRateInfoView()
-    }
-}
-
-
-struct RestingHeartRateChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        RestingHRView()
     }
 }

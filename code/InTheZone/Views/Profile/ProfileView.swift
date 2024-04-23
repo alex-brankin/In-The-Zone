@@ -14,6 +14,7 @@ struct ProfileView: View {
     @AppStorage("fullName") private var fullName: String = ""
     @AppStorage("age") private var age: Int = 0
     @State private var showingImagePicker = false
+    @State private var isDatePickerShown = false
     
     var body: some View {
         VStack {
@@ -32,7 +33,7 @@ struct ProfileView: View {
                         .scaledToFit()
                         .frame(width: 150, height: 150)
                         .foregroundStyle(.black)
-                        
+                    
                 }
             }
             .onAppear {
@@ -46,8 +47,18 @@ struct ProfileView: View {
                 // Personal Information Section
                 Section(header: Text("Personal Information")) {
                     TextField("Full Name", text: $userData.name)
-                    Text("Age: \(userData.calculatedAge)")
+                    Button(action: {
+                        isDatePickerShown = true
+                    }) {
+                        Text("Age: \(userData.calculatedAge)")
+                            .foregroundStyle(.red)
+                    }
+                }
+                .sheet(isPresented: $isDatePickerShown) {
+                    DatePickerSheet(selectedDate: $userData.dateOfBirth, isDatePickerShown: $isDatePickerShown)
+                        .presentationDetents([.medium, .large])
                     
+                        
                 }
                 
                 // Achievements Section
@@ -96,6 +107,79 @@ struct ProfileView: View {
         }
     }
 }
+
+struct DatePickerSheet: View {
+    @EnvironmentObject var userData: UserData
+    @Binding var selectedDate: Date
+    @Binding var isDatePickerShown: Bool
+    @State private var errorMessage = ""
+
+    var body: some View {
+        VStack {
+            Text("Select your Date of Birth")
+                .font(.headline)
+                .padding()
+            
+            DatePicker("", selection: $selectedDate, in: ...Date(), displayedComponents: .date)
+                .datePickerStyle(WheelDatePickerStyle())
+                .padding()
+                .frame(width: 345)
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(16)
+                .shadow(radius: 5)
+                .padding(.bottom, 20)
+            
+            if !errorMessage.isEmpty {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+            }
+            
+            Button("Confirm") {
+                // Validate user input before proceeding
+                if validateUserData() {
+                    // Additional checks specific to the button action
+                    if userData.calculatedAge < 4 {
+                        errorMessage = "Our app is designed for users aged 4 and above."
+                        return
+                    }
+
+                    isDatePickerShown = false // Close the sheet when the user confirms
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.red)
+            .foregroundColor(.white)
+            .cornerRadius(8)
+            .padding(.horizontal)
+            .shadow(radius: 5)
+            
+            Spacer()
+        }
+        .padding()
+        .background(Color.clear)
+    }
+
+    func validateUserData() -> Bool {
+        errorMessage = ""
+
+        // Check if age is valid
+        guard userData.calculatedAge > 0 else {
+            errorMessage = "It seems you forgot to select your date of birth!"
+            return false
+        }
+
+        // Additional check for age greater than 3
+        guard userData.calculatedAge > 3 else {
+            errorMessage = "Our app is designed for users aged 4 and above."
+            return false
+        }
+
+        return true
+    }
+}
+
+
 
 
 struct ProfileView_Previews: PreviewProvider {

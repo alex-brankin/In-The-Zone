@@ -69,6 +69,7 @@ class HealthKitManager: NSObject, ObservableObject {
         }
     }
 
+
     // MARK: - Fetching Health Data
     
     func fetchMostRecentHeartRate(completion: @escaping (Double?, Date?, Error?) -> Void) {
@@ -234,29 +235,34 @@ class HealthKitManager: NSObject, ObservableObject {
         healthStore.execute(query)
     }
     
-    @Published var oneMonthChartData = [DailyRestingView]()
+    @Published var oneMonthChartData = [DailyDistanceView]()
 
-    func fetchDailyResting(startDate: Date, completion: @escaping ([Date: Double]) -> Void) {
-        let restingHeartRateType = HKObjectType.quantityType(forIdentifier: .restingHeartRate)!
+    func fetchDailyDistance(startDate: Date, completion: @escaping ([DailyDistanceView]) -> Void) {
+        let distance = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!
         let interval = DateComponents(day: 1)
         
-        let query = HKStatisticsCollectionQuery(quantityType: restingHeartRateType, quantitySamplePredicate: nil, anchorDate: startDate, intervalComponents: interval)
+        let query = HKStatisticsCollectionQuery(quantityType: distance, quantitySamplePredicate: nil, options: .cumulativeSum, anchorDate: startDate, intervalComponents: interval)
         
         query.initialResultsHandler = { query, result, error in
             guard let result = result else {
-                completion([:])
+                completion([])
                 return
             }
             
-            var dailyRestingHeartRate = [Date: Double]()
+            var dailyDistance = [DailyDistanceView]()
             
             result.enumerateStatistics(from: startDate, to: Date()) { statistics, stop in
-                dailyRestingHeartRate[statistics.startDate] = statistics.sumQuantity()?.doubleValue(for: .count()) ?? 0
+                let date = statistics.startDate
+                let distance = statistics.sumQuantity()?.doubleValue(for: HKUnit.meter()) ?? 0
+                let dailyData = DailyDistanceView(date: date, distance: distance)
+                dailyDistance.append(dailyData)
             }
-            completion(dailyRestingHeartRate)
+            completion(dailyDistance)
         }
+        
         healthStore.execute(query)
     }
+
 
 
     func fetchRestingHeartRateForToday(completion: @escaping (Double?, Error?) -> Void) {
@@ -439,11 +445,10 @@ class HealthKitManager: NSObject, ObservableObject {
 
 // MARK: Chart Data
 extension HealthKitManager {
-    func fetchPastMonthRestingHeartRateData(){
-        fetchDailyResting(startDate: .oneMonthAgo) { dailyRestingHeartRate in
+    func fetchPastMonthDistance(){
+        fetchDailyDistance(startDate: .oneMonthAgo) { dailyDistance in
             DispatchQueue.main.async {
-                let chartData = dailyRestingHeartRate.map { DailyRestingView(date: $0.key, RestingHeardRate: $0.value) }
-                self.oneMonthChartData = chartData
+                self.oneMonthChartData = dailyDistance
             }
         }
     }

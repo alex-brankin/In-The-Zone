@@ -6,12 +6,55 @@
 //
 
 import SwiftUI
+import HealthKit
+import Charts
+
+struct DailyDistanceView: Identifiable {
+    let id = UUID()
+    let date: Date
+    let distance: Double
+}
 
 struct DistanceView: View {
+    @State private var selectedRange: String = "7D"
+    let dateRanges = ["7D", "30D", "1Y"]
+    private let healthStore = HKHealthStore()
+    @EnvironmentObject var manager: HealthKitManager
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    Picker("Select Range", selection: $selectedRange) {
+                        ForEach(dateRanges, id: \.self) { range in
+                            Text(range)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .padding()
+                    
+                    Chart {
+                        ForEach(manager.oneMonthChartData) { daily in
+                            LineMark(
+                                x: .value(daily.date.formatted(), daily.date, unit: .day),
+                                y: .value("Distance", daily.distance)
+                            )
+                            .foregroundStyle(.blue)
+                        }
+                    }
+                    .frame(height: 200)
+                    .padding(.horizontal)
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                print(manager.oneMonthChartData)
+                
+            }
+        }
+    
 }
+
+
 
 struct DistanceInfoView: View {
     var body: some View {
@@ -36,8 +79,6 @@ struct DistanceInfoView: View {
                 .foregroundColor(.secondary)
         }
         .padding()
-        .background(Color.white)
-        .padding()
     }
 }
 
@@ -50,4 +91,5 @@ struct DistanceInfoView_Previews: PreviewProvider {
 
 #Preview {
     DistanceView()
+        .environmentObject(HealthKitManager())
 }

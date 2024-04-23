@@ -41,23 +41,12 @@ struct InTheZone: App {
     }
 }
 
-// REMINDER TO PUT THIS BACK TO NORMAL - PORTRAIT CODE IS IN GITHUB
 
 // Implement AppDelegate to handle orientation
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-            // Override point for customization after application launch.
-            
-            // Reset UserDefaults
-            if let bundleIdentifier = Bundle.main.bundleIdentifier {
-                UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
-            }
-            
-            return true
-        }
-
-        
-    
+class AppDelegate: NSObject, UIApplicationDelegate {
+    internal func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return .portrait
+    }
 }
 
 
@@ -88,7 +77,6 @@ struct FirtTimer: View {
     @StateObject private var healthKitManager = HealthKitManager()
 
     var body: some View {
-        // Your new user view content here
         NewUserView()
             .onAppear {
                 // Request HealthKit authorization when the view appears

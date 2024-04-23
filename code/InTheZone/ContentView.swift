@@ -10,8 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var userData: UserData
     @State private var selectedTab = 1
-    @State private var currentBPM: Double = 0 // Define a State variable to hold the current BPM
-    
+    @State private var currentBPM: Double = 0
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationStack {
@@ -25,7 +24,7 @@ struct ContentView: View {
             .tag(0)
             
             NavigationStack {
-                SecondView(currentBPM: $currentBPM) // Pass currentBPM as a binding
+                SecondView(currentBPM: $currentBPM)
                     .navigationBarTitle("Your Heart")
             }
             .tabItem {
@@ -79,24 +78,8 @@ struct ThirdView: View {
     @State private var showingSettings = false
     
     var body: some View {
-        ZStack(alignment: .topTrailing) {
             ProfileView()
                 .environmentObject(UserData())
-            
-            Button(action: {
-                showingSettings.toggle()
-            }) {
-                Image(systemName: "gear")
-                    .foregroundColor(.primary)
-                    .padding()
-            }
-            .sheet(isPresented: $showingSettings) {
-                SettingsView()
-            }
-            .navigationBarTitle("Profile")
-            .padding(.trailing)
-            .padding(.top, -20)
-        }
     }
 }
 

@@ -14,20 +14,21 @@ struct MaxHRView: View {
 
     var body: some View {
         VStack {
-            Text("Your Estimated Max Heart Rate is \(userData.calculatedMaxHeartRate)")
-                .font(.headline)
-                .padding()
-            
-            Text("Customize Max Heart Rate")
+            Text("Your Estimated Max Heart Rate: \(userData.calculatedMaxHeartRate)")
                 .font(.headline)
                 .padding()
             
             Text("Enter your custom max heart rate:")
                 .font(.subheadline)
+                .foregroundColor(.secondary)
+                .padding(.bottom, 5)
             
             TextField("Max Heart Rate", text: $customMaxHeartRate)
                 .padding()
                 .keyboardType(.numberPad)
+                .background(Color.secondary.opacity(0.1))
+                .cornerRadius(8)
+                .padding(.bottom, 20)
             
             Button("Save") {
                 if let customMaxHR = Int(customMaxHeartRate) {
@@ -37,16 +38,20 @@ struct MaxHRView: View {
                 }
                 presentationMode.wrappedValue.dismiss()
             }
-            .padding()
+            .frame(width: 300)
+                        .padding()
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                        .padding(.horizontal)
+                        .shadow(radius: 5)
             
             Spacer()
         }
         .padding()
-        .onAppear {
-            //customMaxHeartRate = "\(userData.maxHeartRate)"
-        }
     }
 }
+
 
 
 struct MaxHeartRateInfoView: View {
@@ -65,7 +70,7 @@ struct MaxHeartRateInfoView: View {
             
             Text("220 - your age")
                 .font(.subheadline)
-                .foregroundColor(.blue)
+                .foregroundColor(.red)
                 .padding(.bottom, 10)
             
             Divider()
@@ -74,8 +79,6 @@ struct MaxHeartRateInfoView: View {
                 .font(.body)
                 .foregroundColor(.secondary)
         }
-        .padding()
-        .background(Color.white)
         .padding()
     }
 }

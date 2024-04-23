@@ -18,7 +18,7 @@ struct HeartTabsView: View {
     @State private var walkingRunningDistance: Double?
     @State private var activeEnergy: Double?
     @State private var bmr: Double?
-    @State private var selectedTabIndex = 0 // Added state to track selected tab index
+    @State private var selectedTabIndex = 0
     
     var body: some View {
         VStack {
@@ -57,6 +57,7 @@ struct HeartTabsView: View {
             }
         .onChange(of: selectedTabIndex) {
             fetchHealthData()
+            healthKitManager.fetchPastMonthDistance()
         }
 
 
@@ -193,7 +194,7 @@ struct HeartTabsView: View {
 struct BoxedView: View {
     var title: String
     var value: String
-    @State private var isSheetPresented = false // State to track sheet presentation
+    @State private var isSheetPresented = false
     
     var body: some View {
         VStack {
@@ -207,18 +208,17 @@ struct BoxedView: View {
         .background(Color.gray.opacity(0.2))
         .cornerRadius(10)
         .onTapGesture {
-            isSheetPresented = true // Present the sheet when tapped
+            isSheetPresented = true
         }
         .sheet(isPresented: $isSheetPresented) {
-            // Pass both title and value to DefaultSheetView
             SheetView(title: title, value: value)
-                .presentationDetents([.medium]) // Specify the sheet to take up half the screen
+                .presentationDetents([.medium, .large])
         }
     }
 }
 
 struct InfoView: View {
-    var title: String // Title for the information view
+    var title: String
     
     var body: some View {
         VStack {
@@ -251,10 +251,11 @@ struct InfoView: View {
                 ActiveEnergyInfoView()
                     .navigationTitle("Active Energy")
             }
-            if title == "BMR" {
-                RestingEnergyView()
-                    .navigationTitle("BMR")
+            if title == "Resting Energy" {
+                RestingEnergyInfoView()
+                    .navigationTitle("Resting Energy")
             }
+            Spacer()
         }
     }
 }
@@ -265,7 +266,7 @@ struct SheetView: View {
     var value: String
 
     @State private var goalSteps = UserDefaults.standard.integer(forKey: "goalSteps")
-    @State private var isInfoViewPresented = false // State to control the visibility of the information view
+    @State private var isInfoViewPresented = false
 
     var body: some View {
         NavigationStack {
@@ -309,6 +310,7 @@ struct SheetView: View {
                     RestingHRView()
                 } else if title == "Distance Travelled" {
                     DistanceView()
+                        .environmentObject(HealthKitManager())
                 } else if title == "Active Energy" {
                     ActiveEnergyView()
                 } else if title == "Resting Energy" {
@@ -319,6 +321,13 @@ struct SheetView: View {
             Button("Close") {
                 if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                    let window = windowScene.windows.first {
+                    // Create an instance of ContentView
+                    let contentView = ContentView()
+                    
+                    // Set the ContentView as the root view controller
+                    window.rootViewController = UIHostingController(rootView: contentView)
+                    
+                    // Dismiss the current view
                     window.rootViewController?.dismiss(animated: true, completion: nil)
                 }
             }
@@ -326,7 +335,6 @@ struct SheetView: View {
         }
         .presentationDragIndicator(.visible)
         .onDisappear {
-            // Save the updated goalSteps value to UserDefaults when the view disappears
             UserDefaults.standard.set(goalSteps, forKey: "goalSteps")
         }
     }

@@ -20,26 +20,26 @@ struct StepCountView: View {
             ZStack {
                 Circle()
                     .stroke(Color.gray, lineWidth: 3)
-                    .frame(width: 160, height: 160) // Set larger size
+                    .frame(width: 160, height: 160)
                     .padding(5)
 
                 Circle()
-                    .trim(from: 0, to: circleFillPercentage) // Use state variable for circle trimming
+                    .trim(from: 0, to: circleFillPercentage)
                     .stroke(Color.red, lineWidth: 3)
                     .rotationEffect(.degrees(-90))
-                    .frame(width: 160, height: 160) // Set larger size
+                    .frame(width: 160, height: 160)
                     .padding(5)
 
-                Image(systemName: "figure.walk") // Placeholder image for the walking figure
+                Image(systemName: "figure.walk")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 35, height: 35) // Adjust size
-                    .foregroundColor(.red) // Set color to black
-                    .offset(y: -25) // Adjust position to align with circle
+                    .frame(width: 35, height: 35)
+                    .foregroundColor(.red)
+                    .offset(y: -25)
 
                 Text("\(totalSteps)")
                     .font(.title)
-                    .offset(y: 10) // Adjust position to align with circle
+                    .offset(y: 10)
                 Text("Today")
                     .font(.subheadline)
                     .offset(y: 35)
@@ -56,10 +56,10 @@ struct StepCountView: View {
 
         }
         .onAppear {
-                    animateCircleFilling() // Initial animation when view appears
+                    animateCircleFilling()
                 }
                 .onChange(of: goalSteps) {
-                    animateCircleFilling() // Call the animation function when goalSteps change
+                    animateCircleFilling()
                 }
             }
             
@@ -95,8 +95,6 @@ struct StepsInfoView: View {
                 .font(.body)
                 .foregroundColor(.secondary)
         }
-        .padding()
-        .background(Color.white)
         .padding()
     }
 }

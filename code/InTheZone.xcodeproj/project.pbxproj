@@ -78,9 +78,6 @@
 		9FF71D9C2BCFEA21009B30F3 /* DistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D9B2BCFEA21009B30F3 /* DistanceView.swift */; };
 		9FF71D9E2BCFEA30009B30F3 /* ActiveEnergyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D9D2BCFEA30009B30F3 /* ActiveEnergyView.swift */; };
 		9FF71DA02BCFEA3A009B30F3 /* RestingEnergyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71D9F2BCFEA3A009B30F3 /* RestingEnergyView.swift */; };
-		9FF71DA22BCFEF37009B30F3 /* MaxHeartRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71DA12BCFEF37009B30F3 /* MaxHeartRate.swift */; };
-		9FF71DA42BD00CA5009B30F3 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71DA32BD00CA5009B30F3 /* LineChart.swift */; };
-		9FF71DA82BD01428009B30F3 /* TestChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF71DA72BD01428009B30F3 /* TestChart.swift */; };
 		9FF71DAA2BD016AA009B30F3 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 9FF71DA92BD016AA009B30F3 /* SwiftUICharts */; };
 		9FFC528D2BBCC08A0095DD95 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC528B2BBCC0860095DD95 /* HealthKit.framework */; };
 		9FFC52922BBCC0950095DD95 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */; };
@@ -211,10 +208,7 @@
 		9FF71D9B2BCFEA21009B30F3 /* DistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceView.swift; sourceTree = "<group>"; };
 		9FF71D9D2BCFEA30009B30F3 /* ActiveEnergyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveEnergyView.swift; sourceTree = "<group>"; };
 		9FF71D9F2BCFEA3A009B30F3 /* RestingEnergyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestingEnergyView.swift; sourceTree = "<group>"; };
-		9FF71DA12BCFEF37009B30F3 /* MaxHeartRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxHeartRate.swift; sourceTree = "<group>"; };
-		9FF71DA32BD00CA5009B30F3 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		9FF71DA62BD013AA009B30F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		9FF71DA72BD01428009B30F3 /* TestChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestChart.swift; sourceTree = "<group>"; };
 		9FFC528B2BBCC0860095DD95 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9FFC52902BBCC0930095DD95 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -270,7 +264,6 @@
 				9FD6F8142BC421AF00CC807A /* StepCountTest.swift */,
 				9FDDF2882BCA4A6700916DD1 /* Test.swift */,
 				9FB7C2F92BD03A37007D7346 /* ProfileTesting.swift */,
-				9FF71DA72BD01428009B30F3 /* TestChart.swift */,
 				9FEE2E152BD2F08B000A65CE /* PlayingWithSwiftCharts.swift */,
 				9F6EB2972BD46E6800633C49 /* SwiftUIView.swift */,
 			);
@@ -283,7 +276,6 @@
 				9F400A252BCD47220089A806 /* Workout.swift */,
 				9FEE2E132BD28DA2000A65CE /* UserData.swift */,
 				9F069D6D2BCD47AC0028C714 /* Step.swift */,
-				9FF71DA12BCFEF37009B30F3 /* MaxHeartRate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -491,7 +483,6 @@
 				9F6EB2952BD4617900633C49 /* Utils.swift */,
 				9F6EB2992BD4738000633C49 /* Data.swift */,
 				9FF71D932BCFE9C6009B30F3 /* MaxHRView.swift */,
-				9FF71DA32BD00CA5009B30F3 /* LineChart.swift */,
 				9FF71D952BCFE9DF009B30F3 /* VO2MaxView.swift */,
 				9FF71D972BCFE9EA009B30F3 /* HRVView.swift */,
 				9FF71D992BCFE9FD009B30F3 /* RestingHRView.swift */,
@@ -717,12 +708,9 @@
 				9FCBB7382BBDD8FD0056A462 /* SettingsView.swift in Sources */,
 				9FF71D9C2BCFEA21009B30F3 /* DistanceView.swift in Sources */,
 				9F6EB2982BD46E6800633C49 /* SwiftUIView.swift in Sources */,
-				9FF71DA42BD00CA5009B30F3 /* LineChart.swift in Sources */,
-				9FF71DA22BCFEF37009B30F3 /* MaxHeartRate.swift in Sources */,
 				9FD6F8172BC439E800CC807A /* HRView.swift in Sources */,
 				9FD6F8152BC421AF00CC807A /* StepCountTest.swift in Sources */,
 				9FF71D922BCFE81C009B30F3 /* StepCountView.swift in Sources */,
-				9FF71DA82BD01428009B30F3 /* TestChart.swift in Sources */,
 				9F99CD132BBC58D30019BF15 /* Persistence.swift in Sources */,
 				9F79CBE02BBC5FA200E130F3 /* Connectivity.swift in Sources */,
 				9FCBB7282BBD9BE70056A462 /* LoadingView.swift in Sources */,
