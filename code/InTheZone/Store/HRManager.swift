@@ -199,6 +199,7 @@ class HealthKitManager: NSObject, ObservableObject {
     }
     
     
+    
     // Fetching Step Count
     func fetchStepCount(completion: @escaping (Double?, Date?, Error?) -> Void) {
         guard let stepCountType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
@@ -235,6 +236,140 @@ class HealthKitManager: NSObject, ObservableObject {
         healthStore.execute(query)
     }
     
+    func fetchStepCountForLast7Days(completion: @escaping ([Double]?, [Date]?, Error?) -> Void) {
+        guard let stepCountType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
+            completion(nil, nil, nil)
+            return
+        }
+
+        let calendar = Calendar.current
+        let now = Date()
+        let endOfDay = calendar.startOfDay(for: now)
+        guard let startOfDay = calendar.date(byAdding: .day, value: -6, to: endOfDay) else {
+            completion(nil, nil, nil)
+            return
+        }
+
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endOfDay, options: [])
+
+        let query = HKStatisticsCollectionQuery(quantityType: stepCountType,
+                                                 quantitySamplePredicate: predicate,
+                                                 options: .cumulativeSum,
+                                                 anchorDate: startOfDay,
+                                                 intervalComponents: DateComponents(day: 1))
+
+        query.initialResultsHandler = { query, results, error in
+            if let results = results {
+                var stepCounts = [Double]()
+                var dates = [Date]()
+                results.enumerateStatistics(from: startOfDay, to: endOfDay) { statistics, _ in
+                    if let sum = statistics.sumQuantity() {
+                        let stepCount = sum.doubleValue(for: .count())
+                        stepCounts.append(stepCount)
+                        dates.append(statistics.startDate)
+                    }
+                }
+                completion(stepCounts, dates, nil)
+            } else {
+                completion(nil, nil, error)
+                if let error = error {
+                    print("Error fetching step count for last 7 days: \(error.localizedDescription)")
+                }
+            }
+        }
+
+        healthStore.execute(query)
+    }
+    func fetchStepCountForLast30Days(completion: @escaping ([Double]?, [Date]?, Error?) -> Void) {
+        guard let stepCountType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
+            completion(nil, nil, nil)
+            return
+        }
+
+        let calendar = Calendar.current
+        let now = Date()
+        let endOfDay = calendar.startOfDay(for: now)
+        guard let startOfDay = calendar.date(byAdding: .month, value: -1, to: endOfDay) else {
+            completion(nil, nil, nil)
+            return
+        }
+
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endOfDay, options: [])
+
+        let query = HKStatisticsCollectionQuery(quantityType: stepCountType,
+                                                 quantitySamplePredicate: predicate,
+                                                 options: .cumulativeSum,
+                                                 anchorDate: startOfDay,
+                                                 intervalComponents: DateComponents(day: 1))
+
+        query.initialResultsHandler = { query, results, error in
+            if let results = results {
+                var stepCounts = [Double]()
+                var dates = [Date]()
+                results.enumerateStatistics(from: startOfDay, to: endOfDay) { statistics, _ in
+                    if let sum = statistics.sumQuantity() {
+                        let stepCount = sum.doubleValue(for: .count())
+                        stepCounts.append(stepCount)
+                        dates.append(statistics.startDate)
+                    }
+                }
+                completion(stepCounts, dates, nil)
+            } else {
+                completion(nil, nil, error)
+                if let error = error {
+                    print("Error fetching step count for last 7 days: \(error.localizedDescription)")
+                }
+            }
+        }
+
+        healthStore.execute(query)
+    }
+    func fetchStepCountForLastYear(completion: @escaping ([Double]?, [Date]?, Error?) -> Void) {
+        guard let stepCountType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
+            completion(nil, nil, nil)
+            return
+        }
+
+        let calendar = Calendar.current
+        let now = Date()
+        let endOfDay = calendar.startOfDay(for: now)
+        guard let startOfDay = calendar.date(byAdding: .year, value: -1, to: endOfDay) else {
+            completion(nil, nil, nil)
+            return
+        }
+
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endOfDay, options: [])
+
+        let query = HKStatisticsCollectionQuery(quantityType: stepCountType,
+                                                 quantitySamplePredicate: predicate,
+                                                 options: .cumulativeSum,
+                                                 anchorDate: startOfDay,
+                                                 intervalComponents: DateComponents(day: 1))
+
+        query.initialResultsHandler = { query, results, error in
+            if let results = results {
+                var stepCounts = [Double]()
+                var dates = [Date]()
+                results.enumerateStatistics(from: startOfDay, to: endOfDay) { statistics, _ in
+                    if let sum = statistics.sumQuantity() {
+                        let stepCount = sum.doubleValue(for: .count())
+                        stepCounts.append(stepCount)
+                        dates.append(statistics.startDate)
+                    }
+                }
+                completion(stepCounts, dates, nil)
+            } else {
+                completion(nil, nil, error)
+                if let error = error {
+                    print("Error fetching step count for year: \(error.localizedDescription)")
+                }
+            }
+        }
+
+        healthStore.execute(query)
+    }
+
+    
     @Published var oneMonthChartData = [DailyDistanceView]()
 
     func fetchDailyDistance(startDate: Date, completion: @escaping ([DailyDistanceView]) -> Void) {
@@ -263,7 +398,49 @@ class HealthKitManager: NSObject, ObservableObject {
         healthStore.execute(query)
     }
 
-
+    func fetchRestingHeartRateForLast7Days(completion: @escaping ([Double]?, [Date]?, Error?) -> Void) {
+            guard let restingHeartRateType = HKObjectType.quantityType(forIdentifier: .restingHeartRate) else {
+                completion(nil, nil, nil)
+                return
+            }
+            
+            let calendar = Calendar.current
+            let now = Date()
+            let endOfDay = calendar.startOfDay(for: now)
+            guard let startOfDay = calendar.date(byAdding: .day, value: -6, to: endOfDay) else {
+                completion(nil, nil, nil)
+                return
+            }
+            
+            let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endOfDay, options: [])
+            
+            let query = HKStatisticsCollectionQuery(quantityType: restingHeartRateType,
+                                                     quantitySamplePredicate: predicate,
+                                                     options: .discreteAverage,
+                                                     anchorDate: startOfDay,
+                                                     intervalComponents: DateComponents(day: 1))
+            
+            query.initialResultsHandler = { query, results, error in
+                if let results = results {
+                    var restingHeartRates = [Double]()
+                    var dates = [Date]()
+                    results.enumerateStatistics(from: startOfDay, to: endOfDay) { statistics, _ in
+                        if let value = statistics.averageQuantity()?.doubleValue(for: .count()) {
+                            restingHeartRates.append(value)
+                            dates.append(statistics.startDate)
+                        }
+                    }
+                    completion(restingHeartRates, dates, nil)
+                } else {
+                    completion(nil, nil, error)
+                    if let error = error {
+                        print("Error fetching resting heart rate for last 7 days: \(error.localizedDescription)")
+                    }
+                }
+            }
+            
+            healthStore.execute(query)
+        }
 
     func fetchRestingHeartRateForToday(completion: @escaping (Double?, Error?) -> Void) {
         let restingHeartRateType = HKObjectType.quantityType(forIdentifier: .restingHeartRate)!

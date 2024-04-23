@@ -232,7 +232,7 @@ struct AnimatedHeartView: View {
         // Print current BPM
         print("Animation BPM: \(clampedBPM)")
         
-        if clampedBPM > 20 {
+        if clampedBPM > 30 {
             // Calculate animation duration based on the heart rate
             let duration = 60 / clampedBPM
             print("Duration: \(duration)")

@@ -7,12 +7,35 @@
 
 import SwiftUI
 
+enum DisplayType: Int, Identifiable, CaseIterable {
+    
+    case list
+    case chart
+    
+    var id: Int {
+        rawValue
+    }
+}
+
+extension DisplayType {
+    
+    var icon: String {
+        switch self {
+            case .list:
+                return "list.bullet"
+            case .chart:
+                return "chart.bar"
+        }
+    }
+}
+
 struct StepCountView: View {
     @Binding var totalSteps: Int
-    @Binding var goalSteps: Int // Update goalSteps as a Binding
-    @State private var circleFillPercentage: CGFloat = 0 // State to control the circle filling animation
+    @Binding var goalSteps: Int
+    @State private var circleFillPercentage: CGFloat = 0
+    @State private var displayType: DisplayType = .list
     
-    let minGoalSteps = 100
+    let minGoalSteps = 500
     let maxGoalSteps = 60_000
 
     var body: some View {
@@ -49,10 +72,25 @@ struct StepCountView: View {
                     .offset(y: 50)
             }
 
-            Stepper(value: $goalSteps, in: minGoalSteps...maxGoalSteps, step: 100) {
+            Stepper(value: $goalSteps, in: minGoalSteps...maxGoalSteps, step: 500) {
                 Text("Goal: \(goalSteps)")
             }
             .padding()
+            
+            Picker("Selection", selection: $displayType) {
+                            ForEach(DisplayType.allCases) { displayType in
+                                Image(systemName: displayType.icon).tag(displayType)
+                            }
+                        }
+                        .pickerStyle(.segmented)
+                        
+                        switch displayType {
+                            case .list:
+                                StepListView(goalSteps: goalSteps)
+                            case .chart:
+                                StepsChartViewWrapper()
+                        }
+
 
         }
         .onAppear {

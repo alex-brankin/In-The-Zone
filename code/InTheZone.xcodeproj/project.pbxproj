@@ -9,14 +9,14 @@
 /* Begin PBXBuildFile section */
 		9F069D6E2BCD47AC0028C714 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F069D6D2BCD47AC0028C714 /* Step.swift */; };
 		9F0817972BD1B422006437D5 /* WorkoutFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0817962BD1B422006437D5 /* WorkoutFinder.swift */; };
-		9F4009FF2BCA68960089A806 /* maybe.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9F4009FE2BCA68960089A806 /* maybe.mp4 */; };
 		9F400A012BCACAE90089A806 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F400A002BCACAE90089A806 /* SettingsManager.swift */; };
 		9F400A032BCB40280089A806 /* HRPulse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F400A022BCB40280089A806 /* HRPulse.swift */; };
 		9F400A262BCD47220089A806 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F400A252BCD47220089A806 /* Workout.swift */; };
 		9F60B6E22BCA21EF0057D056 /* CircleAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F60B6E12BCA21EF0057D056 /* CircleAnimation.swift */; };
 		9F6EB2962BD4617900633C49 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB2952BD4617900633C49 /* Utils.swift */; };
 		9F6EB2982BD46E6800633C49 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB2972BD46E6800633C49 /* SwiftUIView.swift */; };
-		9F6EB29A2BD4738000633C49 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB2992BD4738000633C49 /* Data.swift */; };
+		9F6EB29E2BD7CBE600633C49 /* StepListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB29D2BD7CBE600633C49 /* StepListView.swift */; };
+		9F6EB2A02BD7D97500633C49 /* StepChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB29F2BD7D97500633C49 /* StepChartView.swift */; };
 		9F79CBE02BBC5FA200E130F3 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F79CBDF2BBC5FA200E130F3 /* Connectivity.swift */; };
 		9F99CD0A2BBC58D20019BF15 /* InTheZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD092BBC58D20019BF15 /* InTheZoneApp.swift */; };
 		9F99CD0E2BBC58D30019BF15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F99CD0D2BBC58D30019BF15 /* Assets.xcassets */; };
@@ -46,7 +46,6 @@
 		9FCBB7192BBD70C50056A462 /* WatchTheZone_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB7182BBD70C50056A462 /* WatchTheZone_Watch_AppUITestsLaunchTests.swift */; };
 		9FCBB71C2BBD70C50056A462 /* WatchTheZone Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9FCBB6F92BBD70C40056A462 /* WatchTheZone Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9FCBB7282BBD9BE70056A462 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB7272BBD9BE70056A462 /* LoadingView.swift */; };
-		9FCBB72D2BBDBC9E0056A462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FCBB72C2BBDBC9E0056A462 /* GoogleService-Info.plist */; };
 		9FCBB7302BBDD8C20056A462 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB72F2BBDD8C20056A462 /* LoginView.swift */; };
 		9FCBB7322BBDD8D00056A462 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB7312BBDD8D00056A462 /* RegisterView.swift */; };
 		9FCBB7342BBDD8E00056A462 /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBB7332BBDD8E00056A462 /* WorkoutsView.swift */; };
@@ -131,14 +130,14 @@
 /* Begin PBXFileReference section */
 		9F069D6D2BCD47AC0028C714 /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		9F0817962BD1B422006437D5 /* WorkoutFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutFinder.swift; sourceTree = "<group>"; };
-		9F4009FE2BCA68960089A806 /* maybe.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = maybe.mp4; path = ../../../../Downloads/maybe.mp4; sourceTree = "<group>"; };
 		9F400A002BCACAE90089A806 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		9F400A022BCB40280089A806 /* HRPulse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRPulse.swift; sourceTree = "<group>"; };
 		9F400A252BCD47220089A806 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		9F60B6E12BCA21EF0057D056 /* CircleAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleAnimation.swift; sourceTree = "<group>"; };
 		9F6EB2952BD4617900633C49 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		9F6EB2972BD46E6800633C49 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
-		9F6EB2992BD4738000633C49 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		9F6EB29D2BD7CBE600633C49 /* StepListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepListView.swift; sourceTree = "<group>"; };
+		9F6EB29F2BD7D97500633C49 /* StepChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepChartView.swift; sourceTree = "<group>"; };
 		9F79CBDF2BBC5FA200E130F3 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		9F99CD062BBC58D20019BF15 /* InTheZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InTheZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F99CD092BBC58D20019BF15 /* InTheZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTheZoneApp.swift; sourceTree = "<group>"; };
@@ -176,7 +175,6 @@
 		9FCBB7182BBD70C50056A462 /* WatchTheZone_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTheZone_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9FCBB7272BBD9BE70056A462 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		9FCBB72B2BBDABB60056A462 /* WatchTheZone Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WatchTheZone Watch App.entitlements"; sourceTree = "<group>"; };
-		9FCBB72C2BBDBC9E0056A462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9FCBB72F2BBDD8C20056A462 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9FCBB7312BBDD8D00056A462 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		9FCBB7332BBDD8E00056A462 /* WorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsView.swift; sourceTree = "<group>"; };
@@ -318,8 +316,6 @@
 			isa = PBXGroup;
 			children = (
 				9FF71DA62BD013AA009B30F3 /* Info.plist */,
-				9F4009FE2BCA68960089A806 /* maybe.mp4 */,
-				9FCBB72C2BBDBC9E0056A462 /* GoogleService-Info.plist */,
 				9F99CD382BBC59390019BF15 /* InTheZone.entitlements */,
 				9F99CD092BBC58D20019BF15 /* InTheZoneApp.swift */,
 				9F0817962BD1B422006437D5 /* WorkoutFinder.swift */,
@@ -481,12 +477,13 @@
 			isa = PBXGroup;
 			children = (
 				9F6EB2952BD4617900633C49 /* Utils.swift */,
-				9F6EB2992BD4738000633C49 /* Data.swift */,
 				9FF71D932BCFE9C6009B30F3 /* MaxHRView.swift */,
 				9FF71D952BCFE9DF009B30F3 /* VO2MaxView.swift */,
 				9FF71D972BCFE9EA009B30F3 /* HRVView.swift */,
 				9FF71D992BCFE9FD009B30F3 /* RestingHRView.swift */,
 				9FF71D912BCFE81C009B30F3 /* StepCountView.swift */,
+				9F6EB29D2BD7CBE600633C49 /* StepListView.swift */,
+				9F6EB29F2BD7D97500633C49 /* StepChartView.swift */,
 				9FF71D9B2BCFEA21009B30F3 /* DistanceView.swift */,
 				9FF71D9D2BCFEA30009B30F3 /* ActiveEnergyView.swift */,
 				9FF71D9F2BCFEA3A009B30F3 /* RestingEnergyView.swift */,
@@ -639,7 +636,6 @@
 			);
 			mainGroup = 9F99CCFD2BBC58D20019BF15;
 			packageReferences = (
-				9FCBB72E2BBDD2600056A462 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				9FF71DA52BD011AA009B30F3 /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = 9F99CD072BBC58D20019BF15 /* Products */;
@@ -662,8 +658,6 @@
 			files = (
 				9F99CD112BBC58D30019BF15 /* Preview Assets.xcassets in Resources */,
 				9F99CD0E2BBC58D30019BF15 /* Assets.xcassets in Resources */,
-				9F4009FF2BCA68960089A806 /* maybe.mp4 in Resources */,
-				9FCBB72D2BBDBC9E0056A462 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +703,7 @@
 				9FF71D9C2BCFEA21009B30F3 /* DistanceView.swift in Sources */,
 				9F6EB2982BD46E6800633C49 /* SwiftUIView.swift in Sources */,
 				9FD6F8172BC439E800CC807A /* HRView.swift in Sources */,
+				9F6EB29E2BD7CBE600633C49 /* StepListView.swift in Sources */,
 				9FD6F8152BC421AF00CC807A /* StepCountTest.swift in Sources */,
 				9FF71D922BCFE81C009B30F3 /* StepCountView.swift in Sources */,
 				9F99CD132BBC58D30019BF15 /* Persistence.swift in Sources */,
@@ -718,7 +713,7 @@
 				9FF71D942BCFE9C6009B30F3 /* MaxHRView.swift in Sources */,
 				9F99CD162BBC58D30019BF15 /* InTheZone.xcdatamodeld in Sources */,
 				9FF71D9A2BCFE9FD009B30F3 /* RestingHRView.swift in Sources */,
-				9F6EB29A2BD4738000633C49 /* Data.swift in Sources */,
+				9F6EB2A02BD7D97500633C49 /* StepChartView.swift in Sources */,
 				9FD6F81F2BC4B23700CC807A /* HRZoneChartView.swift in Sources */,
 				9F99CD3E2BBC5B410019BF15 /* HRManager.swift in Sources */,
 				9FF71D9E2BCFEA30009B30F3 /* ActiveEnergyView.swift in Sources */,
@@ -1256,14 +1251,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9FCBB72E2BBDD2600056A462 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.23.1;
-			};
-		};
 		9FF71DA52BD011AA009B30F3 /* XCRemoteSwiftPackageReference "ChartView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppPear/ChartView";

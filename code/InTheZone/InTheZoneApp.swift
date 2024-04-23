@@ -41,12 +41,21 @@ struct InTheZone: App {
     }
 }
 
+// REMINDER TO PUT THIS BACK TO NORMAL - PORTRAIT CODE IS IN GITHUB
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+            // Override point for customization after application launch.
+            
+            // Reset UserDefaults
+            if let bundleIdentifier = Bundle.main.bundleIdentifier {
+                UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
+            }
+            
+            return true
+        }
 
-// Implement AppDelegate to handle orientation
-class AppDelegate: NSObject, UIApplicationDelegate {
-    internal func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        return .portrait
-    }
+        
+    
 }
 
 

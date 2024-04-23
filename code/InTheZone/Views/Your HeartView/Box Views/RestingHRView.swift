@@ -1,107 +1,96 @@
-//
-//  RestingHRView.swift
-//  InTheZone
-//
-//  Created by Alex Brankin on 17/04/2024.
-//
-
 import SwiftUI
-import HealthKit
 import Charts
 
 struct RestingHRView: View {
-    @State private var selectedRange: String = "7D"
-    let dateRanges = ["7D", "30D", "1Y"]
-    @State private var healthData: [RHRChartData] = []
-    private let healthStore = HKHealthStore()
+    //let resting: [Double]
+    @State var currentTab: String = "7 Days"
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    Picker("Select Range", selection: $selectedRange) {
-                        ForEach(dateRanges, id: \.self) { range in
-                            Text(range)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                    .padding()
-                    
-                    Chart {
-                        ForEach(healthData, id: \.id) { data in
-                            LineMark(
-                                x: .value("Date", data.date, unit: .day),
-                                y: .value("Resting Heart Rate", data.value)
-                            )
-                            .foregroundStyle(.blue)
-                            
-                        }
-                    }
-                    .frame(height: 200)
-                    .padding(.horizontal)
+        VStack {
+            Text("Resting Heart Rate")
+                .font(.title)
+                .fontWeight(.bold)
+                .padding(.trailing, 200)
+            HStack{
+                Text("Views")
+                    .fontWeight(.semibold)
+                
+                Picker("", selection: $currentTab) {
+                    Text("7D")
+                        .tag("7 Days")
+                    Text("30D")
+                        .tag("30 Days")
+                    Text("1Y")
+                        .tag("1 Year")
                 }
+                .pickerStyle(.segmented)
+                .padding(.leading, 80)
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                fetchHealthData()
-            }
-            .onChange(of: selectedRange) { _ in
-                fetchHealthData()
-            }
-        }
-    }
-    
-    func fetchHealthData() {
-        let endDate = Date()
-        var startDate = Date()
-        
-        switch selectedRange {
-        case "1D":
-            startDate = endDate.addingTimeInterval(-86400)
-        case "7D":
-            startDate = endDate.addingTimeInterval(-86400 * 7)
-        case "30D":
-            startDate = endDate.addingTimeInterval(-86400 * 30)
-        case "1Y":
-            startDate = endDate.addingTimeInterval(-86400 * 365)
-        default:
-            break
-        }
-        
-        let sampleType = HKObjectType.quantityType(forIdentifier: .restingHeartRate)!
-        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictEndDate)
-        
-        let query = HKStatisticsQuery(quantityType: sampleType, quantitySamplePredicate: predicate, options: .discreteAverage) { query, result, error in
-            guard let result = result, let average = result.averageQuantity() else {
-                if let error = error {
-                    print("Error fetching resting heart rate data: \(error.localizedDescription)")
+            /*Chart {
+                ForEach(resting.indices) { index in
+                    let date = Calendar.current.date(byAdding: .day, value: index + 1, to: Date()) ?? Date()
+                    LineMark(x: .value("Date", date, unit: .day), y: .value("BPM", resting[index]))
                 }
-                return
-            }
+            }*/
+            .frame(maxWidth: .infinity, maxHeight: 300)
             
-            let value = average.doubleValue(for: HKUnit.count().unitDivided(by: .minute()))
-            healthData.append(RHRChartData(id: healthData.count, date: endDate, value: value))
-            print("Resting Heart Rate: \(value)")
-            print(healthData)
+            //if resting.isEmpty {
+                Text("No data available")
+                    .foregroundColor(.secondary)
+                    .padding(.vertical, 20)
+            //}
         }
-        
-        healthStore.execute(query)
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(20)
+        .shadow(radius: 5)
+        .padding()
     }
 }
 
-struct RHRChartData {
-    let id: Int
-    let date: Date
-    let value: Double
+struct RestingChartViewWrapper: View {
+    @StateObject var viewModel = RestingChartViewModel()
+    
+    var body: some View {
+        Group {
+            if let resting = viewModel.restingHeartRates {
+                //RestingHRView(resting: resting)
+            } else if let error = viewModel.error {
+                Text("Error: \(error.localizedDescription)")
+                    .foregroundColor(.red)
+            } else {
+                ProgressView()
+            }
+        }
+        .onAppear {
+            viewModel.fetchRestingForLast7Days()
+        }
+    }
 }
 
-struct RestingHeartRateView_Previews: PreviewProvider {
+class RestingChartViewModel: ObservableObject {
+    @Published var restingHeartRates: [Double]?
+    @Published var error: Error?
+    
+    func fetchRestingForLast7Days() {
+        let healthKitManager = HealthKitManager()
+        healthKitManager.fetchRestingHeartRateForLast7Days { rates, dates, error in
+            DispatchQueue.main.async {
+                if let rates = rates {
+                    self.restingHeartRates = rates
+                } else if let error = error {
+                    self.error = error
+                }
+            }
+        }
+    }
+}
+
+struct RestingChartView_Previews: PreviewProvider {
     static var previews: some View {
-        RestingHRView()
+        RestingChartViewWrapper()
     }
 }
-
-
 
 struct RestingHeartRateInfoView: View {
     var body: some View {
