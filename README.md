@@ -14,7 +14,7 @@
   Aimed at fitness-inspired users who love to see their progression and struggle to find consistency in their training, the In The Zone Fitness Tracking Application will deliver functionality for users to track their BPM. Utilizing the best features within iOS and watchOS will encourage users to work on their cardiovascular fitness via zone training. The user will see progression physically and statistically seeing their VO2 increase, and their resting heart rate decrease. In turn, this translates to making the previously intense training session relatively easier over time.
 </div><p></p>
 
-<img src="https://github.com/alex-brankin/In-The-Zone/blob/main/Design/bannerITZ.png?raw=true" alt="banner-ITZ" border="0">
+<img src="https://github.com/alex-brankin/In-The-Zone/blob/main/Design/InTheZonePoster.png?raw=true" alt="InTheZonePoster" border="0">
 
 ## Features
 
