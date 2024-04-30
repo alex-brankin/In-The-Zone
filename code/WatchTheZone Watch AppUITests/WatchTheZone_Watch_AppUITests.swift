@@ -1,8 +1,7 @@
 //
-//  WatchTheZone_Watch_AppUITests.swift
-//  WatchTheZone Watch AppUITests
+//  WatchTheZone
 //
-//  Created by Alex Brankin on 03/04/2024.
+//  Created by Alex Brankin on 13/03/2024.
 //
 
 import XCTest

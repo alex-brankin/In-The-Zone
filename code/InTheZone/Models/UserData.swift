@@ -1,17 +1,15 @@
 //
-//  UserData.swift
 //  InTheZone
 //
-//  Created by Alex Brankin on 19/04/2024.
+//  Created by Alex Brankin on 02/03/2024.
 //
 
 import Foundation
 
-//https://www.healthline.com/health/heart-health/heart-rate-zones-workout#heart-rate-zones
-
 class UserData: ObservableObject {
     @Published var name: String {
         didSet {
+            print("Setting userName to \(name)")
             UserDefaults.standard.set(name, forKey: "userName")
         }
     }
@@ -27,32 +25,130 @@ class UserData: ObservableObject {
             calculateAge()
         }
     }
-
+    
     
     @Published var dateOfBirth: Date {
         didSet {
             UserDefaults.standard.set(dateOfBirth, forKey: "userDateOfBirth")
             calculateAge()
             calculateMaxHeartRate()
+            setZoneValues()
         }
     }
+    
+    @Published var zone1Min: String {
+        didSet {
+            UserDefaults.standard.set(zone1Min, forKey: "zone1Min")
+        }
+    }
+    @Published var zone1Max: String {
+        didSet {
+            UserDefaults.standard.set(zone1Max, forKey: "zone1Max")
+        }
+    }
+    
+    @Published var zone2Min: String {
+        didSet {
+            UserDefaults.standard.set(zone1Min, forKey: "zone1Min")
+        }
+    }
+    @Published var zone2Max: String {
+        didSet {
+            UserDefaults.standard.set(zone1Max, forKey: "zone1Max")
+        }
+    }
+    
+    @Published var zone3Min: String {
+        didSet {
+            UserDefaults.standard.set(zone1Min, forKey: "zone1Min")
+        }
+    }
+    @Published var zone3Max: String {
+        didSet {
+            UserDefaults.standard.set(zone1Max, forKey: "zone1Max")
+        }
+    }
+    
+    @Published var zone4Min: String {
+        didSet {
+            UserDefaults.standard.set(zone1Min, forKey: "zone1Min")
+        }
+    }
+    @Published var zone4Max: String {
+        didSet {
+            UserDefaults.standard.set(zone1Max, forKey: "zone1Max")
+        }
+    }
+    
+    @Published var zone5Min: String {
+        didSet {
+            UserDefaults.standard.set(zone1Min, forKey: "zone1Min")
+        }
+    }
+    @Published var zone5Max: String {
+        didSet {
+            UserDefaults.standard.set(zone1Max, forKey: "zone1Max")
+        }
+    }
+    
+
     
     @Published var calculatedAge: Int = 0
     @Published var maxHeartRate: Int
     @Published var calculatedMaxHeartRate: Int = 0 // Constant calculated max heart rate
     
     init() {
+        print("init - UserName : \(UserDefaults.standard.string(forKey: "userName") ?? "MISSING") ")
         self.name = UserDefaults.standard.string(forKey: "userName") ?? ""
         self.age = UserDefaults.standard.string(forKey: "userAge") ?? ""
         self.dateOfBirth = UserDefaults.standard.object(forKey: "userDateOfBirth") as? Date ?? Date()
+        self.zone1Min = UserDefaults.standard.string(forKey: "zone1Min") ?? "0"
+        self.zone1Max = UserDefaults.standard.string(forKey: "zone1Max") ?? "0"
+        self.zone2Min = UserDefaults.standard.string(forKey: "zone2Min") ?? "0"
+        self.zone2Max = UserDefaults.standard.string(forKey: "zone2Max") ?? "0"
+        self.zone3Min = UserDefaults.standard.string(forKey: "zone3Min") ?? "0"
+        self.zone3Max = UserDefaults.standard.string(forKey: "zone3Max") ?? "0"
+        self.zone4Min = UserDefaults.standard.string(forKey: "zone4Min") ?? "0"
+        self.zone4Max = UserDefaults.standard.string(forKey: "zone4Max") ?? "0"
+        self.zone5Min = UserDefaults.standard.string(forKey: "zone5Min") ?? "0"
+        self.zone5Max = UserDefaults.standard.string(forKey: "zone5Max") ?? "0"
+
         self.maxHeartRate = 0 // Initialize maxHeartRate with default value
         
         // Calculate age and max heart rate
         calculateAge()
         calculateMaxHeartRate()
         self.maxHeartRate = calculatedMaxHeartRate
+        setZoneValues()
         
+    }
+    
+    func setZoneValues() {
+        // Calculate and set values for each zone
         
+        if self.zone5Max != "0" {
+            print("Zone values already exist")
+        } else {
+            print("Setting heart rate zones")
+            self.zone1Min = "0"
+            self.zone1Max = String(round(Double(maxHeartRate) * 0.57))
+            self.zone2Min = String(round((Double(maxHeartRate) * 0.57) + 1 ))
+            self.zone2Max = String(round(Double(maxHeartRate) * 0.63))
+            self.zone3Min = String(round((Double(maxHeartRate) * 0.63) + 1 ))
+            self.zone3Max = String(round(Double(maxHeartRate) * 0.76))
+            self.zone4Min = String(round((Double(maxHeartRate) * 0.76) + 1 ))
+            self.zone4Max = String(round(Double(maxHeartRate) * 0.95))
+            self.zone5Min = String(round((Double(maxHeartRate) * 0.95) + 1 ))
+            self.zone5Max = String(maxHeartRate)
+        }
+            
+            print("Zone 1 Min : \(self.zone1Min))  Max : \(self.zone1Max)")
+            print("Zone 2 Min : \(self.zone2Min))  Max : \(self.zone2Max)")
+            print("Zone 3 Min : \(self.zone3Min))  Max : \(self.zone3Max)")
+            print("Zone 4 Min : \(self.zone4Min))  Max : \(self.zone4Max)")
+            print("Zone 5 Min : \(self.zone5Min))  Max : \(self.zone5Max)")
+
+
     }
 
     
@@ -69,23 +165,4 @@ class UserData: ObservableObject {
         print("Calculated max heart rate: \(calculatedMaxHeartRate)") // Print calculated max heart rate
     }
     
-    func calculateWorkoutZones() -> [String: ClosedRange<Double>] {
-            let maxHeartRatePercentage = Double(calculatedMaxHeartRate) / 100.0
-            
-            let zone1 = 0.0...0.57 * maxHeartRatePercentage
-            let zone2 = 0.57 * maxHeartRatePercentage...0.63 * maxHeartRatePercentage
-            let zone3 = 0.64 * maxHeartRatePercentage...0.76 * maxHeartRatePercentage
-            let zone4 = 0.77 * maxHeartRatePercentage...0.95 * maxHeartRatePercentage
-            let zone5 = 0.96 * maxHeartRatePercentage...1.0
-            
-            let zones = [
-                "Zone 1 (Very Light)": zone1,
-                "Zone 2 (Light)": zone2,
-                "Zone 3 (Vigorous)": zone3,
-                "Zone 4 (High)": zone4,
-                "Zone 5 (Maximal)": zone5
-            ]
-            
-            return zones
-        }
-    }
+}

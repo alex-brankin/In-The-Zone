@@ -1,8 +1,7 @@
 //
-//  HRPulse.swift
 //  InTheZone
 //
-//  Created by Alex Brankin on 13/04/2024.
+//  Created by Alex Brankin on 02/03/2024.
 //
 
 import SwiftUI

@@ -1,8 +1,7 @@
 //
-//  ProfileView.swift
 //  InTheZone
 //
-//  Created by Alex Brankin on 03/04/2024.
+//  Created by Alex Brankin on 02/03/2024.
 //
 
 import SwiftUI
@@ -40,11 +39,10 @@ struct ProfileView: View {
                 viewModel.loadProfileImage()
             }
             
-            Text(userData.name) // Display user's name
+            Text(userData.name)
                 .font(.title)
             
             Form {
-                // Personal Information Section
                 Section(header: Text("Personal Information")) {
                     TextField("Full Name", text: $userData.name)
                     Button(action: {
@@ -61,9 +59,7 @@ struct ProfileView: View {
                         
                 }
                 
-                // Achievements Section
                 Section(header: Text("Achievements")) {
-                    // Grid of images and text placeholders
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3)) {
                         VStack {
                             Image("TrophyUKITZ")

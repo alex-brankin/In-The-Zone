@@ -1,8 +1,7 @@
 //
-//  LoadingView.swift
 //  InTheZone
 //
-//  Created by Alex Brankin on 03/04/2024.
+//  Created by Alex Brankin on 02/03/2024.
 //
 
 import SwiftUI
@@ -12,10 +11,9 @@ struct LoadingView: View {
         ZStack {
             // Background with HRPulse animation
             HRPulse()
-                .opacity(0.6) // Adjust opacity as needed
+                .opacity(0.6)
                 .edgesIgnoringSafeArea(.all)
             
-            // Content in the foreground
             VStack {
                 Spacer()
                 Text("In The Zone")
