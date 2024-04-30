@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/alex-brankin/In-The-Zone">
-  <img src="https://github.com/alex-brankin/In-The-Zone/blob/main/Design/512px.png" alt="512px" border="0" width="171" height="171">
+  <img src="https://github.com/alex-brankin/In-The-Zone/blob/main/Design/512px.png" alt="Icon" border="0" width="171" height="171">
   </a>
 </p>
 
@@ -15,11 +15,17 @@
   <b>Supervisor:</b> Vivek Singh
 </p>
 
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/O3RTq3LkmNc" 
-frameborder="0" 
-allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-allowfullscreen></iframe>
+## Poster
+
+<p align="center">
+  <a href="https://github.com/alex-brankin/In-The-Zone">
+  <img src="https://github.com/alex-brankin/In-The-Zone/blob/main/Design/InTheZonePoster.png" alt="Poster" border="0">
+</p>
+
+
+## Video
+
+[![Video Title](https://img.youtube.com/vi/O3RTq3LkmNc/0.jpg)](https://www.youtube.com/watch?v=O3RTq3LkmNc)
 
 ## Features
 
