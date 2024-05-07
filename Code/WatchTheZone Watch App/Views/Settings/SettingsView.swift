@@ -13,22 +13,25 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+
     @AppStorage("distanceUnit") var distanceUnit: String = DistanceUnit.kilometers.rawValue
-    @AppStorage("hapticFeedbackEnabled") var hapticFeedbackEnabled = false
-    @AppStorage("hapticDelayMinutes") var hapticDelayMinutes: Double = 0
+    @AppStorage("hapticFeedbackEnabled") var hapticFeedbackEnabled = true
+    @AppStorage("hapticDelayMinutes") var hapticDelayMinutes: Double = 2
     @AppStorage("hapticFrequencyMinutes") var hapticFrequencyMinutes: Double = 1
     @AppStorage("workoutCountdownEnabled") var workoutCountdownEnabled = false
     @AppStorage("maxHeartRate") var maxHeartRate = ""
-    @AppStorage("zone1Min") private var zone1Min = ""
-    @AppStorage("zone1Max") private var zone1Max = ""
-    @AppStorage("zone2Min") private var zone2Min = ""
-    @AppStorage("zone2Max") private var zone2Max = ""
-    @AppStorage("zone3Min") private var zone3Min = ""
-    @AppStorage("zone3Max") private var zone3Max = ""
-    @AppStorage("zone4Min") private var zone4Min = ""
-    @AppStorage("zone4Max") private var zone4Max = ""
-    @AppStorage("zone5Min") private var zone5Min = ""
-    @AppStorage("zone5Max") private var zone5Max = ""
+    @AppStorage("zone1Min") private var zone1Min = "40"
+    @AppStorage("zone1Max") private var zone1Max = "100"
+    @AppStorage("zone2Min") private var zone2Min = "101"
+    @AppStorage("zone2Max") private var zone2Max = "120"
+    @AppStorage("zone3Min") private var zone3Min = "121"
+    @AppStorage("zone3Max") private var zone3Max = "140"
+    @AppStorage("zone4Min") private var zone4Min = "141"
+    @AppStorage("zone4Max") private var zone4Max = "160"
+    @AppStorage("zone5Min") private var zone5Min = "161"
+    @AppStorage("zone5Max") private var zone5Max = "180"
+    
     
     var body: some View {
         ScrollView {Text("Heart Rate Zones")

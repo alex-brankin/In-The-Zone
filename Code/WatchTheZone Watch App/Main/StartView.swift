@@ -15,40 +15,46 @@ import SwiftUI
 import HealthKit
 
 struct StartView: View {
+    @State private var showSummary = false
+    @State private var isActive = false  // Controls navigation
     @EnvironmentObject var workoutManager: WorkoutManager
     @State private var selection: Tab = .zone
     
-    enum Tab {
-        case history, zone, settings
+    var body: some View {
+        NavigationStack {
+            TabView(selection: $selection){
+                
+                HistoryView().navigationBarTitle("History")
+                    .tag(Tab.history)
+                SelectZoneView().navigationBarHidden(true)
+                    .tag(Tab.zone)
+                SettingsView()
+                    .tag(Tab.settings)
+                
+            }.navigationTitle(selection.title)
+            .navigationBarBackButtonHidden(true)
+            
+        }.navigationBarBackButtonHidden(true)
     }
     
-    var body: some View {
-        TabView(selection: $selection){
-            NavigationStack {
-                HistoryView().navigationBarTitle("History")
-            }
-            .tag(Tab.history)
-            
-            NavigationStack {
-                SelectZoneView().navigationBarHidden(true)
-            }
-            .tag(Tab.zone)
-            
-            NavigationStack {
-                SettingsView().navigationBarTitle("Settings")
-            }
-            .tag(Tab.settings)
-        }
-        .navigationBarBackButtonHidden(false)
-        .onAppear {
-            HealthStoreManager.shared.requestAuthorization()
-                }
-    }
 }
 
+enum Tab {
+    case history, zone, settings
+    
+    var title: String {
+        switch self {
+        case .history: return "History"
+        case .zone: return ""
+        case .settings: return "Settings"
+        }
+    }
+}
 struct StartView_Previews: PreviewProvider {
     static var previews: some View {
         StartView()
             .environmentObject(WorkoutManager())
     }
 }
+
+

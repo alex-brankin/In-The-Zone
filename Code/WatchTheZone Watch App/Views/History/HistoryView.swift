@@ -16,9 +16,7 @@ import HealthKit
 
 struct HistoryView: View {
     @State private var myWorkouts: [HKWorkout] = []
-    //let healthManager = HealthKitManager()
     let workoutHistoryManager = WorkoutHistoryManager()
-    
 
     var body: some View {
         List(myWorkouts, id: \.uuid) { workout in
@@ -36,12 +34,14 @@ struct HistoryView: View {
         }
         .onAppear {
             // Retrieve workouts when the view appears
+            print("in history")
             workoutHistoryManager.getWorkouts { workouts, error in
                 if let error = error {
                     // Handle error
                     print("Error retrieving workouts: \(error.localizedDescription)")
                 } else {
                     // Update the state with the retrieved workouts
+                    print(workouts)
                     if let workouts = workouts {
                         myWorkouts = workouts
                     }

@@ -17,10 +17,25 @@ import HealthKit
 
 class HealthStoreManager {
     static let shared = HealthStoreManager()
-    let healthStore: HKHealthStore
+    let healthStore: HKHealthStore = HKHealthStore()
 
     private init() {
-        healthStore = HKHealthStore()
+    }
+
+    func requestAuthorizationIfNeeded() {
+        let allTypes = Set([HKQuantityType.quantityType(forIdentifier: .heartRate),
+                            HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned),
+                            HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning),
+                            HKQuantityType.quantityType(forIdentifier: .distanceCycling),
+                            HKObjectType.activitySummaryType()].compactMap { $0 })
+        
+        let allAuthorized = allTypes.allSatisfy { healthStore.authorizationStatus(for: $0) == .sharingAuthorized }
+
+        if !allAuthorized {
+            requestAuthorization()
+        } else {
+            print("All necessary permissions are already authorized.")
+        }
     }
 
     // Request authorization to access HealthKit.
@@ -48,10 +63,10 @@ class HealthStoreManager {
         }
         
         if !allAuthorized {
+            print("Not all Authorized")
             healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
                 if success {
-                    // Authorization granted, do nothing
-                } else {
+                    print("now authorized")                } else {
                     // Authorization denied or error occurred
                     if let error = error {
                         print("Authorization failed: \(error.localizedDescription)")

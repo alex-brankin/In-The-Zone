@@ -36,25 +36,15 @@ struct SettingsView: View {
     @AppStorage("zone5Max") private var zone5Max = ""
     
     
-// Initialize with default values
-    
     var body: some View {
         VStack {
             Form {
-                Section(header: Text("Notifications")) {
-                    Toggle("Enable Notifications", isOn: $notificationsEnabled)
-                        .onChange(of: notificationsEnabled) { newValue in
-                            UserDefaults.standard.setValue(newValue, forKey: "notificationsEnabled")
-                            settingsManager.requestNotificationPermission()
-                        }
-                }
                 Section(header: Text("Heart Rate Zones")) {
                     VStack(spacing: -10) { // Adjust spacing between VStack elements
                         ForEach(0..<5) { index in
                             VStack {
                                 Text("Zone \(index + 1) Heart Rate: \(zoneRangeText(for: index))")
-                                    .padding(.top, 15) // Add padding to top
-                                    //.padding(.bottom, 2) // Add padding to bottom
+                                    .padding(.top, 15)
                                 Slider(value: Binding<Double>(
                                     get: {
                                         if index == heartRateZones.count - 1 {

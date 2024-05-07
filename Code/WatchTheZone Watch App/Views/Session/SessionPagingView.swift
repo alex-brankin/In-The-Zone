@@ -22,21 +22,21 @@ struct SessionPagingView: View {
     @Environment(\.isLuminanceReduced) var isLuminanceReduced
     @EnvironmentObject var workoutManager: WorkoutManager
     @EnvironmentObject var workoutUIManager: WorkoutUIManager
-    @State private var selection: Tab = .metrics
+    @State private var selection1: Tab = .metrics
     
     enum Tab {
         case controls, metrics, nowPlaying
     }
     
     var body: some View {
-        TabView(selection: $selection){
+        TabView(selection: $selection1){
             ControlsView().tag(Tab.controls)
             MetricsView(targetZone: targetZone).tag(Tab.metrics)
             NowPlayingView().tag(Tab.nowPlaying)
         }
        // .navigationTitle(workoutManager.selectedWorkout?.name ?? "")
         .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(selection == .nowPlaying)
+        .navigationBarHidden(selection1 == .nowPlaying)
         .onChange(of: workoutManager.running) {
                 displayMetricsView()
             }
@@ -50,7 +50,7 @@ struct SessionPagingView: View {
 
         private func displayMetricsView() {
             withAnimation {
-                selection = .metrics
+                selection1 = .metrics
             }
     }
 }

@@ -43,14 +43,14 @@ class WorkoutHistoryManager: NSObject, ObservableObject {
     
     func getWorkouts(completion: @escaping ([HKWorkout]?, Error?) -> Void) {
         // Create a predicate to filter workouts based on metadata
-        let predicate = HKQuery.predicateForObjects(withMetadataKey: brandMetadataKey, allowedValues: ["InTheZone"])
+        let predicate = HKQuery.predicateForObjects(withMetadataKey: HKMetadataKeyWorkoutBrandName, allowedValues: ["InTheZone"])
         
         // Create a sort descriptor to sort workouts by start date in descending order
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
         
         // Create a query to fetch workouts matching the predicate and sorted by start date
         let query = HKSampleQuery(sampleType: .workoutType(),
-                                  predicate: nil,
+                                  predicate: predicate,
                                   limit: HKObjectQueryNoLimit,
                                   sortDescriptors: [sortDescriptor]) { (query, samples, error) in
             guard let workouts = samples as? [HKWorkout], error == nil else {

@@ -36,7 +36,7 @@ struct ProfileView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 150, height: 150)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.secondary)
                     
                 }
             }

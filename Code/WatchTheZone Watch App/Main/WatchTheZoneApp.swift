@@ -57,9 +57,6 @@ struct WatchTheZone: App {
                     UserDefaults.standard.set("180", forKey: "zone5Max")
                 }
             }
-            .sheet(isPresented: $workoutManager.showingSummaryView) {
-                SummaryView()
-            }
             .environmentObject(workoutManager)
             .environmentObject(workoutUIManager)
         }

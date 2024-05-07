@@ -28,7 +28,7 @@ func getPace(elapsedTime: TimeInterval, distance: Double) -> String {
         if secondsPerKm.isFinite {
             let minutes = Int(secondsPerKm) / 60
             let seconds = Int(secondsPerKm) % 60
-            pace = String(format: "%02d\"%02d ", minutes, seconds)
+            pace = String(format: "%02d\"%02d per km", minutes, seconds)
         }
         else { pace = "Not Moving" }
         return pace
@@ -66,7 +66,7 @@ func getPace(elapsedTime: TimeInterval, distance: Double) -> String {
             if distance < 50 {
                 returnString = String(format: "%.0f metres", distance.rounded())
             } else {
-                returnString = String(format: "%.2f kilometres", (distance / 1000))
+                returnString = String(format: "%.2f km", (distance / 1000))
             }
         }
         return returnString

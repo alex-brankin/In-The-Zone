@@ -17,6 +17,8 @@ let healthStore = HKHealthStore()
 
 @main
 struct InTheZone: App {
+    
+    @StateObject private var notificationManager = NotificationManager()
 
     @AppStorage("zone1Min") private var zone1Min = ""
     @AppStorage("zone1Max") private var zone1Max = ""

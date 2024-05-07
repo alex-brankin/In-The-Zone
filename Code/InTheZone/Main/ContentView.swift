@@ -22,6 +22,7 @@ struct ContentView: View {
     @State private var selectedTab = 1
     @State private var currentBPM: Double = 0
     
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationStack {

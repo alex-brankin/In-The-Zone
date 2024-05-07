@@ -18,14 +18,15 @@ import Foundation
 import HealthKit
 import WatchKit
 import SwiftUI
+import Combine
 
 
 
 class WorkoutManager: NSObject, ObservableObject {
     
     private var healthStore: HKHealthStore {
-            HealthStoreManager.shared.healthStore
-        }
+        HealthStoreManager.shared.healthStore
+    }
     
     var selectedWorkout: HKWorkoutActivityType?
     {
@@ -37,19 +38,10 @@ class WorkoutManager: NSObject, ObservableObject {
     
     var targetZone: Int = 0
     
-    @Published var showingSummaryView: Bool = false {
-        didSet {
-            // Sheet dismissed
-            if showingSummaryView == false {
-                resetWorkout()
-            }
-        }
-    }
-    
     let workoutUIManager = WorkoutUIManager()
     let zoneManager = ZoneManager()
     let userDefaultsManager = UserDefaultsManager()
-  //  let healthStore = HKHealthStore()
+    //  let healthStore = HKHealthStore()
     var session: HKWorkoutSession?
     var builder: HKLiveWorkoutBuilder?
     
@@ -79,45 +71,45 @@ class WorkoutManager: NSObject, ObservableObject {
         let startDate = Date()
         session?.startActivity(with: startDate)
         builder?.beginCollection(withStart: startDate) { (success, error) in
-            // The workout has started.
+            self.hapticTimer(start: true)
             
         }
         addWorkoutMetadata()
-
+        
     }
     
     func addWorkoutMetadata() {
-         print("In the function")
-         let brand = "InTheZone"
-         guard let builder = self.builder else {
-             print("Builder is nil at metadata addition time.")
-             return
-         }
+        print("In the function")
+        let brand = "InTheZone"
+        guard let builder = self.builder else {
+            print("Builder is nil at metadata addition time.")
+            return
+        }
         
-         let metadata: [String: String] = [
-             HKMetadataKeyWorkoutBrandName: brand,
-             "targetZone": String(targetZone),
-             "zone1Min": String(userDefaultsManager.zone1Min),
-             "zone1Max": String(userDefaultsManager.zone1Max),
-             "zone2Min": String(userDefaultsManager.zone2Min),
-             "zone2Max": String(userDefaultsManager.zone2Max),
-             "zone3Min": String(userDefaultsManager.zone3Min),
-             "zone3Max": String(userDefaultsManager.zone3Max),
-             "zone4Min": String(userDefaultsManager.zone4Min),
-             "zone4Max": String(userDefaultsManager.zone4Max),
-             "zone5Min": String(userDefaultsManager.zone5Min),
-             "zone5Max": String(userDefaultsManager.zone5Max)
-         ]
+        let metadata: [String: String] = [
+            HKMetadataKeyWorkoutBrandName: brand,
+            "targetZone": String(targetZone),
+            "zone1Min": String(userDefaultsManager.zone1Min),
+            "zone1Max": String(userDefaultsManager.zone1Max),
+            "zone2Min": String(userDefaultsManager.zone2Min),
+            "zone2Max": String(userDefaultsManager.zone2Max),
+            "zone3Min": String(userDefaultsManager.zone3Min),
+            "zone3Max": String(userDefaultsManager.zone3Max),
+            "zone4Min": String(userDefaultsManager.zone4Min),
+            "zone4Max": String(userDefaultsManager.zone4Max),
+            "zone5Min": String(userDefaultsManager.zone5Min),
+            "zone5Max": String(userDefaultsManager.zone5Max)
+        ]
         
-         builder.addMetadata(metadata) { (success, error) in
-             if let error = error {
-                 print("Error saving metadata: \(error.localizedDescription)")
-             } else {
-                 print("Metadata saved successfully: \(success)")
-                 print(metadata)
-             }
-         }
-     }
+        builder.addMetadata(metadata) { (success, error) in
+            if let error = error {
+                print("Error saving metadata: \(error.localizedDescription)")
+            } else {
+                print("Metadata saved successfully: \(success)")
+                print(metadata)
+            }
+        }
+    }
     
     // State Control
     
@@ -141,8 +133,10 @@ class WorkoutManager: NSObject, ObservableObject {
     }
     
     func endWorkout() {
+        print("Ending workout")
+        self.hapticTimer(start: false)
         session?.end()
-        showingSummaryView = true
+        resetWorkout()
     }
     // Workout Metrics
     @Published var averageHeartRate: Double = 0
@@ -193,6 +187,7 @@ class WorkoutManager: NSObject, ObservableObject {
     }
     
     func resetWorkout() {
+        print("Resetting workout")
         selectedWorkout = nil
         builder = nil
         session = nil
@@ -201,6 +196,15 @@ class WorkoutManager: NSObject, ObservableObject {
         averageHeartRate = 0
         heartRate = 0
         distance = 0
+        pace = ""
+        currentZone = 0
+        onTarget = false
+        formattedDistance = ""
+        currentZoneMin = 0
+        currentZoneMax = 0
+        targetZoneMin = 0
+        targetZoneMax = 0
+    
     }
     
     private func isOnTarget() -> Bool {
@@ -214,7 +218,8 @@ class WorkoutManager: NSObject, ObservableObject {
         }
     }
     
-    private func hapticTimer() {
+    private var timer: Timer?    
+    private func hapticTimer(start: Bool) {
         let hapticFeedbackEnabled: Bool = true
         let hapticFrequencyMinutes: Double = 1
         let hapticDelayMinutes: Double = 2
@@ -222,24 +227,30 @@ class WorkoutManager: NSObject, ObservableObject {
         // Manage the last feedback time
         var lastHapticFeedbackTime = Date()
         
-        // Dispatch the timer to a background queue
-        DispatchQueue.global(qos: .background).async {
-            let timer = Timer(timeInterval: hapticFrequencyMinutes * 60, repeats: true) { _ in
-                DispatchQueue.main.async {
-                    // Check the elapsed time on the main thread if needed
-                    if self.builder!.elapsedTime.rounded() >= (hapticDelayMinutes * 60) {
-                        if !self.onTarget && Date().timeIntervalSince(lastHapticFeedbackTime) >= (hapticFrequencyMinutes * 60) {
-                            if hapticFeedbackEnabled {
-                                WKInterfaceDevice.current().play(.stop)
-                                lastHapticFeedbackTime = Date()
+        if start {
+            // Dispatch the timer to a background queue
+            DispatchQueue.global(qos: .background).async {
+                self.timer = Timer(timeInterval: hapticFrequencyMinutes * 60, repeats: true) { _ in
+                    DispatchQueue.main.async {
+                        // Check the elapsed time on the main thread if needed
+                        if self.builder!.elapsedTime.rounded() >= (hapticDelayMinutes * 60) {
+                            if !self.onTarget && Date().timeIntervalSince(lastHapticFeedbackTime) >= (hapticFrequencyMinutes * 60) {
+                                if hapticFeedbackEnabled {
+                                    WKInterfaceDevice.current().play(.stop)
+                                    lastHapticFeedbackTime = Date()
+                                }
                             }
                         }
                     }
                 }
+                // Add the timer to the current run loop
+                RunLoop.current.add(self.timer!, forMode: .common)
+                RunLoop.current.run()
             }
-            // Add the timer to the current run loop
-            RunLoop.current.add(timer, forMode: .common)
-            RunLoop.current.run()
+        }  else {
+            // Stop the timer
+            timer?.invalidate()
+            timer = nil
         }
     }
 }

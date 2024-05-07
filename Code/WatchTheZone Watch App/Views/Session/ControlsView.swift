@@ -15,29 +15,40 @@ import SwiftUI
 
 struct ControlsView: View {
     @EnvironmentObject var workoutManager: WorkoutManager
-    
+    @State private var navigateToSummaryView = false
+
     var body: some View {
-        HStack {
+        ZStack {
             VStack {
-                Button {
-                    workoutManager.endWorkout()
-                } label: {
-                    Image(systemName: "xmark")
+                HStack {
+                    VStack {
+                        Button(action: {
+                            navigateToSummaryView = true
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(.title2)
+                                .foregroundColor(.red)
+                        }
+                        Text("End")
+                    }
+
+                    VStack {
+                        Button(action: {
+                            workoutManager.togglePause()
+                        }) {
+                            Image(systemName: workoutManager.running ? "pause" : "play")
+                                .font(.title2)
+                                .foregroundColor(workoutManager.running ? .yellow : .green)
+                        }
+                        Text(workoutManager.running ? "Pause" : "Resume")
+                    }
                 }
-                .tint(Color.red)
-                .font(.title2)
-                Text("End")
             }
-            VStack {
-                Button {
-                    workoutManager.togglePause()
-                } label: {
-                    Image(systemName: workoutManager.running ? "pause" : "play")
-                }
-                .tint(Color.yellow)
-                .font(.title2)
-                Text(workoutManager.running ? "Pause" : "Resume")
-            }
+
+            // Invisible NavigationLink
+            NavigationLink(destination: SummaryView(), isActive: $navigateToSummaryView) {
+                EmptyView()
+            }.buttonStyle(PlainButtonStyle()).frame(width: 0, height: 0).hidden()
         }
     }
 }

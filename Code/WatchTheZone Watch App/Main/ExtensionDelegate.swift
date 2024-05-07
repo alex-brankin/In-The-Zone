@@ -119,7 +119,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     
     func applicationDidFinishLaunching() {
         // Activate the WCSession
-        
+        HealthStoreManager.shared.requestAuthorizationIfNeeded()
         syncService.connect()
         print("synService running")
         

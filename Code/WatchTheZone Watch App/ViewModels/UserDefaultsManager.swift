@@ -14,6 +14,7 @@ import Foundation
 
 class UserDefaultsManager {
     
+    
     var zone1Min: String {
         get {
             UserDefaults.standard.string(forKey: "zone1Min") ?? ""

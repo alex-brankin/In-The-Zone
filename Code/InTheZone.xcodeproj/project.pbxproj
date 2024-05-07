@@ -9,15 +9,15 @@
 /* Begin PBXBuildFile section */
 		5B752E852BE8B76F0017234C /* WorkoutHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE841482BE7E787002D8EB5 /* WorkoutHistoryManager.swift */; };
 		5B752E862BE8B7770017234C /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE8414B2BE7E91E002D8EB5 /* SyncService.swift */; };
-		5B752E872BE8B77A0017234C /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F99CD3D2BBC5B410019BF15 /* HealthKitManager.swift */; };
+		5B98084C2BEAA604000267C0 /* HealthStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5C2452BE8E7F10087816B /* HealthStoreManager.swift */; };
 		5BC5C23E2BE8C0B60087816B /* WorkoutUIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5C23D2BE8C0B60087816B /* WorkoutUIManager.swift */; };
 		5BC5C2422BE8CFB40087816B /* ZoneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5C2412BE8CFB40087816B /* ZoneManager.swift */; };
 		5BC5C2442BE8D0400087816B /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5C2432BE8D0400087816B /* UserDefaultsManager.swift */; };
 		5BC5C2462BE8E7F10087816B /* HealthStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5C2452BE8E7F10087816B /* HealthStoreManager.swift */; };
-		5BC5C2472BE8EF320087816B /* HealthStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5C2452BE8E7F10087816B /* HealthStoreManager.swift */; };
 		5BC5C24B2BE8F4C50087816B /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5C24A2BE8F4C50087816B /* WorkoutDetailView.swift */; };
 		5BC5C24D2BE8FF460087816B /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5C24C2BE8FF460087816B /* WorkoutDetailView.swift */; };
 		5BC5C24F2BE900760087816B /* WorkoutAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5C24E2BE900760087816B /* WorkoutAnalyzer.swift */; };
+		5BC5C2512BEA1A780087816B /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5C2502BEA1A780087816B /* NotificationManager.swift */; };
 		5BE841492BE7E787002D8EB5 /* WorkoutHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE841482BE7E787002D8EB5 /* WorkoutHistoryManager.swift */; };
 		5BE8414C2BE7E91E002D8EB5 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE8414B2BE7E91E002D8EB5 /* SyncService.swift */; };
 		5BE8414F2BE7E965002D8EB5 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE8414E2BE7E965002D8EB5 /* ExtensionDelegate.swift */; };
@@ -131,6 +131,7 @@
 		5BC5C24A2BE8F4C50087816B /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		5BC5C24C2BE8FF460087816B /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		5BC5C24E2BE900760087816B /* WorkoutAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutAnalyzer.swift; sourceTree = "<group>"; };
+		5BC5C2502BEA1A780087816B /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationManager.swift; path = "Shared ViewModels/NotificationManager.swift"; sourceTree = "<group>"; };
 		5BE841482BE7E787002D8EB5 /* WorkoutHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryManager.swift; sourceTree = "<group>"; };
 		5BE8414B2BE7E91E002D8EB5 /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
 		5BE8414E2BE7E965002D8EB5 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
@@ -352,6 +353,7 @@
 			children = (
 				9F400A002BCACAE90089A806 /* SettingsManager.swift */,
 				5BC5C24E2BE900760087816B /* WorkoutAnalyzer.swift */,
+				5BC5C2502BEA1A780087816B /* NotificationManager.swift */,
 				5B752E7E2BE8B5470017234C /* Shared ViewModels */,
 			);
 			path = ViewModels;
@@ -756,8 +758,10 @@
 				9FF71D922BCFE81C009B30F3 /* StepCountView.swift in Sources */,
 				9FCBB7282BBD9BE70056A462 /* LoadingView.swift in Sources */,
 				5BC5C24F2BE900760087816B /* WorkoutAnalyzer.swift in Sources */,
+				5B98084C2BEAA604000267C0 /* HealthStoreManager.swift in Sources */,
 				9FCBB73E2BBDE3E20056A462 /* ContentView.swift in Sources */,
 				5BE841512BE7F00B002D8EB5 /* AvgHRView.swift in Sources */,
+				5BC5C2512BEA1A780087816B /* NotificationManager.swift in Sources */,
 				9F99CD162BBC58D30019BF15 /* InTheZone.xcdatamodeld in Sources */,
 				9FF71D9A2BCFE9FD009B30F3 /* RestingHRView.swift in Sources */,
 				9FD6F81F2BC4B23700CC807A /* HRZoneChartView.swift in Sources */,
@@ -775,7 +779,6 @@
 				9FF71DA02BCFEA3A009B30F3 /* RestingEnergyView.swift in Sources */,
 				9FEE2E122BD28236000A65CE /* WelcomeView.swift in Sources */,
 				9F6EB2962BD4617900633C49 /* Utils.swift in Sources */,
-				5BC5C2472BE8EF320087816B /* HealthStoreManager.swift in Sources */,
 				9FCBB73A2BBDDD330056A462 /* YourHeartView.swift in Sources */,
 				9F069D6E2BCD47AC0028C714 /* Step.swift in Sources */,
 				9FF71D962BCFE9DF009B30F3 /* VO2MaxView.swift in Sources */,
@@ -816,7 +819,6 @@
 				5BC5C24B2BE8F4C50087816B /* WorkoutDetailView.swift in Sources */,
 				9FAF67792BD1B7940091D5C8 /* ElapsedTimeView.swift in Sources */,
 				5B752E862BE8B7770017234C /* SyncService.swift in Sources */,
-				5B752E872BE8B77A0017234C /* HealthKitManager.swift in Sources */,
 				9FAF67812BD1B7F00091D5C8 /* WorkoutManager.swift in Sources */,
 				9FAF677F2BD1B7B20091D5C8 /* SummaryView.swift in Sources */,
 				9FCBB6FC2BBD70C40056A462 /* WatchTheZoneApp.swift in Sources */,
@@ -999,7 +1001,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InTheZone/Preview Content\"";
-				DEVELOPMENT_TEAM = SL8V4SQ33S;
+				DEVELOPMENT_TEAM = 29GS8M848T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = InTheZone/Info.plist;
@@ -1014,7 +1016,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.ITZone;
+				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.ITZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1032,7 +1034,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InTheZone/Preview Content\"";
-				DEVELOPMENT_TEAM = SL8V4SQ33S;
+				DEVELOPMENT_TEAM = 29GS8M848T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = InTheZone/Info.plist;
@@ -1047,7 +1049,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.ITZone;
+				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.ITZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1104,20 +1106,20 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchTheZone Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = SL8V4SQ33S;
+				DEVELOPMENT_TEAM = 29GS8M848T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = WatchTheZone;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow access to enjoy all the features of our application.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Workouts will be saved to Apple HealthKit";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = comp3000.abrankin.ITZone;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = comp3000.abrankin.ITZ;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.ITZone.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.ITZ.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1137,20 +1139,20 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WatchTheZone Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = SL8V4SQ33S;
+				DEVELOPMENT_TEAM = 29GS8M848T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = WatchTheZone;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow access to enjoy all the features of our application.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Workouts will be saved to Apple HealthKit";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = comp3000.abrankin.ITZone;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = comp3000.abrankin.ITZ;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.ITZone.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = comp3000.abrankin.ITZ.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
