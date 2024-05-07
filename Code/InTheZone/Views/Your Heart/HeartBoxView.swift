@@ -3,6 +3,12 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+//
+// The HeartTabsView in SwiftUI functions as a health data dashboard that dynamically switches between heart-related
+// data and activity statistics using a segmented control. It leverages HealthKit to retrieve metrics such as
+// average heart rate, VO2 max, heart rate variability, resting heart rate, step count, walking/running distance,
+// active energy burned, and basal metabolic rate. Each data type is displayed within a grid of customizable boxes
+// that can be expanded to show detailed views when tapped. 
 
 import SwiftUI
 import HealthKit

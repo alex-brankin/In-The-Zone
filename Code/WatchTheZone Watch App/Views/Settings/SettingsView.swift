@@ -3,6 +3,12 @@
 //
 //  Created by Alex Brankin on 13/03/2024.
 //
+// The SettingsView in the WatchTheZone app allows users to customize various workout settings
+// directly from their device. This view includes settings for selecting distance units, configuring
+// heart rate zones, enabling a workout countdown, and managing haptic feedback settings with
+// options for delay and frequency adjustments. Additionally, it offers a user-friendly interface
+// with color-coded text for different heart rate zones and interactive sliders for precise control
+// over haptic feedback settings.
 
 import SwiftUI
 
@@ -64,7 +70,7 @@ struct SettingsView: View {
                         Text("Frequency: \(Int(hapticFrequencyMinutes)) minutes")
                         Slider(value: $hapticFrequencyMinutes, in: 1...10, step: 1)
                             .frame(width: 180)
-                            .disabled(!hapticFeedbackEnabled) 
+                            .disabled(!hapticFeedbackEnabled)
                     }
                 }
                 Spacer()

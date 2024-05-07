@@ -4,6 +4,9 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The following structs define four data models (ZoneCounter, ZoneDefinition, ZoneMinAndMax, HeartRateData) each
+// equipped with properties such as unique identifiers, numerical values, and other attributes specific to their
+// function in handling heart rate and training zone data in the In The Zone app.
 
 import Foundation
 import SwiftUI

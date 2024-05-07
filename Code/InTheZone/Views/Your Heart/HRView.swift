@@ -3,6 +3,13 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+//
+// The HRView in SwiftUI serves as an interactive display for monitoring heart rate data fetched from HealthKit. It
+// integrates with the HealthKitManager to fetch real-time, daily maximum, and average heart rate values, presenting
+// these in a dynamic interface that allows users to tap through different heart rate displays. The view updates in
+// real-time and manages heart rate data visibility based on user interaction, highlighting the latest heart rate by
+// default and offering views for the highest and average rates when selected. Additionally, it provides error
+// handling and prompts for HealthKit authorization if access is not yet granted.
 
 import SwiftUI
 import HealthKit
@@ -211,7 +218,7 @@ struct HRView: View {
 struct AnimatedHeartView: View {
     var currentBPM: Double
     
-    @State private var isHeartBeating: Bool = false 
+    @State private var isHeartBeating: Bool = false
     
     // Define minimum and maximum animation durations
     private let minDuration: Double = 0.3

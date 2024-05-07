@@ -3,6 +3,11 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The InTheZone SwiftUI application interfaces with HealthKit and WatchConnectivity to manage fitness data. It
+// initializes by setting up a recurring task to sync workout zone settings to a paired Apple Watch via a
+// SyncService. The app manages workout zones using @AppStorage for persistence, automatically updating the watch
+// whenever these settings change. It features a main view that loads conditionally based on whether the user data
+// indicates a new or returning user, and it handles HealthKit authorization to access fitness data securely.
 
 import SwiftUI
 import HealthKit

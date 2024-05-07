@@ -3,6 +3,13 @@
 //
 //  Created by Alex Brankin on 13/03/2024.
 //
+// The ExtensionDelegate class in the WatchTheZone Watch App acts as the main delegate for the watch
+// extension, managing critical initialization and configuration tasks. It interfaces with
+// UserDefaults to manage user-specific settings such as heart rate zones and maximum heart rate,
+// ensuring these preferences are stored and retrievable across sessions. Additionally, it
+// initializes and manages a SyncService to handle data synchronization tasks, responding to
+// incoming data by updating local settings and logging activity for debugging purposes. This setup
+// ensures the app functions smoothly with up-to-date user configurations directly on the watch.
 
 
 import WatchKit

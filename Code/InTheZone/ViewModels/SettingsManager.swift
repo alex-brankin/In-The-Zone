@@ -3,6 +3,10 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The SettingsManager class manages user settings related to step
+// counts and notifications, interfacing with HealthKit and UserNotifications frameworks. It provides functionality
+// to fetch and handle step count data from HealthKit, request user permissions for notifications, and send
+// notifications based on step goals. 
 
 import Foundation
 import HealthKit

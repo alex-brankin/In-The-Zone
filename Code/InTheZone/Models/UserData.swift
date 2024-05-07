@@ -3,6 +3,12 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The UserData class in Swift is designed to manage user data for a fitness application. It leverages the
+// @Published property wrapper for observable properties such as name, age, and dateOfBirth, which auto-save to
+// UserDefaults upon changes, ensuring data persistence across app launches. The class also dynamically calculates
+// and updates the user's age and maximum heart rate based on the date of birth and automatically configures heart
+// rate zones. These zones are used for fitness tracking and are recalculated whenever the user's date of birth
+// changes.
 
 import Foundation
 

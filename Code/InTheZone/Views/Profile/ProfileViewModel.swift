@@ -3,6 +3,12 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The ProfileViewModel class in SwiftUI manages the user's profile image using the PhotosUI framework. It utilizes
+// @Published properties to update the UI asynchronously when a new image is selected or loaded. The model handles
+// the loading of image data from the PhotosPicker and saves this data to the device's document directory for
+// persistent storage. Additionally, it provides functionality to load the saved image from the filesystem during
+// initialization or when required, ensuring the image remains accessible across app sessions. The asynchronous
+// tasks are handled safely using Swift's concurrency features, specifically async/await patterns.
 
 import SwiftUI
 import PhotosUI
@@ -52,5 +58,17 @@ class ProfileViewModel: ObservableObject {
             print("Error loading profile image: \(error)")
         }
     }
+    
+    func removeProfilePicture() {
+                let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                let fileURL = documentsDirectory.appendingPathComponent(profileImageFileName)
+                
+                do {
+                    try FileManager.default.removeItem(at: fileURL)
+                    profileImage = nil // Reset profileImage property
+                } catch {
+                    print("Error removing profile picture: \(error)")
+                }
+            }
 }
 

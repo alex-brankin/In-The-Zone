@@ -3,6 +3,14 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The StepListView in SwiftUI displays a list of step count data for the last 7 days, along with their respective
+// dates. It retrieves this data from a HealthKitManager instance upon view appearance. If data retrieval is
+// successful, it populates the list with step count entries sorted by date, and each entry includes the step count,
+// a colored indicator (red if under the goal steps, green otherwise), and the date. If an error occurs during data
+// retrieval, it displays an error message, and while waiting for data, it shows a progress view. The StepRow view
+// represents each individual row in the list, displaying the step count, date, and the colored indicator.
+// Additionally, there's a helper function isUnderGoal that determines whether a step count is below the specified
+// goal steps.
 
 import SwiftUI
 

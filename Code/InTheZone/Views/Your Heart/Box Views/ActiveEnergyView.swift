@@ -3,6 +3,10 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The ActiveEnergyView SwiftUI code presents a chart displaying cumulative active energy burned over a selected
+// time range, utilizing HealthKit data. It includes a segmented picker for time range selection and asynchronously
+// fetches data. Additionally, the ActiveEnergyInfoView provides supplementary information on tracking distance
+// using GPS devices and fitness trackers.
 
 import SwiftUI
 import Charts

@@ -3,6 +3,11 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The HRVView in SwiftUI provides an interface for users to visualize heart rate variability (HRV) data retrieved
+// from HealthKit. The view includes a picker to select time ranges and displays HRV data in a line chart format.
+// The health data is fetched synchronously using semaphores to handle data retrieval from HealthKit across selected
+// date ranges. The view aims to give users insights into their heart's variability, a metric often used to assess
+// autonomic nervous system balance and stress resilience.
 
 import SwiftUI
 import Charts

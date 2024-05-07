@@ -3,6 +3,13 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The StepCountView in SwiftUI presents step count data along with user-set goals, offering both a visual
+// representation of progress and options to switch between different display types. It includes a dynamic circle
+// graph that fills up proportionally to the achieved percentage of the goal, animated to provide visual feedback.
+// Users can adjust their step goals using a stepper, and they can switch between viewing their step data either as
+// a list or a chart via a segmented picker. Additionally, there's a descriptive section, StepsInfoView, that
+// outlines the significance and benefits of tracking steps, educating users about the importance of physical
+// activity and goal setting.
 
 import SwiftUI
 

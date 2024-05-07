@@ -3,6 +3,9 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The LoadingView in SwiftUI presents a visually appealing loading screen for the "In The Zone" app, featuring an
+// animated background, a title, and a standard progress indicator. This screen occupies the entire device display,
+// offering users a stylish transition as the app loads necessary data and processes.
 
 import SwiftUI
 

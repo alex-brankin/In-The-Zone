@@ -3,6 +3,11 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The HealthKitManager class manages health data interactions through HealthKit on iOS devices,
+// encapsulating methods to request user permissions and fetch various types of health data like workouts, heart
+// rate, step count, VO2 max, and more. It uses the HKHealthStore to execute queries that retrieve and observe
+// health data changes, handling data such as heart rate, steps, and workout details, and also performs specific
+// health data operations like calculating daily averages or retrieving historical health data.
 
 import HealthKit
 import Foundation

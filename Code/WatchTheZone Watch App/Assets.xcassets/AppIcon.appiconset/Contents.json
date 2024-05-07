@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "AppIcon.jpeg",
+      "filename" : "currentlogo.png",
       "idiom" : "universal",
       "platform" : "watchos",
       "size" : "1024x1024"

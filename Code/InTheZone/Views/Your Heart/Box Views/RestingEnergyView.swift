@@ -3,6 +3,11 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The RestingEnergyView in SwiftUI fetches and displays resting energy expenditure data using HealthKit, allowing
+// users to select a date range to view cumulative energy burned. It provides a navigable view with a segmented
+// picker for choosing the time range and a bar chart to visualize the data. The data retrieval process involves
+// asynchronous calls with a semaphore to synchronize the fetching of HealthKit data, which computes daily sums of
+// energy burned. 
 
 import SwiftUI
 import Charts

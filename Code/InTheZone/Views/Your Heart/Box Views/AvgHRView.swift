@@ -3,6 +3,11 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The AvgHRView in SwiftUI displays average heart rate data for various date ranges using a segmented picker and a
+// line chart. Users can choose from predefined date ranges ("7D", "30D", "365D") to view historical heart rate
+// data. The view fetches and processes heart rate data from HealthKit, dynamically updating the chart based on the
+// selected date range. The data fetching is handled synchronously using a semaphore within the loop, allowing for
+// structured data retrieval and chart updates.
 
 import SwiftUI
 import HealthKit

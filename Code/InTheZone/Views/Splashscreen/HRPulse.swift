@@ -3,6 +3,10 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The HRPulse SwiftUI view renders an animated heart rate pulse waveform using a TimelineView for dynamic updates
+// and a Canvas for custom drawing. This view simulates a heart rate monitor display by dynamically updating the
+// waveform's offset based on time, creating a visual effect of a moving pulse line, enhanced with a red gradient to
+// mimic the look of a heartbeat on medical monitors.
 
 import SwiftUI
 

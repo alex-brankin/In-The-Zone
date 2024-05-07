@@ -3,6 +3,12 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The NewUserView in the SwiftUI application serves as a welcoming interface for first-time users of the
+// "In The Zone" fitness app. It features a large icon, motivational text introducing the app, and a bold "Get
+// Started" button that requests HealthKit authorization upon tapping. If the authorization is successful, it
+// triggers navigation to the WelcomeView, providing a seamless user onboarding experience. This view uses a
+// NavigationStack for potential navigation to further informational or functional screens within the app, enhancing
+// user engagement from the outset.
 
 import SwiftUI
 import HealthKit

@@ -3,6 +3,12 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// This view defines the StepsChartView that displays a chart of step counts over a selected time range. It
+// consists of a title, a segmented picker to choose the time range (7 days, 30 days, or 1 year), and a bar chart
+// displaying the step counts for each day within the selected time range. The color of each bar dynamically changes
+//based on the step count, with red indicating counts below 10,000 and green for counts above or equal to 10,000.
+
+
 
 import SwiftUI
 import Charts

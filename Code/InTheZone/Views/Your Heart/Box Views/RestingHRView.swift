@@ -3,6 +3,12 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The RestingHRView in SwiftUI allows users to explore their resting heart rate (RHR) data from HealthKit,
+// providing interactive charts to visualize changes over time based on selected date ranges. This view uses a
+// segmented picker to choose between different time intervals and plots the data on a line chart, updating
+// dynamically with changes in the selected time frame. The view fetches RHR data synchronously using semaphores to
+// manage asynchronous HealthKit queries efficiently. Additionally, an informative section explains the significance
+// of RHR and the factors affecting it, enriching user understanding of cardiovascular fitness and health.
 
 import SwiftUI
 import Charts

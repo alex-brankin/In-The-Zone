@@ -1,13 +1,31 @@
 //
-//  WatchTheZone
+//  WorkoutManager.swift
+//  WatchTheZone Watch App
 //
-//  Created by Alex Brankin on 13/03/2024.
+//  Created by Alex Brankin on 15/04/2024.
 //
+// The WorkoutManager class in the WatchTheZone Watch App acts as the central coordinator for
+// managing fitness activities. It handles the setup and monitoring of workout sessions using
+// HealthKit, including initiating workouts based on user-selected activity types and managing the
+// workout session states through its integration with HKWorkoutSession and HKLiveWorkoutBuilder.
+// The class also tracks real-time data such as heart rate, energy burned, and distance, updating
+// these metrics dynamically during a workout. Additionally, it provides functionality to pause,
+// resume, and end workouts, managing the workout lifecycle and responding to changes in workout
+// state with appropriate UI updates. It utilizes environmental objects for zone management and user
+// settings to enhance the workout experience with personalized settings and feedback mechanisms.
 
 import Foundation
 import HealthKit
+import WatchKit
+import SwiftUI
+
+
 
 class WorkoutManager: NSObject, ObservableObject {
+    
+    private var healthStore: HKHealthStore {
+            HealthStoreManager.shared.healthStore
+        }
     
     var selectedWorkout: HKWorkoutActivityType?
     {
@@ -16,6 +34,7 @@ class WorkoutManager: NSObject, ObservableObject {
             startWorkout(workoutType: selectedWorkout)
         }
     }
+    
     var targetZone: Int = 0
     
     @Published var showingSummaryView: Bool = false {
@@ -23,103 +42,14 @@ class WorkoutManager: NSObject, ObservableObject {
             // Sheet dismissed
             if showingSummaryView == false {
                 resetWorkout()
-                }
+            }
         }
     }
     
-    var zone1Min: String {
-        get {
-            UserDefaults.standard.string(forKey: "zone1Min") ?? ""
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "zone1Min")
-        }
-    }
-    
-    var zone1Max: String {
-        get {
-            UserDefaults.standard.string(forKey: "zone1Max") ?? ""
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "zone1Max")
-        }
-    }
-    
-    var zone2Min: String {
-        get {
-            UserDefaults.standard.string(forKey: "zone2Min") ?? ""
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "zone2Min")
-        }
-    }
-    
-    var zone2Max: String {
-        get {
-            UserDefaults.standard.string(forKey: "zone2Max") ?? ""
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "zone2Max")
-        }
-    }
-    
-    var zone3Min: String {
-        get {
-            UserDefaults.standard.string(forKey: "zone3Min") ?? ""
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "zone3Min")
-        }
-    }
-    
-    var zone3Max: String {
-        get {
-            UserDefaults.standard.string(forKey: "zone3Max") ?? ""
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "zone3Max")
-        }
-    }
-    
-    var zone4Min: String {
-        get {
-            UserDefaults.standard.string(forKey: "zone4Min") ?? ""
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "zone4Min")
-        }
-    }
-    
-    var zone4Max: String {
-        get {
-            UserDefaults.standard.string(forKey: "zone4Max") ?? ""
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "zone4Max")
-        }
-    }
-    
-    var zone5Min: String {
-        get {
-            UserDefaults.standard.string(forKey: "zone5Min") ?? ""
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "zone5Min")
-        }
-    }
-    
-    var zone5Max: String {
-        get {
-            UserDefaults.standard.string(forKey: "zone5Max") ?? ""
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "zone5Max")
-        }
-    }
-    
-
-    
-    let healthStore = HKHealthStore()
+    let workoutUIManager = WorkoutUIManager()
+    let zoneManager = ZoneManager()
+    let userDefaultsManager = UserDefaultsManager()
+  //  let healthStore = HKHealthStore()
     var session: HKWorkoutSession?
     var builder: HKLiveWorkoutBuilder?
     
@@ -127,20 +57,21 @@ class WorkoutManager: NSObject, ObservableObject {
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = workoutType
         configuration.locationType = .outdoor
-
+        
+        
         do {
             session = try HKWorkoutSession(healthStore: healthStore, configuration: configuration)
             builder = session?.associatedWorkoutBuilder()
         } catch {
-            // Handle any exceptions.
+            
             return
         }
-
+        
         builder?.dataSource = HKLiveWorkoutDataSource(
             healthStore: healthStore,
             workoutConfiguration: configuration
         )
-
+        
         session?.delegate = self
         builder?.delegate = self
         
@@ -151,77 +82,56 @@ class WorkoutManager: NSObject, ObservableObject {
             // The workout has started.
             
         }
-        if let builder = self.builder {
-            let brand = "InTheZone"
-            let metadata: [String: String] = [
-                HKMetadataKeyWorkoutBrandName: brand,
-                "targetZone": String(targetZone),
-                "zone1Min": String(zone1Min),
-                "zone1Max": String(zone1Max),
-                "zone2Min": String(zone2Min),
-                "zone2Max": String(zone2Max),
-                "zone3Min": String(zone3Min),
-                "zone3Max": String(zone3Max),
-                "zone4Min": String(zone4Min),
-                "zone4Max": String(zone4Max),
-                "zone5Min": String(zone5Min),
-                "zone5Max": String(zone5Max)
-            ]
-            builder.addMetadata(metadata) { (success, error) in
-                print(success ? "Success saving metadata" : error as Any)
-            }
-        } else {
-            print("Builder is nil, unable to add metadata.")
-        }
-       
+        addWorkoutMetadata()
+
     }
     
-    // Request authorization to access HealthKit.
-    func requestAuthorization() {
-        // The quantity type to write to the health store.
-        let typesToShare: Set = [
-            HKQuantityType.workoutType()
-        ]
-
-        // The quantity types to read from the health store.
-        let typesToRead: Set = [
-            HKQuantityType.quantityType(forIdentifier: .heartRate)!,
-            HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
-            HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!,
-            HKQuantityType.quantityType(forIdentifier: .distanceCycling)!,
-            HKObjectType.activitySummaryType()
-        ]
+    func addWorkoutMetadata() {
+         print("In the function")
+         let brand = "InTheZone"
+         guard let builder = self.builder else {
+             print("Builder is nil at metadata addition time.")
+             return
+         }
         
+         let metadata: [String: String] = [
+             HKMetadataKeyWorkoutBrandName: brand,
+             "targetZone": String(targetZone),
+             "zone1Min": String(userDefaultsManager.zone1Min),
+             "zone1Max": String(userDefaultsManager.zone1Max),
+             "zone2Min": String(userDefaultsManager.zone2Min),
+             "zone2Max": String(userDefaultsManager.zone2Max),
+             "zone3Min": String(userDefaultsManager.zone3Min),
+             "zone3Max": String(userDefaultsManager.zone3Max),
+             "zone4Min": String(userDefaultsManager.zone4Min),
+             "zone4Max": String(userDefaultsManager.zone4Max),
+             "zone5Min": String(userDefaultsManager.zone5Min),
+             "zone5Max": String(userDefaultsManager.zone5Max)
+         ]
         
-        healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
-            if success {
-                // Authorization granted, do nothing
-            } else {
-                // Authorization denied or error occurred
-                if let error = error {
-                    print("Authorization failed: \(error.localizedDescription)")
-                } else {
-                    print("Authorization denied")
-                }
-            }
-        }
-    }
-
-
+         builder.addMetadata(metadata) { (success, error) in
+             if let error = error {
+                 print("Error saving metadata: \(error.localizedDescription)")
+             } else {
+                 print("Metadata saved successfully: \(success)")
+                 print(metadata)
+             }
+         }
+     }
     
     // State Control
-
+    
     // The workout session state.
     @Published var running = false
-
+    
     func pause() {
         session?.pause()
     }
-
+    
     func resume() {
         session?.resume()
     }
-
+    
     func togglePause() {
         if running == true {
             pause()
@@ -229,7 +139,7 @@ class WorkoutManager: NSObject, ObservableObject {
             resume()
         }
     }
-
+    
     func endWorkout() {
         session?.end()
         showingSummaryView = true
@@ -240,11 +150,31 @@ class WorkoutManager: NSObject, ObservableObject {
     @Published var activeEnergy: Double = 0
     @Published var distance: Double = 0
     @Published var workout: HKWorkout?
+    @Published var pace: String = ""
+    @Published var currentZone: Int = 0
+    @Published var onTarget: Bool = false
+    @Published var formattedDistance: String = ""
+    @Published var currentZoneMin: Int = 0
+    @Published var currentZoneMax: Int = 0
+    //Published var targetZone: Int = 0
+    @Published var targetZoneMin: Int = 0
+    @Published var targetZoneMax: Int = 0
     
     func updateForStatistics(_ statistics: HKStatistics?) {
         guard let statistics = statistics else { return }
-
-        DispatchQueue.main.async {
+        
+        DispatchQueue.main.async {[self] in
+            
+            let safeElapsedTime = builder?.elapsedTime ?? 0
+            self.pace = workoutUIManager.getPace(elapsedTime: safeElapsedTime, distance: self.distance)
+            self.currentZone = zoneManager.getCurrentZone(for: self.heartRate)
+            self.onTarget = isOnTarget()
+            self.formattedDistance = workoutUIManager.getFormattedDistance(distance: self.distance)
+            self.currentZoneMin = zoneManager.getZoneBoundary(boundary: "min", zone: self.currentZone)
+            self.currentZoneMax = zoneManager.getZoneBoundary(boundary: "max", zone: self.currentZone)
+            self.targetZoneMin = zoneManager.getZoneBoundary(boundary: "min", zone: self.targetZone)
+            self.targetZoneMax = zoneManager.getZoneBoundary(boundary: "max", zone: self.targetZone)
+            
             switch statistics.quantityType {
             case HKQuantityType.quantityType(forIdentifier: .heartRate):
                 let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
@@ -272,7 +202,46 @@ class WorkoutManager: NSObject, ObservableObject {
         heartRate = 0
         distance = 0
     }
-
+    
+    private func isOnTarget() -> Bool {
+        if targetZone == self.currentZone
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    }
+    
+    private func hapticTimer() {
+        let hapticFeedbackEnabled: Bool = true
+        let hapticFrequencyMinutes: Double = 1
+        let hapticDelayMinutes: Double = 2
+        
+        // Manage the last feedback time
+        var lastHapticFeedbackTime = Date()
+        
+        // Dispatch the timer to a background queue
+        DispatchQueue.global(qos: .background).async {
+            let timer = Timer(timeInterval: hapticFrequencyMinutes * 60, repeats: true) { _ in
+                DispatchQueue.main.async {
+                    // Check the elapsed time on the main thread if needed
+                    if self.builder!.elapsedTime.rounded() >= (hapticDelayMinutes * 60) {
+                        if !self.onTarget && Date().timeIntervalSince(lastHapticFeedbackTime) >= (hapticFrequencyMinutes * 60) {
+                            if hapticFeedbackEnabled {
+                                WKInterfaceDevice.current().play(.stop)
+                                lastHapticFeedbackTime = Date()
+                            }
+                        }
+                    }
+                }
+            }
+            // Add the timer to the current run loop
+            RunLoop.current.add(timer, forMode: .common)
+            RunLoop.current.run()
+        }
+    }
 }
 
 
@@ -285,7 +254,6 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
                         date: Date) {
         DispatchQueue.main.async {
             self.running = toState == .running
-            print("WM Status : " + String(self.running))
         }
 
         // Wait for the session to transition states before ending the builder.

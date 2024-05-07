@@ -3,6 +3,11 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The ProfileView in SwiftUI uses HealthKit and integrates a photo picker for users to select and display their
+// profile image. It incorporates a form for editing personal information and managing user input with environmental
+// objects. The form includes interactive elements like text fields and a custom date picker presented in a modal
+// sheet for setting the user's age. Additionally, the view displays user achievements in a grid layout,
+// highlighting earned trophies and locked achievements, with placeholder images for future unlocks.
 
 import SwiftUI
 import PhotosUI

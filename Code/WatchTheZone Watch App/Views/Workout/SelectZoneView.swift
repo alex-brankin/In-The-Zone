@@ -3,11 +3,18 @@
 //
 //  Created by Alex Brankin on 13/03/2024.
 //
+// The SelectZoneView in the WatchTheZone app allows users to select one of five workout intensity
+// zones through a user-friendly interface. Presented in a carousel-style list, each zone is
+// represented as a color-coded navigation link that leads to a corresponding ActivityView for more
+// detailed interaction. The colours range from blue for the lightest intensity to red for the
+// highest. This view leverages SwiftUI's NavigationLink and custom modifiers for styling, ensuring
+// an engaging and accessible selection process for users planning their workouts.
 
 import SwiftUI
 
 struct SelectZoneView: View {
     @EnvironmentObject var workoutManager: WorkoutManager
+    @EnvironmentObject var workoutUIManager: WorkoutUIManager
     @State private var selectedZone: Int?
 
     var body: some View {
@@ -24,10 +31,12 @@ struct SelectZoneView: View {
                 }.listRowInsets(EdgeInsets())
                     .buttonStyle(PlainButtonStyle())
 
-            }
+            
             .listStyle(CarouselListStyle())
             .padding(.top, 0)
+            
         }
+    }
  
     func colorForZone(_ zone: Int) -> Color {
 

@@ -1,9 +1,9 @@
 //
-//  InTheZone
+//  InTheZoneTests.swift
+//  InTheZoneTests
 //
-//  Created by Alex Brankin on 02/03/2024.
+//  Created by Alex Brankin on 02/04/2024.
 //
-
 
 import XCTest
 @testable import InTheZone

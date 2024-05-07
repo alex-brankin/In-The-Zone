@@ -3,6 +3,10 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The DistanceView SwiftUI code displays a chart of cumulative distance traveled over a selected time range using
+// HealthKit data. It includes a segmented picker for time range selection and fetches data asynchronously.
+// Additionally, the DistanceInfoView provides complementary information on tracking distance using GPS devices and
+// fitness trackers.
 
 import SwiftUI
 import Charts

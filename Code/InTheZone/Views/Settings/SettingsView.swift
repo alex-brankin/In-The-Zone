@@ -3,10 +3,17 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The SettingsView in SwiftUI manages user preferences for notifications, heart rate zones, and step goals. It
+// incorporates SwiftUI's @AppStorage for persistent storage of user settings, like notifications enablement and
+// heart rate parameters, which adjust through interactive sliders for visual customization. The view also offers a
+// reset functionality to clear all user settings, leveraging user defaults. Additional UI components, such as
+// toggles for notifications and sliders for setting heart rate zones, enhance user interaction, with changes being
+// committed to UserDefaults and visual feedback provided through color-coded heart rate zones.
 
 import SwiftUI
 
 struct SettingsView: View {
+    @StateObject private var profileViewModel = ProfileViewModel()
     @AppStorage("notificationsEnabled") private var notificationsEnabled = false
     @State private var stepGoalText = "10000"
     @State private var isStepGoalValid = true
@@ -159,17 +166,19 @@ struct SettingsView: View {
     
     private func resetProfile() {
             if let bundleIdentifier = Bundle.main.bundleIdentifier {
+                // Remove UserDefaults data
                 UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
                 UserDefaults.standard.synchronize()
+                
+                // Remove profile picture
+                profileViewModel.removeProfilePicture()
+                
                 // Notify user of reset completion
                 print("Profile Reset")
             }
         }
+    }
     
-}
-
-
-
 extension String {
     func trimmingTrailingZeros() -> String {
         guard let doubleValue = Double(self) else {
@@ -177,7 +186,7 @@ extension String {
         }
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 10 
+        formatter.maximumFractionDigits = 10
         return formatter.string(from: NSNumber(value: doubleValue)) ?? self
     }
 }

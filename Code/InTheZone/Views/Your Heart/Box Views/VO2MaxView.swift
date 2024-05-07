@@ -3,6 +3,12 @@
 //
 //  Created by Alex Brankin on 02/03/2024.
 //
+// The VO2MaxView in SwiftUI offers a navigable view where users can select a date range (7, 30, or 365 days) to
+// visualize their VO2 Max data through a line chart. The view dynamically fetches and displays VO2 Max data from
+// HealthKit based on the selected time frame, using synchronous network calls to ensure that data is presented in
+// an ordered fashion. A semaphore controls the data fetching sequence, allowing the view to update accurately after
+// each data retrieval. The chart visualizes VO2 Max over time, aiding users in understanding their aerobic fitness
+// levels.
 
 import SwiftUI
 import Charts
